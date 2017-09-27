@@ -1,24 +1,24 @@
-<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506493107401">
+<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506497815800">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
-    <file name="master_a-master.css" crc="62891409" ref="creative-portfolio:index:contact:single-project:creative-services:about:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="creative-portfolio.css" crc="3964021334" ref="creative-portfolio"/>
+    <file name="master_a-master.css" crc="210264619" ref="creative-portfolio:index:contact:single-project:creative-services:about:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="creative-portfolio.css" crc="96400491" ref="creative-portfolio"/>
     <file name="iefonts_creative-portfolio.css" crc="3860756121" ref="creative-portfolio"/>
-    <file name="index.css" crc="459092929" ref="index"/>
+    <file name="index.css" crc="174309968" ref="index"/>
     <file name="iefonts_index.css" crc="4243564744" ref="index"/>
-    <file name="contact.css" crc="296514174" ref="contact"/>
+    <file name="contact.css" crc="197860612" ref="contact"/>
     <file name="iefonts_contact.css" crc="475493290" ref="contact"/>
-    <file name="single-project.css" crc="3954278436" ref="single-project"/>
+    <file name="single-project.css" crc="3995712961" ref="single-project"/>
     <file name="iefonts_single-project.css" crc="3812995058" ref="single-project"/>
-    <file name="creative-services.css" crc="299777199" ref="creative-services"/>
+    <file name="creative-services.css" crc="527944406" ref="creative-services"/>
     <file name="iefonts_creative-services.css" crc="4215277628" ref="creative-services"/>
-    <file name="about.css" crc="231359445" ref="about"/>
+    <file name="about.css" crc="420178697" ref="about"/>
     <file name="iefonts_about.css" crc="428050817" ref="about"/>
-    <file name="technical-portfolio.css" crc="3848473329" ref="technical-portfolio"/>
-    <file name="iefonts_technical-portfolio.css" crc="3976243644" ref="technical-portfolio"/>
-    <file name="jpl-project.css" crc="400848056" ref="jpl-project"/>
+    <file name="technical-portfolio.css" crc="4083082294" ref="technical-portfolio"/>
+    <file name="iefonts_technical-portfolio.css" crc="4113858089" ref="technical-portfolio"/>
+    <file name="jpl-project.css" crc="339864587" ref="jpl-project"/>
     <file name="iefonts_jpl-project.css" crc="3837922154" ref="jpl-project"/>
-    <file name="512-hyperloop.css" crc="3832383029" ref="512-hyperloop"/>
+    <file name="512-hyperloop.css" crc="3972815408" ref="512-hyperloop"/>
     <file name="iefonts_512-hyperloop.css" crc="3992969848" ref="512-hyperloop"/>
   </folder>
   <folder name="assets">
@@ -34,261 +34,41 @@
       <file name="Scroll-Down.html" crc="159668375" mt="1444820983000"/>
     </folder>
     <file name="preloader.gif" crc="429972298" seo="true" mt="1446665844000"/>
+    <file name="zute-anish---resume-(fall-2017).pdf" crc="3987861426" seo="true" mt="1506496859000"/>
   </folder>
   <folder name="scripts">
-    <file name="jquery-1.8.3.min.js" crc="209076791" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="museutils.js" crc="17924269" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="whatinput.js" crc="86476730" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="museconfig.js" crc="278381782" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="jquery.musepolyfill.bgsize.js" crc="3854337258" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>contact:index:creative-services:contact:about:creative-portfolio:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="jquery.watch.js" crc="4240030481" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="jquery.musemenu.js" crc="4286030528" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="webpro.js" crc="416662029" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="musewpslideshow.js" crc="4034900702" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="jquery.museoverlay.js" crc="528673841" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="touchswipe.js" crc="432264157" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="jquery.scrolleffects.js" crc="232371266" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="html5shiv.js" crc="4241844378" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="require.js" crc="3861931657" ref="phone>index:phone>about:phone>services:phone>portfolio:phone>single-project:phone>contact:tablet>index:tablet>about:tablet>services:tablet>portfolio:tablet>single-project:tablet>contact:index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
-    <file name="form_check.php" crc="4110044762" ref="phone>contact"/>
-    <file name="form_throttle.php" crc="22190333" ref="phone>contact"/>
-    <file name="form_process.php" crc="257545537" ref="phone>contact"/>
-    <file name="form-u5733.php" crc="220820574" ref="phone>contact"/>
-    <file name="form-u4796.php" crc="3927759884" ref="tablet>contact"/>
+    <file name="jquery-1.8.3.min.js" crc="209076791" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="museutils.js" crc="17924269" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="whatinput.js" crc="86476730" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="museconfig.js" crc="278381782" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="jquery.musepolyfill.bgsize.js" crc="3854337258" ref="index:creative-services:contact:about:creative-portfolio:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="jquery.watch.js" crc="4240030481" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="jquery.musemenu.js" crc="4286030528" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="webpro.js" crc="416662029" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="musewpslideshow.js" crc="4034900702" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="jquery.museoverlay.js" crc="528673841" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="touchswipe.js" crc="432264157" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="jquery.scrolleffects.js" crc="232371266" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="html5shiv.js" crc="4241844378" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="require.js" crc="3861931657" ref="index:creative-services:contact:about:creative-portfolio:single-project:technical-portfolio:jpl-project:512-hyperloop"/>
+    <file name="form_check.php" crc="234386740" ref="contact"/>
+    <file name="form_process.php" crc="281765392" ref="contact"/>
     <file name="form-u3238.php" crc="378873915" ref="contact"/>
   </folder>
   <folder name="images">
-    <file name="bg-img-mob-1.jpg" crc="4013462680" ref="phone>index">
-      <caption webpage="index" alt=""/>
-    </file>
-    <file name="signature.svg" crc="3760010637" ref="phone>index:tablet>index"/>
-    <file name="signature_poster_u1150.png" crc="469541917" ref="phone>index:tablet>index"/>
-    <file name="bg-img-mob-2.jpg" crc="284891944" ref="phone>index">
-      <caption webpage="index" alt=""/>
-    </file>
-    <file name="wireframe.svg" crc="20988761" ref="phone>index:tablet>index:index"/>
-    <file name="wireframe_poster_u1319.png" crc="158583026" ref="phone>index:tablet>index:index"/>
-    <file name="design.svg" crc="503511656" ref="phone>index:tablet>index:index"/>
-    <file name="design_poster_u1329.png" crc="113288375" ref="phone>index:tablet>index:index"/>
-    <file name="develop.svg" crc="205134718" ref="phone>index:tablet>index:index"/>
-    <file name="develop_poster_u1339.png" crc="109827379" ref="phone>index:tablet>index:index"/>
-    <file name="bg-img-mob-3.jpg" crc="3772141607" ref="phone>index">
-      <caption webpage="index" alt=""/>
-    </file>
-    <file name="menu.svg" crc="430008805" ref="phone>index:tablet>index:index"/>
-    <file name="menu_poster_u1061.png" crc="4002002225" ref="phone>index:tablet>index:index"/>
-    <file name="close.svg" crc="195087925" ref="phone>index:tablet>index"/>
-    <file name="close_poster_u1079.png" crc="184511687" ref="phone>index:tablet>index"/>
-    <file name="logo.svg" crc="382878477" ref="phone>index:tablet>index"/>
-    <file name="logo_poster_u1158.png" crc="510057456" ref="phone>index:tablet>index"/>
-    <file name="facebook.svg" crc="4055352784" ref="phone>index:phone>contact:tablet>index:tablet>contact:index:contact"/>
-    <file name="facebook_poster_u1165.png" crc="182968887" ref="phone>index:phone>contact:tablet>index:tablet>contact:index:contact"/>
-    <file name="twitter.svg" crc="389338333" ref="phone>index:phone>contact:tablet>index:tablet>contact:index:contact"/>
-    <file name="twitter_poster_u1172.png" crc="169571830" ref="phone>index:phone>contact:tablet>index:tablet>contact:index:contact"/>
-    <file name="linkedin.svg" crc="487054233" ref="phone>index:phone>contact:tablet>index:tablet>contact:index:contact"/>
-    <file name="linkedin_poster_u1179.png" crc="4232438337" ref="phone>index:phone>contact:tablet>index:tablet>contact:index:contact"/>
-    <file name="heading-bg-img-u6311-fr.jpg" crc="3804462463" ref="phone>about:phone>services:phone>portfolio:phone>contact:tablet>about:tablet>services:tablet>portfolio:tablet>contact"/>
-    <file name="profile-pic.jpg" crc="4047443116" ref="phone>about:tablet>about">
+    <file name="wireframe.svg" crc="20988761" ref="index"/>
+    <file name="develop.svg" crc="205134718" ref="index"/>
+    <file name="menu.svg" crc="430008805" ref="index"/>
+    <file name="facebook.svg" crc="4055352784" ref="index:contact"/>
+    <file name="twitter.svg" crc="389338333" ref="index:contact"/>
+    <file name="linkedin.svg" crc="487054233" ref="index:contact"/>
+    <file name="profile-pic.jpg" crc="4149465787" ref="about">
+      <caption webpage="about" alt=""/>
       <caption webpage="about" alt=""/>
       <caption webpage="about" alt=""/>
     </file>
-    <file name="photoshop.svg" crc="166827614" ref="phone>about:tablet>about"/>
-    <file name="photoshop_poster_u9390.png" crc="166737447" ref="phone>about:tablet>about"/>
-    <file name="flash.svg" crc="4137344242" ref="phone>about:tablet>about"/>
-    <file name="flash_poster_u9382.png" crc="4288960710" ref="phone>about:tablet>about"/>
-    <file name="premier-pro.svg" crc="283901569" ref="phone>about:tablet>about"/>
-    <file name="premier-pro_poster_u9366.png" crc="172178294" ref="phone>about:tablet>about"/>
-    <file name="audition.svg" crc="199185804" ref="phone>about:tablet>about"/>
-    <file name="audition_poster_u9358.png" crc="281760181" ref="phone>about:tablet>about"/>
-    <file name="lightroom.svg" crc="522907642" ref="phone>about:tablet>about"/>
-    <file name="lightroom_poster_u9374.png" crc="134058979" ref="phone>about:tablet>about"/>
-    <file name="profile-pic-u6433-fr.jpg" crc="4149465787" ref="phone>about:tablet>about:about"/>
-    <file name="services.jpg" crc="3931043514" ref="phone>services:tablet>services">
-      <caption webpage="services" alt=""/>
-      <caption webpage="services" alt=""/>
-      <caption webpage="services" alt=""/>
-      <caption webpage="services" alt=""/>
-      <caption webpage="services" alt=""/>
-      <caption webpage="services" alt=""/>
-    </file>
-    <file name="client-logo-1.svg" crc="3899708125" ref="phone>services:tablet>services"/>
-    <file name="client-logo-1_poster_u9350.png" crc="4152562320" ref="phone>services:tablet>services"/>
-    <file name="client-logo-4.svg" crc="4156894262" ref="phone>services:tablet>services"/>
-    <file name="client-logo-4_poster_u9326.png" crc="4238363454" ref="phone>services:tablet>services"/>
-    <file name="client-logo-2.svg" crc="89893536" ref="phone>services:tablet>services"/>
-    <file name="client-logo-2_poster_u9342.png" crc="4053224189" ref="phone>services:tablet>services"/>
-    <file name="client-logo-5.svg" crc="189383329" ref="phone>services:tablet>services"/>
-    <file name="client-logo-5_poster_u9318.png" crc="3979973296" ref="phone>services:tablet>services"/>
-    <file name="client-logo-3.svg" crc="3974730825" ref="phone>services:tablet>services"/>
-    <file name="client-logo-3_poster_u9334.png" crc="3965278652" ref="phone>services:tablet>services"/>
-    <file name="client-logo-6.svg" crc="3941492998" ref="phone>services:tablet>services"/>
-    <file name="client-logo-6_poster_u9310.png" crc="4148937257" ref="phone>services:tablet>services"/>
-    <file name="01-crop-u5828.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="blank.gif" crc="4208392903" ref="phone>portfolio:tablet>portfolio"/>
-    <file name="01-crop-u5812.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5824.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5818.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5814.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5822.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5826.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5816.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5836.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5832.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5830.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5834.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5820.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="loading.gif" crc="3815509949" ref="phone>portfolio:tablet>index:tablet>portfolio"/>
-    <file name="01-crop-u5953.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5967.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5951.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5957.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5961.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5971.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5955.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5973.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5965.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5975.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5969.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5963.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u5959.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6149.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6155.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6153.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6145.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6133.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6139.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6147.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6141.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6157.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6151.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6143.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6135.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="01-crop-u6137.jpg" crc="279193948" seo="true" ref="phone>portfolio">
-      <caption webpage="portfolio" alt=""/>
-    </file>
-    <file name="project-img-1340x175.jpg" crc="95593366" seo="true" ref="phone>single-project">
-      <caption webpage="single-project" alt=""/>
-      <caption webpage="single-project" alt=""/>
-      <caption webpage="single-project" alt=""/>
-    </file>
-    <file name="map-2.svg" crc="302485879" ref="phone>contact:tablet>contact:contact"/>
-    <file name="map-2_poster_u3470.png" crc="154641011" ref="phone>contact:tablet>contact:index:contact"/>
-    <file name="01.jpg" crc="3794248999" ref="tablet>portfolio:creative-portfolio">
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
+    <file name="map-2.svg" crc="302485879" ref="contact"/>
+    <file name="01.jpg" crc="3794248999" ref="creative-portfolio">
       <caption webpage="creative-portfolio" alt=""/>
       <caption webpage="creative-portfolio" alt=""/>
       <caption webpage="creative-portfolio" alt=""/>
@@ -299,18 +79,51 @@
       <caption webpage="creative-portfolio" alt=""/>
       <caption webpage="creative-portfolio" alt=""/>
       <caption webpage="creative-portfolio" alt=""/>
-    </file>
-    <file name="project-img-1690x354.jpg" crc="301528065" seo="true" ref="tablet>single-project">
-      <caption webpage="single-project" alt=""/>
-      <caption webpage="single-project" alt=""/>
-      <caption webpage="single-project" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
     </file>
     <file name="instagram1.svg" crc="375770816" ref="index"/>
     <file name="instagram1_poster_u9784.png" crc="226738173" ref="index"/>
     <file name="20170722_16370xcv5.jpg" crc="111586168" ref="index">
       <caption webpage="index" alt=""/>
     </file>
-    <file name="map-22.svg" crc="302485879" ref="index"/>
     <file name="20170627_132715.jpg" crc="3942200365" ref="index">
       <caption webpage="index" alt=""/>
     </file>
@@ -380,60 +193,29 @@
     <file name="20170826_123759.jpg" crc="209299156" ref="512-hyperloop">
       <caption webpage="512-hyperloop" alt=""/>
     </file>
+    <file name="menu_poster_u11366.png" crc="4002002225" ref="index"/>
+    <file name="facebook_poster_u11342.png" crc="182968887" ref="index:contact"/>
+    <file name="twitter_poster_u11390.png" crc="169571830" ref="index:contact"/>
+    <file name="linkedin_poster_u11350.png" crc="4232438337" ref="index:contact"/>
+    <file name="wireframe_poster_u11398.png" crc="158583026" ref="index"/>
+    <file name="code.svg" crc="179531180" ref="index"/>
+    <file name="code_poster_u13196.png" crc="191067303" ref="index"/>
+    <file name="develop_poster_u11334.png" crc="109827379" ref="index"/>
+    <file name="img_63424.svg" crc="165550252" ref="index"/>
+    <file name="img_63424_poster_u13228.png" crc="478321015" ref="index"/>
+    <file name="aperture-science.svg" crc="23614544" ref="index"/>
+    <file name="aperture-science_poster_u13212.png" crc="299295742" ref="index"/>
+    <file name="music.svg" crc="454685967" ref="index"/>
+    <file name="music_poster_u13236.png" crc="20567429" ref="index"/>
+    <file name="map-2_poster_u9819.png" crc="154641011" ref="contact"/>
   </folder>
-  <folder name="tablet">
-    <folder name="css">
-      <file name="master_a-master.css" crc="498341803" ref="tablet>about:tablet>index:tablet>services:tablet>single-project:tablet>contact:tablet>portfolio"/>
-      <file name="about.css" crc="4142591959" ref="tablet>about"/>
-      <file name="iefonts_about.css" crc="177653199" ref="tablet>about"/>
-      <file name="index.css" crc="4183489830" ref="tablet>index"/>
-      <file name="iefonts_index.css" crc="512279372" ref="tablet>index"/>
-      <file name="services.css" crc="510806833" ref="tablet>services"/>
-      <file name="iefonts_services.css" crc="3795640699" ref="tablet>services"/>
-      <file name="single-project.css" crc="4107876275" ref="tablet>single-project"/>
-      <file name="iefonts_single-project.css" crc="222337694" ref="tablet>single-project"/>
-      <file name="contact.css" crc="3780174363" ref="tablet>contact"/>
-      <file name="iefonts_contact.css" crc="4279822861" ref="tablet>contact"/>
-      <file name="portfolio.css" crc="222115338" ref="tablet>portfolio"/>
-      <file name="iefonts_portfolio.css" crc="4251712851" ref="tablet>portfolio"/>
-    </folder>
-    <file name="index.html" crc="4153593631" seo="true" mt="1506487503938" redirect="true"/>
-    <file name="about.html" crc="4249406370" seo="true" mt="1506487503938" redirect="true"/>
-    <file name="services.html" crc="370581100" seo="true" mt="1506487503938" redirect="true"/>
-    <file name="portfolio.html" crc="3826738949" seo="true" mt="1506487503938" redirect="true"/>
-    <file name="single-project.html" crc="12963743" seo="true" mt="1506487503938" redirect="true"/>
-    <file name="contact.html" crc="4032988208" seo="true" mt="1506487503938" redirect="true"/>
-  </folder>
-  <folder name="phone">
-    <folder name="css">
-      <file name="master_a-master.css" crc="3871315216" ref="phone>services:phone>contact:phone>index:phone>portfolio:phone>about:phone>single-project"/>
-      <file name="services.css" crc="187624560" ref="phone>services"/>
-      <file name="iefonts_services.css" crc="3869362145" ref="phone>services"/>
-      <file name="contact.css" crc="156158108" ref="phone>contact"/>
-      <file name="iefonts_contact.css" crc="341221286" ref="phone>contact"/>
-      <file name="index.css" crc="244424504" ref="phone>index"/>
-      <file name="iefonts_index.css" crc="515396661" ref="phone>index"/>
-      <file name="portfolio.css" crc="4191813571" ref="phone>portfolio"/>
-      <file name="iefonts_portfolio.css" crc="95038759" ref="phone>portfolio"/>
-      <file name="about.css" crc="4059230170" ref="phone>about"/>
-      <file name="iefonts_about.css" crc="320745587" ref="phone>about"/>
-      <file name="single-project.css" crc="3975728231" ref="phone>single-project"/>
-      <file name="iefonts_single-project.css" crc="494189448" ref="phone>single-project"/>
-    </folder>
-    <file name="index.html" crc="3813266179" seo="true" mt="1506487503939" redirect="true"/>
-    <file name="about.html" crc="3858121099" seo="true" mt="1506487503939" redirect="true"/>
-    <file name="services.html" crc="3960332120" seo="true" mt="1506487503939" redirect="true"/>
-    <file name="portfolio.html" crc="470340100" seo="true" mt="1506487503939" redirect="true"/>
-    <file name="single-project.html" crc="222688099" seo="true" mt="1506487503939" redirect="true"/>
-    <file name="contact.html" crc="346519784" seo="true" mt="1506487503939" redirect="true"/>
-  </folder>
-  <file name="index.html" crc="4265033117" seo="true" mt="1506487503931" redirect="true"/>
-  <file name="creative-services.html" crc="3965051578" seo="true" mt="1506490644460" redirect="true"/>
-  <file name="contact.html" crc="4008228277" seo="true" mt="1506487503931" redirect="true"/>
-  <file name="about.html" crc="4015684641" seo="true" mt="1506487503931" redirect="true"/>
-  <file name="creative-portfolio.html" crc="4151614796" seo="true" mt="1506489131913" redirect="true"/>
-  <file name="single-project.html" crc="299523885" seo="true" mt="1506487503931" redirect="true"/>
-  <file name="technical-portfolio.html" crc="164761779" seo="true" mt="1506487503931" redirect="true"/>
-  <file name="jpl-project.html" crc="3818654641" seo="true" mt="1506487503931" redirect="true"/>
-  <file name="512-hyperloop.html" crc="3893092681" seo="true" mt="1506487503931" redirect="true"/>
+  <file name="index.html" crc="416033397" seo="true" mt="1506497611503" redirect="true"/>
+  <file name="creative-services.html" crc="328118115" seo="true" mt="1506496097237" redirect="true"/>
+  <file name="contact.html" crc="431311936" seo="true" mt="1506496097234" redirect="true"/>
+  <file name="about.html" crc="195020180" seo="true" mt="1506497149950" redirect="true"/>
+  <file name="creative-portfolio.html" crc="302092142" seo="true" mt="1506496097243" redirect="true"/>
+  <file name="single-project.html" crc="277530602" seo="true" mt="1506496097240" redirect="true"/>
+  <file name="technical-portfolio.html" crc="480831346" seo="true" mt="1506497038133" redirect="true"/>
+  <file name="jpl-project.html" crc="356338081" seo="true" mt="1506496097248" redirect="true"/>
+  <file name="512-hyperloop.html" crc="496581337" seo="true" mt="1506496097245" redirect="true"/>
 </manifest>
