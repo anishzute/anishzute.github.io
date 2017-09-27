@@ -1,10 +1,10 @@
-<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506497815800">
+<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506499654035">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
     <file name="master_a-master.css" crc="210264619" ref="creative-portfolio:index:contact:single-project:creative-services:about:technical-portfolio:jpl-project:512-hyperloop"/>
     <file name="creative-portfolio.css" crc="96400491" ref="creative-portfolio"/>
     <file name="iefonts_creative-portfolio.css" crc="3860756121" ref="creative-portfolio"/>
-    <file name="index.css" crc="174309968" ref="index"/>
+    <file name="index.css" crc="3941747765" ref="index"/>
     <file name="iefonts_index.css" crc="4243564744" ref="index"/>
     <file name="contact.css" crc="197860612" ref="contact"/>
     <file name="iefonts_contact.css" crc="475493290" ref="contact"/>
@@ -69,6 +69,45 @@
     </file>
     <file name="map-2.svg" crc="302485879" ref="contact"/>
     <file name="01.jpg" crc="3794248999" ref="creative-portfolio">
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
+      <caption webpage="portfolio" alt=""/>
       <caption webpage="creative-portfolio" alt=""/>
       <caption webpage="creative-portfolio" alt=""/>
       <caption webpage="creative-portfolio" alt=""/>
@@ -79,45 +118,6 @@
       <caption webpage="creative-portfolio" alt=""/>
       <caption webpage="creative-portfolio" alt=""/>
       <caption webpage="creative-portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
-      <caption webpage="portfolio" alt=""/>
     </file>
     <file name="instagram1.svg" crc="375770816" ref="index"/>
     <file name="instagram1_poster_u9784.png" crc="226738173" ref="index"/>
@@ -209,13 +209,13 @@
     <file name="music_poster_u13236.png" crc="20567429" ref="index"/>
     <file name="map-2_poster_u9819.png" crc="154641011" ref="contact"/>
   </folder>
-  <file name="index.html" crc="416033397" seo="true" mt="1506497611503" redirect="true"/>
-  <file name="creative-services.html" crc="328118115" seo="true" mt="1506496097237" redirect="true"/>
-  <file name="contact.html" crc="431311936" seo="true" mt="1506496097234" redirect="true"/>
-  <file name="about.html" crc="195020180" seo="true" mt="1506497149950" redirect="true"/>
-  <file name="creative-portfolio.html" crc="302092142" seo="true" mt="1506496097243" redirect="true"/>
-  <file name="single-project.html" crc="277530602" seo="true" mt="1506496097240" redirect="true"/>
-  <file name="technical-portfolio.html" crc="480831346" seo="true" mt="1506497038133" redirect="true"/>
-  <file name="jpl-project.html" crc="356338081" seo="true" mt="1506496097248" redirect="true"/>
-  <file name="512-hyperloop.html" crc="496581337" seo="true" mt="1506496097245" redirect="true"/>
+  <file name="index.html" crc="4064616805" seo="true" mt="1506498715888" redirect="true"/>
+  <file name="creative-services.html" crc="3870921644" seo="true" mt="1506498715888" redirect="true"/>
+  <file name="contact.html" crc="4243390770" seo="true" mt="1506498715888" redirect="true"/>
+  <file name="about.html" crc="3851689307" seo="true" mt="1506498715888" redirect="true"/>
+  <file name="creative-portfolio.html" crc="530486083" seo="true" mt="1506498715888" redirect="true"/>
+  <file name="single-project.html" crc="78058631" seo="true" mt="1506498715888" redirect="true"/>
+  <file name="technical-portfolio.html" crc="3895505085" seo="true" mt="1506498715888" redirect="true"/>
+  <file name="jpl-project.html" crc="4210785356" seo="true" mt="1506498715888" redirect="true"/>
+  <file name="512-hyperloop.html" crc="96066966" seo="true" mt="1506498715888" redirect="true"/>
 </manifest>
