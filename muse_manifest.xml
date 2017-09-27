@@ -1,4 +1,4 @@
-<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="anishzute.github.io" resolutions="1x" timestamp="1506491159302">
+<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506493107401">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
     <file name="master_a-master.css" crc="62891409" ref="creative-portfolio:index:contact:single-project:creative-services:about:technical-portfolio:jpl-project:512-hyperloop"/>
@@ -397,12 +397,12 @@
       <file name="portfolio.css" crc="222115338" ref="tablet>portfolio"/>
       <file name="iefonts_portfolio.css" crc="4251712851" ref="tablet>portfolio"/>
     </folder>
-    <file name="index.html" crc="4235261606" seo="true" mt="1506487503938" redirect="true"/>
-    <file name="about.html" crc="3933350687" seo="true" mt="1506487503938" redirect="true"/>
+    <file name="index.html" crc="4153593631" seo="true" mt="1506487503938" redirect="true"/>
+    <file name="about.html" crc="4249406370" seo="true" mt="1506487503938" redirect="true"/>
     <file name="services.html" crc="370581100" seo="true" mt="1506487503938" redirect="true"/>
     <file name="portfolio.html" crc="3826738949" seo="true" mt="1506487503938" redirect="true"/>
-    <file name="single-project.html" crc="4251026080" seo="true" mt="1506487503938" redirect="true"/>
-    <file name="contact.html" crc="3792415799" seo="true" mt="1506487503938" redirect="true"/>
+    <file name="single-project.html" crc="12963743" seo="true" mt="1506487503938" redirect="true"/>
+    <file name="contact.html" crc="4032988208" seo="true" mt="1506487503938" redirect="true"/>
   </folder>
   <folder name="phone">
     <folder name="css">
@@ -420,19 +420,19 @@
       <file name="single-project.css" crc="3975728231" ref="phone>single-project"/>
       <file name="iefonts_single-project.css" crc="494189448" ref="phone>single-project"/>
     </folder>
-    <file name="index.html" crc="421924261" seo="true" mt="1506487503939" redirect="true"/>
-    <file name="about.html" crc="286091868" seo="true" mt="1506487503939" redirect="true"/>
+    <file name="index.html" crc="3813266179" seo="true" mt="1506487503939" redirect="true"/>
+    <file name="about.html" crc="3858121099" seo="true" mt="1506487503939" redirect="true"/>
     <file name="services.html" crc="3960332120" seo="true" mt="1506487503939" redirect="true"/>
     <file name="portfolio.html" crc="470340100" seo="true" mt="1506487503939" redirect="true"/>
-    <file name="single-project.html" crc="3980170648" seo="true" mt="1506487503939" redirect="true"/>
-    <file name="contact.html" crc="153295200" seo="true" mt="1506487503939" redirect="true"/>
+    <file name="single-project.html" crc="222688099" seo="true" mt="1506487503939" redirect="true"/>
+    <file name="contact.html" crc="346519784" seo="true" mt="1506487503939" redirect="true"/>
   </folder>
-  <file name="index.html" crc="77763883" seo="true" mt="1506487503931" redirect="true"/>
+  <file name="index.html" crc="4265033117" seo="true" mt="1506487503931" redirect="true"/>
   <file name="creative-services.html" crc="3965051578" seo="true" mt="1506490644460" redirect="true"/>
-  <file name="contact.html" crc="353548149" seo="true" mt="1506487503931" redirect="true"/>
-  <file name="about.html" crc="4268310555" seo="true" mt="1506487503931" redirect="true"/>
+  <file name="contact.html" crc="4008228277" seo="true" mt="1506487503931" redirect="true"/>
+  <file name="about.html" crc="4015684641" seo="true" mt="1506487503931" redirect="true"/>
   <file name="creative-portfolio.html" crc="4151614796" seo="true" mt="1506489131913" redirect="true"/>
-  <file name="single-project.html" crc="484400562" seo="true" mt="1506487503931" redirect="true"/>
+  <file name="single-project.html" crc="299523885" seo="true" mt="1506487503931" redirect="true"/>
   <file name="technical-portfolio.html" crc="164761779" seo="true" mt="1506487503931" redirect="true"/>
   <file name="jpl-project.html" crc="3818654641" seo="true" mt="1506487503931" redirect="true"/>
   <file name="512-hyperloop.html" crc="3893092681" seo="true" mt="1506487503931" redirect="true"/>

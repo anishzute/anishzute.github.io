@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://anishzute.github.io/index.html</loc>
+    <loc>https://anishzute.github.io/index.html</loc>
     <lastmod>2017-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="http://anishzute.github.io/phone/index.html"/>
-    <xhtml:link rel="alternate" media="only screen and (max-width: 960px)" href="http://anishzute.github.io/tablet/index.html"/>
+    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="https://anishzute.github.io/phone/index.html"/>
+    <xhtml:link rel="alternate" media="only screen and (max-width: 960px)" href="https://anishzute.github.io/tablet/index.html"/>
   </url>
   <url>
-    <loc>http://anishzute.github.io/tablet/services.html</loc>
+    <loc>https://anishzute.github.io/tablet/services.html</loc>
     <lastmod>2017-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="http://anishzute.github.io/phone/services.html"/>
+    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="https://anishzute.github.io/phone/services.html"/>
   </url>
   <url>
-    <loc>http://anishzute.github.io/tablet/portfolio.html</loc>
+    <loc>https://anishzute.github.io/tablet/portfolio.html</loc>
     <lastmod>2017-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="http://anishzute.github.io/phone/portfolio.html"/>
+    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="https://anishzute.github.io/phone/portfolio.html"/>
   </url>
   <url>
-    <loc>http://anishzute.github.io/about.html</loc>
+    <loc>https://anishzute.github.io/about.html</loc>
     <lastmod>2017-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="http://anishzute.github.io/phone/about.html"/>
-    <xhtml:link rel="alternate" media="only screen and (max-width: 960px)" href="http://anishzute.github.io/tablet/about.html"/>
+    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="https://anishzute.github.io/phone/about.html"/>
+    <xhtml:link rel="alternate" media="only screen and (max-width: 960px)" href="https://anishzute.github.io/tablet/about.html"/>
   </url>
   <url>
-    <loc>http://anishzute.github.io/creative-services.html</loc>
+    <loc>https://anishzute.github.io/creative-services.html</loc>
     <lastmod>2017-09-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://anishzute.github.io/contact.html</loc>
+    <loc>https://anishzute.github.io/contact.html</loc>
     <lastmod>2017-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="http://anishzute.github.io/phone/contact.html"/>
-    <xhtml:link rel="alternate" media="only screen and (max-width: 960px)" href="http://anishzute.github.io/tablet/contact.html"/>
+    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="https://anishzute.github.io/phone/contact.html"/>
+    <xhtml:link rel="alternate" media="only screen and (max-width: 960px)" href="https://anishzute.github.io/tablet/contact.html"/>
   </url>
   <url>
-    <loc>http://anishzute.github.io/technical-portfolio.html</loc>
+    <loc>https://anishzute.github.io/technical-portfolio.html</loc>
     <lastmod>2017-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://anishzute.github.io/creative-portfolio.html</loc>
+    <loc>https://anishzute.github.io/creative-portfolio.html</loc>
     <lastmod>2017-09-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://anishzute.github.io/single-project.html</loc>
+    <loc>https://anishzute.github.io/single-project.html</loc>
     <lastmod>2017-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="http://anishzute.github.io/phone/single-project.html"/>
-    <xhtml:link rel="alternate" media="only screen and (max-width: 960px)" href="http://anishzute.github.io/tablet/single-project.html"/>
+    <xhtml:link rel="alternate" media="only screen and (max-width: 370px)" href="https://anishzute.github.io/phone/single-project.html"/>
+    <xhtml:link rel="alternate" media="only screen and (max-width: 960px)" href="https://anishzute.github.io/tablet/single-project.html"/>
     <image:image>
-      <image:loc>http://anishzute.github.io/images/project-img-1.jpg</image:loc>
+      <image:loc>https://anishzute.github.io/images/project-img-1.jpg</image:loc>
     </image:image>
   </url>
   <url>
-    <loc>http://anishzute.github.io/jpl-project.html</loc>
+    <loc>https://anishzute.github.io/jpl-project.html</loc>
     <lastmod>2017-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://anishzute.github.io/512-hyperloop.html</loc>
+    <loc>https://anishzute.github.io/512-hyperloop.html</loc>
     <lastmod>2017-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://anishzute.github.io/assets/preloader.gif</loc>
+    <loc>https://anishzute.github.io/assets/preloader.gif</loc>
     <lastmod>2015-11-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
