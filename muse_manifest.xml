@@ -1,4 +1,4 @@
-<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506563433784">
+<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506563521022">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
     <file name="master_a-master.css" crc="396531340" ref="creative-portfolio:index:contact:single-project:creative-services:about:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
@@ -18,7 +18,7 @@
     <file name="iefonts_jpl-project.css" crc="4072595749" ref="jpl-project"/>
     <file name="512-hyperloop.css" crc="4042362857" ref="512-hyperloop"/>
     <file name="iefonts_512-hyperloop.css" crc="4219668535" ref="512-hyperloop"/>
-    <file name="technical-porfolio.css" crc="4216546767" ref="technical-porfolio"/>
+    <file name="technical-porfolio.css" crc="3800654325" ref="technical-porfolio"/>
     <file name="iefonts_technical-porfolio.css" crc="4080939246" ref="technical-porfolio"/>
     <file name="positronium.css" crc="3772609759" ref="positronium"/>
     <file name="iefonts_positronium.css" crc="349383525" ref="positronium"/>
@@ -174,10 +174,6 @@
       <caption webpage="single-project" alt=""/>
       <caption webpage="single-project" alt=""/>
     </file>
-    <file name="20170621_1722sa23.jpg" crc="92972310" ref="technical-porfolio">
-      <caption webpage="technical-portfolio" alt=""/>
-      <caption webpage="technical-porfolio" alt=""/>
-    </file>
     <file name="20170712_103819.jpg" crc="4232362271" ref="jpl-project">
       <caption webpage="jpl-project" alt=""/>
     </file>
@@ -226,6 +222,7 @@
     <file name="img_6307.jpg" crc="267410881" ref="positronium">
       <caption webpage="positronium" alt=""/>
     </file>
+    <file name="20170621_1722sa23-u13264-fr.png" crc="466074263" ref="technical-porfolio"/>
   </folder>
   <file name="index.html" crc="4123677558" seo="true" mt="1506562334893" redirect="true"/>
   <file name="creative-services.html" crc="468112396" seo="true" mt="1506560252938" redirect="true"/>
@@ -235,6 +232,6 @@
   <file name="single-project.html" crc="3863830045" seo="true" mt="1506555033023" redirect="true"/>
   <file name="jpl-project.html" crc="3796855459" seo="true" mt="1506562397787" redirect="true"/>
   <file name="512-hyperloop.html" crc="142920333" seo="true" mt="1506562427984" redirect="true"/>
-  <file name="technical-porfolio.html" crc="3882232096" seo="true" mt="1506563006964" redirect="true"/>
+  <file name="technical-porfolio.html" crc="365129396" seo="true" mt="1506563492372" redirect="true"/>
   <file name="positronium.html" crc="3764837284" seo="true" mt="1506562966965" redirect="true"/>
 </manifest>
