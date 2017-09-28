@@ -1,4 +1,4 @@
-<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506563324739">
+<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506563433784">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
     <file name="master_a-master.css" crc="396531340" ref="creative-portfolio:index:contact:single-project:creative-services:about:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
@@ -18,7 +18,7 @@
     <file name="iefonts_jpl-project.css" crc="4072595749" ref="jpl-project"/>
     <file name="512-hyperloop.css" crc="4042362857" ref="512-hyperloop"/>
     <file name="iefonts_512-hyperloop.css" crc="4219668535" ref="512-hyperloop"/>
-    <file name="technical-porfolio.css" crc="4013486549" ref="technical-porfolio"/>
+    <file name="technical-porfolio.css" crc="4216546767" ref="technical-porfolio"/>
     <file name="iefonts_technical-porfolio.css" crc="4080939246" ref="technical-porfolio"/>
     <file name="positronium.css" crc="3772609759" ref="positronium"/>
     <file name="iefonts_positronium.css" crc="349383525" ref="positronium"/>
@@ -235,6 +235,6 @@
   <file name="single-project.html" crc="3863830045" seo="true" mt="1506555033023" redirect="true"/>
   <file name="jpl-project.html" crc="3796855459" seo="true" mt="1506562397787" redirect="true"/>
   <file name="512-hyperloop.html" crc="142920333" seo="true" mt="1506562427984" redirect="true"/>
-  <file name="technical-porfolio.html" crc="4138595536" seo="true" mt="1506563311858" redirect="true"/>
+  <file name="technical-porfolio.html" crc="3882232096" seo="true" mt="1506563006964" redirect="true"/>
   <file name="positronium.html" crc="3764837284" seo="true" mt="1506562966965" redirect="true"/>
 </manifest>
