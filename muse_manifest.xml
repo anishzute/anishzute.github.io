@@ -1,4 +1,4 @@
-<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506563051610">
+<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506563198610">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
     <file name="master_a-master.css" crc="445287039" ref="creative-portfolio:index:contact:single-project:creative-services:about:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
