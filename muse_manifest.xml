@@ -1,4 +1,4 @@
-<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506563755367">
+<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506564220543">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
     <file name="master_a-master.css" crc="445287039" ref="creative-portfolio:index:contact:single-project:creative-services:about:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
@@ -36,7 +36,7 @@
       <file name="Scroll-Down.html" crc="159668375" mt="1444820983000"/>
     </folder>
     <file name="preloader.gif" crc="429972298" seo="true" mt="1446665844000"/>
-    <file name="zute-anish---resume-(fall-2017).pdf" crc="3987861426" seo="true" mt="1506496859000"/>
+    <file name="zute-anish---resume-(fall-2017).pdf" crc="372100374" seo="true" mt="1506563931000"/>
     <file name="poistroniumreport.pdf" crc="3760512918" seo="true" mt="1468035706000"/>
     <file name="zutecampbell---positronium-lab-manual.pdf" crc="3871771919" seo="true" mt="1473804535000"/>
   </folder>
@@ -224,14 +224,14 @@
     </file>
     <file name="20170621_1722sa23-u13264-fr.png" crc="466074263" ref="technical-porfolio"/>
   </folder>
-  <file name="index.html" crc="4123677558" seo="true" mt="1506563719244" redirect="true"/>
-  <file name="creative-services.html" crc="468112396" seo="true" mt="1506563719244" redirect="true"/>
-  <file name="contact.html" crc="4079182274" seo="true" mt="1506563719244" redirect="true"/>
-  <file name="about.html" crc="158339241" seo="true" mt="1506563719244" redirect="true"/>
-  <file name="creative-portfolio.html" crc="3938447098" seo="true" mt="1506563719244" redirect="true"/>
-  <file name="single-project.html" crc="3863830045" seo="true" mt="1506563719244" redirect="true"/>
-  <file name="jpl-project.html" crc="3796855459" seo="true" mt="1506563719244" redirect="true"/>
-  <file name="512-hyperloop.html" crc="142920333" seo="true" mt="1506563719244" redirect="true"/>
-  <file name="technical-porfolio.html" crc="178009237" seo="true" mt="1506563719244" redirect="true"/>
-  <file name="positronium.html" crc="3764837284" seo="true" mt="1506563719244" redirect="true"/>
+  <file name="index.html" crc="4123677558" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="creative-services.html" crc="468112396" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="contact.html" crc="4079182274" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="about.html" crc="158339241" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="creative-portfolio.html" crc="3938447098" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="single-project.html" crc="3863830045" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="jpl-project.html" crc="3796855459" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="512-hyperloop.html" crc="142920333" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="technical-porfolio.html" crc="178009237" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="positronium.html" crc="3764837284" seo="true" mt="1506563985489" redirect="true"/>
 </manifest>
