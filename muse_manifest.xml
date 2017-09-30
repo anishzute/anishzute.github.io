@@ -1,7 +1,7 @@
-<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506564220543">
+<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506792495538">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
-    <file name="master_a-master.css" crc="445287039" ref="creative-portfolio:index:contact:single-project:creative-services:about:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
+    <file name="master_a-master.css" crc="3813872869" ref="creative-portfolio:index:contact:single-project:creative-services:about:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
     <file name="creative-portfolio.css" crc="148891139" ref="creative-portfolio"/>
     <file name="iefonts_creative-portfolio.css" crc="3838435965" ref="creative-portfolio"/>
     <file name="index.css" crc="369013095" ref="index"/>
@@ -10,8 +10,8 @@
     <file name="iefonts_contact.css" crc="4139357422" ref="contact"/>
     <file name="single-project.css" crc="30426994" ref="single-project"/>
     <file name="iefonts_single-project.css" crc="4212417262" ref="single-project"/>
-    <file name="creative-services.css" crc="462488642" ref="creative-services"/>
-    <file name="iefonts_creative-services.css" crc="91603378" ref="creative-services"/>
+    <file name="creative-services.css" crc="4100071143" ref="creative-services"/>
+    <file name="iefonts_creative-services.css" crc="66144835" ref="creative-services"/>
     <file name="about.css" crc="239070525" ref="about"/>
     <file name="iefonts_about.css" crc="29222548" ref="about"/>
     <file name="jpl-project.css" crc="259629884" ref="jpl-project"/>
@@ -62,10 +62,10 @@
   <folder name="images">
     <file name="wireframe.svg" crc="20988761" ref="index"/>
     <file name="develop.svg" crc="205134718" ref="index"/>
-    <file name="menu.svg" crc="430008805" ref="index"/>
-    <file name="facebook.svg" crc="4055352784" ref="index:contact"/>
-    <file name="twitter.svg" crc="389338333" ref="index:contact"/>
-    <file name="linkedin.svg" crc="487054233" ref="index:contact"/>
+    <file name="menu.svg" crc="430008805" ref="index:creative-services"/>
+    <file name="facebook.svg" crc="4055352784" ref="index:contact:creative-services"/>
+    <file name="twitter.svg" crc="389338333" ref="index:contact:creative-services"/>
+    <file name="linkedin.svg" crc="487054233" ref="index:contact:creative-services"/>
     <file name="profile-pic.jpg" crc="4149465787" ref="about">
       <caption webpage="about" alt=""/>
       <caption webpage="about" alt=""/>
@@ -123,8 +123,8 @@
       <caption webpage="creative-portfolio" alt=""/>
       <caption webpage="creative-portfolio" alt=""/>
     </file>
-    <file name="instagram1.svg" crc="375770816" ref="index"/>
-    <file name="instagram1_poster_u9784.png" crc="226738173" ref="index"/>
+    <file name="instagram1.svg" crc="375770816" ref="index:creative-services"/>
+    <file name="instagram1_poster_u9784.png" crc="226738173" ref="index:creative-services"/>
     <file name="20170722_16370xcv5.jpg" crc="111586168" ref="index">
       <caption webpage="index" alt=""/>
     </file>
@@ -134,13 +134,13 @@
     <file name="20170816_181403xcvx.jpg" crc="67348459" ref="creative-services">
       <caption webpage="creative-services" alt=""/>
     </file>
-    <file name="20151031_020754.jpg" crc="3941827676" ref="creative-services">
+    <file name="20151031_020754.jpg" crc="3764126549" ref="creative-services">
       <caption webpage="creative-services" alt=""/>
     </file>
-    <file name="avatars-000064247519-l4j246-t500x500.jpg" crc="334447543" ref="creative-services">
+    <file name="avatars-000064247519-l4j246-t500x500.jpg" crc="443853466" ref="creative-services">
       <caption webpage="creative-services" alt=""/>
     </file>
-    <file name="11336347_872813886120025_130283220_n.jpg" crc="138514972" ref="creative-services">
+    <file name="11336347_872813886120025_130283220_n.jpg" crc="3917679810" ref="creative-services">
       <caption webpage="creative-services" alt=""/>
     </file>
     <file name="gopr0bcvbc753.jpg" crc="3904801688" ref="contact">
@@ -190,10 +190,10 @@
     <file name="20170826_123759.jpg" crc="209299156" ref="512-hyperloop">
       <caption webpage="512-hyperloop" alt=""/>
     </file>
-    <file name="menu_poster_u11366.png" crc="4002002225" ref="index"/>
-    <file name="facebook_poster_u11342.png" crc="182968887" ref="index:contact"/>
-    <file name="twitter_poster_u11390.png" crc="169571830" ref="index:contact"/>
-    <file name="linkedin_poster_u11350.png" crc="4232438337" ref="index:contact"/>
+    <file name="menu_poster_u11366.png" crc="4002002225" ref="index:creative-services"/>
+    <file name="facebook_poster_u11342.png" crc="182968887" ref="index:contact:creative-services"/>
+    <file name="twitter_poster_u11390.png" crc="169571830" ref="index:contact:creative-services"/>
+    <file name="linkedin_poster_u11350.png" crc="4232438337" ref="index:contact:creative-services"/>
     <file name="wireframe_poster_u11398.png" crc="158583026" ref="index"/>
     <file name="code.svg" crc="179531180" ref="index:creative-services"/>
     <file name="code_poster_u13196.png" crc="191067303" ref="index:creative-services"/>
@@ -225,7 +225,7 @@
     <file name="20170621_1722sa23-u13264-fr.png" crc="466074263" ref="technical-porfolio"/>
   </folder>
   <file name="index.html" crc="4123677558" seo="true" mt="1506563985489" redirect="true"/>
-  <file name="creative-services.html" crc="468112396" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="creative-services.html" crc="4220605981" seo="true" mt="1506792434713" redirect="true"/>
   <file name="contact.html" crc="4079182274" seo="true" mt="1506563985489" redirect="true"/>
   <file name="about.html" crc="158339241" seo="true" mt="1506563985489" redirect="true"/>
   <file name="creative-portfolio.html" crc="3938447098" seo="true" mt="1506563985489" redirect="true"/>
