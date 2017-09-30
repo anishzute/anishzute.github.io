@@ -1,4 +1,4 @@
-<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506792495538">
+<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506792641868">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
     <file name="master_a-master.css" crc="3813872869" ref="creative-portfolio:index:contact:single-project:creative-services:about:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
@@ -10,7 +10,7 @@
     <file name="iefonts_contact.css" crc="4139357422" ref="contact"/>
     <file name="single-project.css" crc="30426994" ref="single-project"/>
     <file name="iefonts_single-project.css" crc="4212417262" ref="single-project"/>
-    <file name="creative-services.css" crc="4100071143" ref="creative-services"/>
+    <file name="creative-services.css" crc="4162625598" ref="creative-services"/>
     <file name="iefonts_creative-services.css" crc="66144835" ref="creative-services"/>
     <file name="about.css" crc="239070525" ref="about"/>
     <file name="iefonts_about.css" crc="29222548" ref="about"/>
@@ -225,7 +225,7 @@
     <file name="20170621_1722sa23-u13264-fr.png" crc="466074263" ref="technical-porfolio"/>
   </folder>
   <file name="index.html" crc="4123677558" seo="true" mt="1506563985489" redirect="true"/>
-  <file name="creative-services.html" crc="4220605981" seo="true" mt="1506792434713" redirect="true"/>
+  <file name="creative-services.html" crc="288983326" seo="true" mt="1506792622116" redirect="true"/>
   <file name="contact.html" crc="4079182274" seo="true" mt="1506563985489" redirect="true"/>
   <file name="about.html" crc="158339241" seo="true" mt="1506563985489" redirect="true"/>
   <file name="creative-portfolio.html" crc="3938447098" seo="true" mt="1506563985489" redirect="true"/>
