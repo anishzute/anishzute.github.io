@@ -1,10 +1,10 @@
-<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1510342085614">
+<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1510342347779">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
     <file name="master_a-master.css" crc="4041143605" ref="creative-portfolio:index:contact:single-project:creative-services:about:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
     <file name="creative-portfolio.css" crc="148891139" ref="creative-portfolio"/>
     <file name="iefonts_creative-portfolio.css" crc="3838435965" ref="creative-portfolio"/>
-    <file name="index.css" crc="4294635603" ref="index"/>
+    <file name="index.css" crc="4281620919" ref="index"/>
     <file name="iefonts_index.css" crc="139460398" ref="index"/>
     <file name="contact.css" crc="4078405288" ref="contact"/>
     <file name="iefonts_contact.css" crc="4139357422" ref="contact"/>
@@ -232,7 +232,7 @@
       <caption webpage="texas-guadaloop" alt=""/>
     </file>
   </folder>
-  <file name="index.html" crc="3882061356" seo="true" mt="1510283227702" redirect="true"/>
+  <file name="index.html" crc="512246466" seo="true" mt="1510342329356" redirect="true"/>
   <file name="creative-services.html" crc="288983326" seo="true" mt="1506792622116" redirect="true"/>
   <file name="contact.html" crc="4079182274" seo="true" mt="1506563985489" redirect="true"/>
   <file name="about.html" crc="349707866" seo="true" mt="1510283510382" redirect="true"/>
