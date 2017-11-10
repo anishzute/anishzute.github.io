@@ -16,8 +16,8 @@ if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required
   <title>Positronium</title>
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="css/site_global.css?crc=504712206"/>
-  <link rel="stylesheet" type="text/css" href="css/master_a-master.css?crc=445287039"/>
-  <link rel="stylesheet" type="text/css" href="css/positronium.css?crc=3772609759" id="pagesheet"/>
+  <link rel="stylesheet" type="text/css" href="css/master_a-master.css?crc=4041143605"/>
+  <link rel="stylesheet" type="text/css" href="css/positronium.css?crc=20001716" id="pagesheet"/>
   <!-- IE-only CSS -->
   <!--[if lt IE 9]>
   <link rel="stylesheet" type="text/css" href="css/iefonts_positronium.css?crc=349383525"/>
@@ -171,7 +171,7 @@ $(window).load(function(){
       <div class="museBGSize grpelem" id="u13769"><!-- simple frame --></div>
      </div>
      <div class="clearfix colelem" id="pbuttonu13620"><!-- group -->
-      <a class="nonblock nontext Button clearfix grpelem" id="buttonu13620" href="jpl-project.html"><!-- container box --><div class="clearfix grpelem" id="u13621-4"><!-- content --><p>NEXT PROJECT</p></div></a>
+      <a class="nonblock nontext Button clearfix grpelem" id="buttonu13620" href="texas-guadaloop.html"><!-- container box --><div class="clearfix grpelem" id="u13621-4"><!-- content --><p>NEXT PROJECT</p></div></a>
       <a class="nonblock nontext Button clearfix grpelem" id="buttonu13617" href="512-hyperloop.html"><!-- container box --><div class="clearfix grpelem" id="u13618-4"><!-- content --><p>PREV PROJECT</p></div></a>
      </div>
     </div>
@@ -255,7 +255,7 @@ Muse.Utils.makeButtonsVisibleAfterSettingMinWidth();/* body */
 Muse.Utils.initWidget('.MenuBar', ['#bp_infinity'], function(elem) { return $(elem).museMenu(); });/* unifiedNavBar */
 Muse.Utils.initWidget('#pamphletu965', ['#bp_infinity'], function(elem) { return new WebPro.Widget.ContentSlideShow(elem, {contentLayout_runtime:'lightbox',event:'click',deactivationEvent:'none',autoPlay:false,displayInterval:3000,transitionStyle:'fading',transitionDuration:500,hideAllContentsFirst:false,shuffle:false,enableSwipe:true,resumeAutoplay:true,resumeAutoplayInterval:3000,playOnce:false,autoActivate_runtime:false,isResponsive:false}); });/* #pamphletu965 */
 Muse.Utils.fullPage('#page');/* 100% height page */
-$('#u1121-bw').registerPositionScrollEffect([{"in":[-Infinity,100],"speed":[null,-1]},{"in":[100,Infinity],"speed":[null,0]}]);/* scroll effect */
+$('#u1121-bw').registerPositionScrollEffect([{"speed":[null,-1],"in":[-Infinity,100]},{"speed":[null,0],"in":[100,Infinity]}]);/* scroll effect */
 Muse.Utils.showWidgetsWhenReady();/* body */
 Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
 }catch(b){if(b&&"function"==typeof b.notify?b.notify():Muse.Assert.fail("Error calling selector function: "+b),false)throw b;}})})};

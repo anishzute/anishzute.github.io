@@ -1,10 +1,10 @@
-<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1506792641868">
+<manifest alg="2" build="2017.1.0.379" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1510342085614">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
-    <file name="master_a-master.css" crc="3813872869" ref="creative-portfolio:index:contact:single-project:creative-services:about:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
+    <file name="master_a-master.css" crc="4041143605" ref="creative-portfolio:index:contact:single-project:creative-services:about:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
     <file name="creative-portfolio.css" crc="148891139" ref="creative-portfolio"/>
     <file name="iefonts_creative-portfolio.css" crc="3838435965" ref="creative-portfolio"/>
-    <file name="index.css" crc="369013095" ref="index"/>
+    <file name="index.css" crc="4294635603" ref="index"/>
     <file name="iefonts_index.css" crc="139460398" ref="index"/>
     <file name="contact.css" crc="4078405288" ref="contact"/>
     <file name="iefonts_contact.css" crc="4139357422" ref="contact"/>
@@ -12,16 +12,18 @@
     <file name="iefonts_single-project.css" crc="4212417262" ref="single-project"/>
     <file name="creative-services.css" crc="4162625598" ref="creative-services"/>
     <file name="iefonts_creative-services.css" crc="66144835" ref="creative-services"/>
-    <file name="about.css" crc="239070525" ref="about"/>
+    <file name="about.css" crc="3938264514" ref="about"/>
     <file name="iefonts_about.css" crc="29222548" ref="about"/>
-    <file name="jpl-project.css" crc="259629884" ref="jpl-project"/>
+    <file name="jpl-project.css" crc="174691918" ref="jpl-project"/>
     <file name="iefonts_jpl-project.css" crc="4072595749" ref="jpl-project"/>
     <file name="512-hyperloop.css" crc="4042362857" ref="512-hyperloop"/>
     <file name="iefonts_512-hyperloop.css" crc="4219668535" ref="512-hyperloop"/>
     <file name="technical-porfolio.css" crc="4030769695" ref="technical-porfolio"/>
     <file name="iefonts_technical-porfolio.css" crc="4080939246" ref="technical-porfolio"/>
-    <file name="positronium.css" crc="3772609759" ref="positronium"/>
+    <file name="positronium.css" crc="20001716" ref="positronium"/>
     <file name="iefonts_positronium.css" crc="349383525" ref="positronium"/>
+    <file name="texas-guadaloop.css" crc="4188827974" ref="texas-guadaloop"/>
+    <file name="iefonts_texas-guadaloop.css" crc="469688793" ref="texas-guadaloop"/>
   </folder>
   <folder name="assets">
     <folder name="scroll-down">
@@ -41,20 +43,20 @@
     <file name="zutecampbell---positronium-lab-manual.pdf" crc="3871771919" seo="true" mt="1473804535000"/>
   </folder>
   <folder name="scripts">
-    <file name="jquery-1.8.3.min.js" crc="209076791" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="museutils.js" crc="17924269" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="whatinput.js" crc="86476730" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="museconfig.js" crc="278381782" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="jquery.musepolyfill.bgsize.js" crc="3854337258" ref="index:creative-services:contact:about:creative-portfolio:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="jquery.watch.js" crc="4240030481" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="jquery.musemenu.js" crc="4286030528" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="webpro.js" crc="416662029" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="musewpslideshow.js" crc="4034900702" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="jquery.museoverlay.js" crc="528673841" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="touchswipe.js" crc="432264157" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="jquery.scrolleffects.js" crc="232371266" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="html5shiv.js" crc="4241844378" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
-    <file name="require.js" crc="3861931657" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium"/>
+    <file name="jquery-1.8.3.min.js" crc="209076791" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="museutils.js" crc="17924269" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="whatinput.js" crc="86476730" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="museconfig.js" crc="278381782" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="jquery.musepolyfill.bgsize.js" crc="3854337258" ref="index:creative-services:contact:about:creative-portfolio:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="jquery.watch.js" crc="4240030481" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="jquery.musemenu.js" crc="4286030528" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="webpro.js" crc="416662029" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="musewpslideshow.js" crc="4034900702" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="jquery.museoverlay.js" crc="528673841" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="touchswipe.js" crc="432264157" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="jquery.scrolleffects.js" crc="232371266" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="html5shiv.js" crc="4241844378" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
+    <file name="require.js" crc="3861931657" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
     <file name="form_check.php" crc="234386740" ref="contact"/>
     <file name="form_process.php" crc="281765392" ref="contact"/>
     <file name="form-u3238.php" crc="378873915" ref="contact"/>
@@ -178,11 +180,14 @@
       <caption webpage="jpl-project" alt=""/>
     </file>
     <file name="screenshot (29).jpg" crc="4231398126" ref="jpl-project"/>
-    <file name="iso on track.jpg" crc="1797397" ref="512-hyperloop">
+    <file name="iso on track.jpg" crc="1797397" ref="512-hyperloop:texas-guadaloop">
       <caption webpage="512-hyperloop" alt=""/>
       <caption webpage="512-hyperloop" alt=""/>
       <caption webpage="512-hyperloop" alt=""/>
       <caption webpage="512-hyperloop" alt=""/>
+      <caption webpage="texas-guadaloop" alt=""/>
+      <caption webpage="texas-guadaloop" alt=""/>
+      <caption webpage="texas-guadaloop" alt=""/>
     </file>
     <file name="img_4202asd.jpg" crc="4179343884" ref="512-hyperloop">
       <caption webpage="512-hyperloop" alt=""/>
@@ -223,15 +228,19 @@
       <caption webpage="positronium" alt=""/>
     </file>
     <file name="20170621_1722sa23-u13264-fr.png" crc="466074263" ref="technical-porfolio"/>
+    <file name="pod new 1 .jpg" crc="512442475" ref="texas-guadaloop">
+      <caption webpage="texas-guadaloop" alt=""/>
+    </file>
   </folder>
-  <file name="index.html" crc="4123677558" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="index.html" crc="3882061356" seo="true" mt="1510283227702" redirect="true"/>
   <file name="creative-services.html" crc="288983326" seo="true" mt="1506792622116" redirect="true"/>
   <file name="contact.html" crc="4079182274" seo="true" mt="1506563985489" redirect="true"/>
-  <file name="about.html" crc="158339241" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="about.html" crc="349707866" seo="true" mt="1510283510382" redirect="true"/>
   <file name="creative-portfolio.html" crc="3938447098" seo="true" mt="1506563985489" redirect="true"/>
   <file name="single-project.html" crc="3863830045" seo="true" mt="1506563985489" redirect="true"/>
-  <file name="jpl-project.html" crc="3796855459" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="jpl-project.html" crc="411442065" seo="true" mt="1510342022962" redirect="true"/>
   <file name="512-hyperloop.html" crc="142920333" seo="true" mt="1506563985489" redirect="true"/>
   <file name="technical-porfolio.html" crc="178009237" seo="true" mt="1506563985489" redirect="true"/>
-  <file name="positronium.html" crc="3764837284" seo="true" mt="1506563985489" redirect="true"/>
+  <file name="positronium.html" crc="422106783" seo="true" mt="1510342042372" redirect="true"/>
+  <file name="texas-guadaloop.html" crc="3891240279" seo="true" mt="1510342077117" redirect="true"/>
 </manifest>
