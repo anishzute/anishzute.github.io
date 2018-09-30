@@ -1,4 +1,4 @@
-<manifest alg="2" build="2018.1.0.386" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1538288290783">
+<manifest alg="2" build="2018.1.0.386" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1538288714817">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
     <file name="master_a-master.css" crc="4064516591" ref="512-hyperloop:creative-portfolio:creative-services:technical-porfolio:single-project:contact:positronium:jpl-project:about:index:texas-guadaloop"/>
