@@ -1,4 +1,4 @@
-<manifest alg="2" build="2018.1.0.386" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1562870557493">
+<manifest alg="2" build="2018.1.0.386" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1562871553947">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
     <file name="master_a-master.css" crc="4064516591" ref="512-hyperloop:creative-portfolio:creative-services:technical-porfolio:single-project:contact:positronium:jpl-project:about:index:texas-guadaloop"/>
@@ -18,7 +18,7 @@
     <file name="iefonts_positronium.css" crc="451856827" ref="positronium"/>
     <file name="jpl-project.css" crc="4060863457" ref="jpl-project"/>
     <file name="iefonts_jpl-project.css" crc="4072595749" ref="jpl-project"/>
-    <file name="about.css" crc="514288446" ref="about"/>
+    <file name="about.css" crc="4156856149" ref="about"/>
     <file name="iefonts_about.css" crc="29222548" ref="about"/>
     <file name="index.css" crc="522248259" ref="index"/>
     <file name="iefonts_index.css" crc="3961805477" ref="index"/>
@@ -75,16 +75,16 @@
     <file name="20170627_132715.jpg" crc="3942200365" ref="index">
       <caption webpage="index" alt=""/>
     </file>
-    <file name="menu.svg" crc="430008805" ref="index"/>
-    <file name="menu_poster_u11366.png" crc="4002002225" ref="index"/>
-    <file name="facebook.svg" crc="4055352784" ref="index:contact"/>
-    <file name="facebook_poster_u11342.png" crc="182968887" ref="index:contact"/>
-    <file name="twitter.svg" crc="389338333" ref="index:contact"/>
-    <file name="twitter_poster_u11390.png" crc="169571830" ref="index:contact"/>
-    <file name="linkedin.svg" crc="487054233" ref="index:contact"/>
-    <file name="linkedin_poster_u11350.png" crc="4232438337" ref="index:contact"/>
-    <file name="instagram1.svg" crc="375770816" ref="index"/>
-    <file name="instagram1_poster_u9784.png" crc="226738173" ref="index"/>
+    <file name="menu.svg" crc="430008805" ref="index:about"/>
+    <file name="menu_poster_u11366.png" crc="4002002225" ref="index:about"/>
+    <file name="facebook.svg" crc="4055352784" ref="index:contact:about"/>
+    <file name="facebook_poster_u11342.png" crc="182968887" ref="index:contact:about"/>
+    <file name="twitter.svg" crc="389338333" ref="index:contact:about"/>
+    <file name="twitter_poster_u11390.png" crc="169571830" ref="index:contact:about"/>
+    <file name="linkedin.svg" crc="487054233" ref="index:contact:about"/>
+    <file name="linkedin_poster_u11350.png" crc="4232438337" ref="index:contact:about"/>
+    <file name="instagram1.svg" crc="375770816" ref="index:about"/>
+    <file name="instagram1_poster_u9784.png" crc="226738173" ref="index:about"/>
     <file name="20170816_181403xcvx.jpg" crc="67348459" ref="creative-services">
       <caption webpage="creative-services" alt=""/>
     </file>
@@ -176,8 +176,8 @@
   <file name="index.html" crc="4184502126" seo="true" mt="1562869720414" redirect="true"/>
   <file name="creative-services.html" crc="3782934633" seo="true" mt="1562866545780" redirect="true"/>
   <file name="contact.html" crc="4194013776" seo="true" mt="1562866545780" redirect="true"/>
-  <file name="about.html" crc="3832690895" seo="true" mt="1562869590622" redirect="true"/>
-  <file name="creative-portfolio.html" crc="296890542" seo="true" mt="1562870026142" redirect="true"/>
+  <file name="about.html" crc="62064067" seo="true" mt="1562871365810" redirect="true"/>
+  <file name="creative-portfolio.html" crc="4185888207" seo="true" mt="1562871534146" redirect="true"/>
   <file name="single-project.html" crc="319276044" seo="true" mt="1562866545780" redirect="true"/>
   <file name="jpl-project.html" crc="380176336" seo="true" mt="1562866545780" redirect="true"/>
   <file name="512-hyperloop.html" crc="208442788" seo="true" mt="1562866545780" redirect="true"/>
