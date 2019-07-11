@@ -5,51 +5,15 @@
     <lastmod>2019-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-    <image:image>
-      <image:loc>https://anishzute.github.io/images/dsc01812.jpg</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://anishzute.github.io/creative-services.html</loc>
-    <lastmod>2019-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://anishzute.github.io/contact.html</loc>
-    <lastmod>2019-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://anishzute.github.io/about.html</loc>
     <lastmod>2019-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-    <image:image>
-      <image:loc>https://anishzute.github.io/images/20181118_143216-crop-u14086.jpg</image:loc>
-    </image:image>
   </url>
   <url>
-    <loc>https://anishzute.github.io/positronium.html</loc>
-    <lastmod>2019-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://anishzute.github.io/technical-porfolio.html</loc>
-    <lastmod>2019-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://anishzute.github.io/texas-guadaloop.html</loc>
-    <lastmod>2019-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://anishzute.github.io/jpl-project.html</loc>
+    <loc>https://anishzute.github.io/creative-portfolio.html</loc>
     <lastmod>2019-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -64,23 +28,44 @@
     </image:image>
   </url>
   <url>
+    <loc>https://anishzute.github.io/positronium.html</loc>
+    <lastmod>2019-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://anishzute.github.io/creative-services.html</loc>
+    <lastmod>2019-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://anishzute.github.io/contact.html</loc>
+    <lastmod>2019-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://anishzute.github.io/texas-guadaloop.html</loc>
+    <lastmod>2019-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://anishzute.github.io/technical-porfolio.html</loc>
+    <lastmod>2019-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://anishzute.github.io/jpl-project.html</loc>
+    <lastmod>2019-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://anishzute.github.io/512-hyperloop.html</loc>
     <lastmod>2019-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://anishzute.github.io/creative-portfolio.html</loc>
-    <lastmod>2019-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <image:image>
-      <image:loc>https://anishzute.github.io/images/dsc02157-crop-u14076.jpg</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://anishzute.github.io/assets/zute-anish---resume-(fall-2017).pdf</loc>
-    <lastmod>2017-09-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -91,8 +76,8 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://anishzute.github.io/assets/zutecampbell-positronium_lab_manual_revised.pdf</loc>
-    <lastmod>2018-07-16</lastmod>
+    <loc>https://anishzute.github.io/assets/positronium_lab_manual(1).pdf</loc>
+    <lastmod>2019-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -103,26 +88,8 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://anishzute.github.io/assets/zute-anish---resume-(fall-2018).pdf</loc>
-    <lastmod>2018-09-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://anishzute.github.io/assets/poistroniumreport.pdf</loc>
-    <lastmod>2016-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://anishzute.github.io/assets/zute-anish---resume-(winter-2017).pdf</loc>
-    <lastmod>2018-01-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://anishzute.github.io/assets/zutecampbell---positronium-lab-manual.pdf</loc>
-    <lastmod>2016-09-13</lastmod>
+    <loc>https://anishzute.github.io/assets/kami-export---anishzute-positroniumreport.pdf</loc>
+    <lastmod>2019-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
