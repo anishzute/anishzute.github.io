@@ -1,28 +1,28 @@
-<manifest alg="2" build="2018.1.0.386" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1538288714817">
+<manifest alg="2" build="2018.1.0.386" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="https://anishzute.github.io" resolutions="1x" timestamp="1562868054125">
   <folder name="css">
     <file name="site_global.css" crc="504712206"/>
     <file name="master_a-master.css" crc="4064516591" ref="512-hyperloop:creative-portfolio:creative-services:technical-porfolio:single-project:contact:positronium:jpl-project:about:index:texas-guadaloop"/>
-    <file name="512-hyperloop.css" crc="4237251225" ref="512-hyperloop"/>
+    <file name="512-hyperloop.css" crc="4162160599" ref="512-hyperloop"/>
     <file name="iefonts_512-hyperloop.css" crc="4219668535" ref="512-hyperloop"/>
-    <file name="creative-portfolio.css" crc="341098984" ref="creative-portfolio"/>
-    <file name="iefonts_creative-portfolio.css" crc="3838435965" ref="creative-portfolio"/>
+    <file name="creative-portfolio.css" crc="364525475" ref="creative-portfolio"/>
+    <file name="iefonts_creative-portfolio.css" crc="4213516136" ref="creative-portfolio"/>
     <file name="creative-services.css" crc="208037999" ref="creative-services"/>
     <file name="iefonts_creative-services.css" crc="66144835" ref="creative-services"/>
     <file name="technical-porfolio.css" crc="4057448939" ref="technical-porfolio"/>
     <file name="iefonts_technical-porfolio.css" crc="3899377271" ref="technical-porfolio"/>
-    <file name="single-project.css" crc="4211963372" ref="single-project"/>
+    <file name="single-project.css" crc="258018391" ref="single-project"/>
     <file name="iefonts_single-project.css" crc="4212417262" ref="single-project"/>
-    <file name="contact.css" crc="3976021663" ref="contact"/>
+    <file name="contact.css" crc="209425392" ref="contact"/>
     <file name="iefonts_contact.css" crc="4139357422" ref="contact"/>
-    <file name="positronium.css" crc="3836898231" ref="positronium"/>
+    <file name="positronium.css" crc="4077052673" ref="positronium"/>
     <file name="iefonts_positronium.css" crc="451856827" ref="positronium"/>
-    <file name="jpl-project.css" crc="3889511340" ref="jpl-project"/>
+    <file name="jpl-project.css" crc="4060863457" ref="jpl-project"/>
     <file name="iefonts_jpl-project.css" crc="4072595749" ref="jpl-project"/>
-    <file name="about.css" crc="411558330" ref="about"/>
+    <file name="about.css" crc="148834912" ref="about"/>
     <file name="iefonts_about.css" crc="29222548" ref="about"/>
-    <file name="index.css" crc="4254556891" ref="index"/>
-    <file name="iefonts_index.css" crc="3904826751" ref="index"/>
-    <file name="texas-guadaloop.css" crc="4245948013" ref="texas-guadaloop"/>
+    <file name="index.css" crc="409211359" ref="index"/>
+    <file name="iefonts_index.css" crc="3961805477" ref="index"/>
+    <file name="texas-guadaloop.css" crc="342553294" ref="texas-guadaloop"/>
     <file name="iefonts_texas-guadaloop.css" crc="469688793" ref="texas-guadaloop"/>
   </folder>
   <folder name="assets">
@@ -44,6 +44,7 @@
     <file name="zute-anish---resume-(winter-2017).pdf" crc="4018461520" seo="true" mt="1516719839000"/>
     <file name="zutecampbell-positronium_lab_manual_revised.pdf" crc="381312908" seo="true" mt="1531793845000"/>
     <file name="zute-anish---resume-(fall-2018).pdf" crc="3780128013" seo="true" mt="1538287452000"/>
+    <file name="zute-anish---resume-(summer-2019)_online.pdf" crc="4136387633" seo="true" mt="1562867937000"/>
   </folder>
   <folder name="scripts">
     <file name="jquery-1.8.3.min.js" crc="209076791" ref="index:creative-services:contact:about:creative-portfolio:single-project:jpl-project:512-hyperloop:technical-porfolio:positronium:texas-guadaloop"/>
@@ -65,9 +66,6 @@
     <file name="form-u3238.php" crc="378585942" ref="contact"/>
   </folder>
   <folder name="images">
-    <file name="20170722_16370xcv5.jpg" crc="111586168" ref="index">
-      <caption webpage="index" alt=""/>
-    </file>
     <file name="wireframe.svg" crc="20988761" ref="index"/>
     <file name="wireframe_poster_u11398.png" crc="158583026" ref="index"/>
     <file name="code_poster_u13196-u1326-fr.png" crc="4074522705" ref="index"/>
@@ -133,33 +131,6 @@
     <file name="img_20170722_215202_241.jpg" crc="3808952189" ref="creative-portfolio">
       <caption webpage="creative-portfolio" alt=""/>
     </file>
-    <file name="osperey_sunset (4 of 26)-u2831-fr.jpg" crc="533746981" ref="creative-portfolio"/>
-    <file name="osperey_sunset (10 of 26)-u2826-fr.jpg" crc="460502144" ref="creative-portfolio"/>
-    <file name="osperey_sunset (2 of 26)-u2834-fr.jpg" crc="189805832" ref="creative-portfolio"/>
-    <file name="01-u2827-fr.jpg" crc="162873058" ref="creative-portfolio"/>
-    <file name="01-u2836-fr.jpg" crc="215296785" ref="creative-portfolio"/>
-    <file name="01-u2830-fr.jpg" crc="434517199" ref="creative-portfolio"/>
-    <file name="osperey_sunset (4 of 26).jpg" crc="300325923" ref="creative-portfolio">
-      <caption webpage="creative-portfolio" alt=""/>
-    </file>
-    <file name="osperey_sunset (10 of 26).jpg" crc="4275304585" ref="creative-portfolio">
-      <caption webpage="creative-portfolio" alt=""/>
-    </file>
-    <file name="osperey_sunset (2 of 26).jpg" crc="490806702" ref="creative-portfolio">
-      <caption webpage="creative-portfolio" alt=""/>
-    </file>
-    <file name="01.jpg" crc="3794248999" ref="creative-portfolio">
-      <caption webpage="creative-portfolio" alt=""/>
-      <caption webpage="creative-portfolio" alt=""/>
-      <caption webpage="creative-portfolio" alt=""/>
-      <caption webpage="creative-portfolio" alt=""/>
-      <caption webpage="creative-portfolio" alt=""/>
-      <caption webpage="creative-portfolio" alt=""/>
-      <caption webpage="creative-portfolio" alt=""/>
-      <caption webpage="creative-portfolio" alt=""/>
-      <caption webpage="creative-portfolio" alt=""/>
-      <caption webpage="creative-portfolio" alt=""/>
-    </file>
     <file name="project-img-1.jpg" crc="3953454682" seo="true" ref="single-project">
       <caption webpage="single-project" alt=""/>
       <caption webpage="single-project" alt=""/>
@@ -202,16 +173,25 @@
     <file name="pod new 1 .jpg" crc="512442475" ref="texas-guadaloop">
       <caption webpage="texas-guadaloop" alt=""/>
     </file>
+    <file name="dsc01812.jpg" crc="4292174355" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="20181118_143216-crop-u14086.jpg" crc="3813474658" seo="true" ref="about">
+      <caption webpage="about" alt=""/>
+    </file>
+    <file name="dsc02157-crop-u14076.jpg" crc="3987642890" seo="true" ref="creative-portfolio">
+      <caption webpage="creative-portfolio" alt=""/>
+    </file>
   </folder>
-  <file name="index.html" crc="4006352498" seo="true" mt="1538288267825" redirect="true"/>
-  <file name="creative-services.html" crc="511739920" seo="true" mt="1538288179600" redirect="true"/>
-  <file name="contact.html" crc="86585152" seo="true" mt="1506563985489" redirect="true"/>
-  <file name="about.html" crc="323246020" seo="true" mt="1538288120872" redirect="true"/>
-  <file name="creative-portfolio.html" crc="527447578" seo="true" mt="1506563985489" redirect="true"/>
-  <file name="single-project.html" crc="305518674" seo="true" mt="1506563985489" redirect="true"/>
-  <file name="jpl-project.html" crc="526696882" seo="true" mt="1510342022962" redirect="true"/>
-  <file name="512-hyperloop.html" crc="3987667725" seo="true" mt="1506563985489" redirect="true"/>
-  <file name="technical-porfolio.html" crc="4124767761" seo="true" mt="1538288147517" redirect="true"/>
-  <file name="positronium.html" crc="3919824536" seo="true" mt="1537761769840" redirect="true"/>
-  <file name="texas-guadaloop.html" crc="4051655667" seo="true" mt="1537761855167" redirect="true"/>
+  <file name="index.html" crc="3966669760" seo="true" mt="1562867951305" redirect="true"/>
+  <file name="creative-services.html" crc="3782934633" seo="true" mt="1562866545780" redirect="true"/>
+  <file name="contact.html" crc="4194013776" seo="true" mt="1562866545780" redirect="true"/>
+  <file name="about.html" crc="350352336" seo="true" mt="1562868012529" redirect="true"/>
+  <file name="creative-portfolio.html" crc="507280221" seo="true" mt="1562867013494" redirect="true"/>
+  <file name="single-project.html" crc="319276044" seo="true" mt="1562866545780" redirect="true"/>
+  <file name="jpl-project.html" crc="380176336" seo="true" mt="1562866545780" redirect="true"/>
+  <file name="512-hyperloop.html" crc="208442788" seo="true" mt="1562866545780" redirect="true"/>
+  <file name="technical-porfolio.html" crc="245673317" seo="true" mt="1562866545780" redirect="true"/>
+  <file name="positronium.html" crc="303413384" seo="true" mt="1562866545780" redirect="true"/>
+  <file name="texas-guadaloop.html" crc="3916900703" seo="true" mt="1562866545780" redirect="true"/>
 </manifest>
