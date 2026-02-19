@@ -2,106 +2,264 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 /**
- * Add your photos to this array.
- * For local files: place them in public/images/photography/ and use paths like "/images/photography/your-photo.jpg"
- * The alt text is used for accessibility and SEO.
+ * LIGHTROOM SETUP
+ * ───────────────
+ * Set your Lightroom shared album URL one of two ways:
+ *
+ * Option A — environment variable (recommended for GitHub Actions):
+ *   Add LIGHTROOM_SHARE_URL to your repo secrets / .env file.
+ *   GitHub Actions: Settings → Secrets → Actions → New secret
+ *
+ * Option B — hard-code it directly here:
+ *   const LIGHTROOM_SHARE_URL = 'https://lightroom.adobe.com/shares/YOUR_SHARE_ID';
  */
-const photos: { src: string; alt: string; width?: number; height?: number }[] = [
-  {
-    src: 'https://picsum.photos/seed/az-01/800/600',
-    alt: 'Mountain road at dusk',
-    width: 800,
-    height: 600,
-  },
-  {
-    src: 'https://picsum.photos/seed/az-02/800/1000',
-    alt: 'Racecar in the paddock',
-    width: 800,
-    height: 1000,
-  },
-  {
-    src: 'https://picsum.photos/seed/az-03/900/600',
-    alt: 'Desert landscape',
-    width: 900,
-    height: 600,
-  },
-  {
-    src: 'https://picsum.photos/seed/az-04/800/800',
-    alt: 'Track day action shot',
-    width: 800,
-    height: 800,
-  },
-  {
-    src: 'https://picsum.photos/seed/az-05/700/900',
-    alt: 'Fabrication detail',
-    width: 700,
-    height: 900,
-  },
-  {
-    src: 'https://picsum.photos/seed/az-06/1000/650',
-    alt: 'Golden hour road shot',
-    width: 1000,
-    height: 650,
-  },
+const LIGHTROOM_SHARE_URL: string =
+  import.meta.env.LIGHTROOM_SHARE_URL || '';
+
+type Photo = { src: string; alt: string; width?: number; height?: number };
+
+let photos: Photo[] = [];
+let useFallbackIframe = false;
+let fetchAttempted = false;
+
+if (LIGHTROOM_SHARE_URL) {
+  fetchAttempted = true;
+  try {
+    // Astro frontmatter runs at build time (server-side) — no CORS restrictions.
+    const shareId = LIGHTROOM_SHARE_URL.split('/shares/').pop()?.split('?')[0] ?? '';
+
+    // Step 1: resolve share → get spaceId
+    const shareRes = await fetch(
+      `https://lightroom.adobe.com/v2/shares/${shareId}`,
+      { headers: { Accept: 'application/json' } }
+    );
+
+    if (shareRes.ok) {
+      const shareData = await shareRes.json();
+      const spaceId: string = shareData?.space?.id ?? '';
+
+      if (spaceId) {
+        // Step 2: list assets
+        const assetsRes = await fetch(
+          `https://lightroom.adobe.com/v2/spaces/${spaceId}/assets` +
+            `?subtype=image&order_by=captureDate&order_direction=desc&limit=100`,
+          { headers: { Accept: 'application/json' } }
+        );
+
+        if (assetsRes.ok) {
+          const assetsData = await assetsRes.json();
+          photos = (assetsData?.resources ?? []).map((asset: Record<string, unknown>) => ({
+            src: `https://lightroom.adobe.com/v2/spaces/${spaceId}/assets/${asset['id']}/renditions/2048`,
+            alt: (asset['payload'] as Record<string, unknown>)?.['xmp'] as string ?? 'Photo',
+          }));
+        }
+      }
+    }
+
+    // If we couldn't get photos via the API, fall back to the iframe
+    if (photos.length === 0) useFallbackIframe = true;
+  } catch {
+    useFallbackIframe = true;
+  }
+}
+
+// ──────────────────────────────────────────────────────────────────
+// MANUAL PHOTOS (always shown after Lightroom photos)
+// Drop your own photos in public/images/photography/ and add them here,
+// or use direct URLs from Lightroom (right-click → Copy Image URL).
+// ──────────────────────────────────────────────────────────────────
+const manualPhotos: Photo[] = [
+  // { src: '/images/photography/track-day.jpg', alt: 'Track day at Thunderhill', width: 1200, height: 800 },
 ];
+
+const allPhotos = [...photos, ...manualPhotos];
 ---
 
 <BaseLayout
   title="Photography"
-  description="A gallery of photos from track days, road trips, and the fabrication shop."
+  description="A gallery of photos from track days, road trips, and the fabrication shop — by Anish Zute."
 >
-  <div class="page-header">
-    <h1>Photography</h1>
-    <p>Track days, road trips, and whatever catches the eye.</p>
+  <div class="page-top">
+    <div class="container">
+      <div class="page-header">
+        <h1>Photography</h1>
+        <p>Track days, road trips, and whatever catches the eye.</p>
+        {LIGHTROOM_SHARE_URL && (
+          <a
+            href={LIGHTROOM_SHARE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="lightroom-link"
+          >
+            View full album on Lightroom ↗
+          </a>
+        )}
+      </div>
+    </div>
   </div>
 
-  {photos.length === 0 ? (
-    <p class="empty">Photos coming soon.</p>
-  ) : (
-    <div class="photo-grid">
-      {photos.map(photo => (
-        <div class="photo-item">
-          <img
-            src={photo.src}
-            alt={photo.alt}
-            width={photo.width}
-            height={photo.height}
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      ))}
+  {/* Lightroom iframe fallback */}
+  {useFallbackIframe && LIGHTROOM_SHARE_URL && (
+    <div class="lr-iframe-wrapper">
+      <iframe
+        src={LIGHTROOM_SHARE_URL}
+        title="Lightroom Photo Gallery"
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
+    </div>
+  )}
+
+  {/* Masonry grid — Lightroom API photos + manual photos */}
+  {allPhotos.length > 0 && (
+    <div class="gallery-wrapper container">
+      <div class="masonry">
+        {allPhotos.map(photo => (
+          <div class="masonry-item">
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              decoding="async"
+              width={photo.width}
+              height={photo.height}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {/* Empty state — no URL configured yet */}
+  {!LIGHTROOM_SHARE_URL && allPhotos.length === 0 && (
+    <div class="empty-state container">
+      <p class="empty-icon">📷</p>
+      <h2>Gallery coming soon</h2>
+      <p>
+        To show your Lightroom album here, set the
+        <code>LIGHTROOM_SHARE_URL</code> environment variable to your
+        Lightroom shared album URL (e.g.{' '}
+        <code>https://lightroom.adobe.com/shares/abc123</code>).
+      </p>
+      <p>
+        You can also add individual photos by placing them in{' '}
+        <code>public/images/photography/</code> and listing them in the{' '}
+        <code>manualPhotos</code> array at the top of this file.
+      </p>
     </div>
   )}
 </BaseLayout>
 
 <style>
-  .photo-grid {
+  .page-top {
+    padding-top: calc(var(--nav-h) + 3rem);
+    padding-bottom: 2rem;
+  }
+
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .page-header h1 {
+    margin-bottom: 0.25rem;
+  }
+
+  .page-header p {
+    font-size: 1.05rem;
+    color: var(--text-2);
+  }
+
+  .lightroom-link {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    align-self: flex-start;
+    transition: color 0.15s;
+  }
+
+  .lightroom-link:hover {
+    color: var(--accent-hover);
+  }
+
+  /* Lightroom iframe fallback */
+  .lr-iframe-wrapper {
+    width: 100%;
+    height: 85vh;
+    min-height: 500px;
+    margin-bottom: 3rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .lr-iframe-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* Masonry grid */
+  .gallery-wrapper {
+    padding-top: 2rem;
+    padding-bottom: var(--section-gap);
+  }
+
+  .masonry {
     columns: 2;
-    column-gap: 0.75rem;
+    column-gap: 8px;
   }
 
   @media (min-width: 640px) {
-    .photo-grid {
-      columns: 3;
-    }
+    .masonry { columns: 3; }
   }
 
-  .photo-item {
+  @media (min-width: 960px) {
+    .masonry { columns: 4; }
+  }
+
+  .masonry-item {
     break-inside: avoid;
-    margin-bottom: 0.75rem;
+    margin-bottom: 8px;
   }
 
-  .photo-item img {
+  .masonry-item img {
     width: 100%;
     height: auto;
     border-radius: 4px;
     display: block;
-    background: var(--color-surface);
+    background: var(--bg-elevated);
+    transition: opacity 0.2s;
   }
 
-  .empty {
-    color: var(--color-muted);
-    font-style: italic;
+  .masonry-item img:hover {
+    opacity: 0.9;
+  }
+
+  /* Empty state */
+  .empty-state {
+    padding: var(--section-gap) var(--gutter);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 560px;
+  }
+
+  .empty-icon {
+    font-size: 2.5rem;
+    max-width: none;
+  }
+
+  .empty-state h2 {
+    font-size: 1.5rem;
+  }
+
+  .empty-state p {
+    font-size: 0.925rem;
+    color: var(--text-2);
+    line-height: 1.7;
   }
 </style>

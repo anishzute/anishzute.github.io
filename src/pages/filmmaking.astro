@@ -5,51 +5,76 @@ import filmsData from '../data/films.json';
 
 <BaseLayout
   title="Filmmaking"
-  description="Short films, race recaps, and cinematic road trips. Videos by Anish Zute."
+  description="Short films, race recaps, and cinematic road trips by Anish Zute."
 >
-  <div class="page-header">
-    <h1>Filmmaking</h1>
-    <p>Short films, race recaps, and road trips.</p>
+  <div class="page-top">
+    <div class="container">
+      <h1>Filmmaking</h1>
+      <p class="page-lead">Short films, race recaps, and road trips.</p>
+    </div>
   </div>
 
-  {filmsData.length === 0 ? (
-    <p class="empty">Videos coming soon.</p>
-  ) : (
-    <div class="films-list">
-      {filmsData.map(film => (
-        <article class="film-item">
-          <div class="film-embed">
-            <iframe
-              src={`https://www.youtube.com/embed/${film.youtubeId}`}
-              title={film.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy"
-            ></iframe>
-          </div>
-          <div class="film-info">
-            <h2>{film.title}</h2>
-            <p class="film-year">{film.year}</p>
-            <p class="film-desc">{film.description}</p>
-          </div>
-        </article>
-      ))}
-    </div>
-  )}
+  <div class="films-container container">
+    {filmsData.length === 0 ? (
+      <p class="empty">Videos coming soon.</p>
+    ) : (
+      <div class="films-list">
+        {filmsData.map(film => (
+          <article class="film-item">
+            <div class="film-embed">
+              <iframe
+                src={`https://www.youtube.com/embed/${film.youtubeId}`}
+                title={film.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="film-info">
+              <span class="film-year">{film.year}</span>
+              <h2>{film.title}</h2>
+              <p>{film.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
 </BaseLayout>
 
 <style>
+  .page-top {
+    padding-top: calc(var(--nav-h) + 3.5rem);
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .page-top h1 { margin-bottom: 0.5rem; }
+  .page-lead { font-size: 1.05rem; }
+
+  .films-container {
+    padding-bottom: var(--section-gap);
+  }
+
   .films-list {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 4rem;
   }
 
   .film-item {
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    overflow: hidden;
-    background: var(--color-surface);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 720px) {
+    .film-item {
+      grid-template-columns: 1fr 280px;
+      align-items: start;
+      gap: 2.5rem;
+    }
   }
 
   .film-embed {
@@ -57,6 +82,9 @@ import filmsData from '../data/films.json';
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
   }
 
   .film-embed iframe {
@@ -69,29 +97,35 @@ import filmsData from '../data/films.json';
   }
 
   .film-info {
-    padding: 1.25rem 1.5rem;
-  }
-
-  .film-info h2 {
-    font-size: 1.15rem;
-    margin-bottom: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.25rem;
   }
 
   .film-year {
-    font-size: 0.8rem;
-    color: var(--color-accent);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
   }
 
-  .film-desc {
+  .film-info h2 {
+    font-size: 1.25rem;
+    color: var(--text);
+  }
+
+  .film-info p {
     font-size: 0.9rem;
-    color: var(--color-muted);
-    line-height: 1.55;
+    color: var(--text-2);
+    line-height: 1.6;
+    max-width: 100%;
   }
 
   .empty {
-    color: var(--color-muted);
+    color: var(--text-2);
     font-style: italic;
+    padding: 3rem 0;
   }
 </style>

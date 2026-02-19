@@ -1,11 +1,10 @@
 ---
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/projects', label: 'Projects' },
+  { href: '/about',       label: 'About' },
+  { href: '/projects',    label: 'Projects' },
   { href: '/photography', label: 'Photography' },
-  { href: '/filmmaking', label: 'Filmmaking' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/filmmaking',  label: 'Film' },
+  { href: '/blog',        label: 'Blog' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -16,9 +15,12 @@ function isActive(href: string) {
 }
 ---
 
-<nav class="site-nav" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="/" class="nav-logo" aria-label="Home">AZ</a>
+<header class="site-header" id="site-header">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="/" class="nav-logo" aria-label="Anish Zute — home">
+      <span class="logo-text">AZ</span>
+    </a>
+
     <ul class="nav-links" role="list">
       {navLinks.map(({ href, label }) => (
         <li>
@@ -32,84 +34,110 @@ function isActive(href: string) {
         </li>
       ))}
     </ul>
-  </div>
-</nav>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  if (header) {
+    const update = () => header.classList.toggle('scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+</script>
 
 <style>
-  .site-nav {
-    border-bottom: 1px solid var(--color-border);
-    background: var(--color-bg);
-    position: sticky;
+  .site-header {
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
+    height: var(--nav-h);
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+  }
+
+  .site-header.scrolled {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border-bottom-color: var(--border);
   }
 
   .nav-inner {
-    max-width: var(--max-width);
+    max-width: var(--max-w);
     margin: 0 auto;
-    padding: 0 var(--spacing-page);
+    padding: 0 var(--gutter);
+    height: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 2rem;
-    height: 56px;
   }
 
   .nav-logo {
-    font-weight: 800;
-    font-size: 1.1rem;
-    letter-spacing: 0.05em;
-    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     text-decoration: none;
     flex-shrink: 0;
   }
 
-  .nav-logo:hover {
-    color: var(--color-accent-hover);
-    text-decoration: none;
+  .logo-text {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    transition: color 0.15s;
+  }
+
+  .nav-logo:hover .logo-text {
+    color: var(--accent-hover);
   }
 
   .nav-links {
     list-style: none;
-    display: flex;
-    gap: 0.25rem;
-    flex-wrap: wrap;
     padding: 0;
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
   }
 
   .nav-link {
     display: block;
-    padding: 0.35rem 0.65rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    color: var(--color-muted);
+    padding: 0.4rem 0.75rem;
+    border-radius: 5px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-2);
     text-decoration: none;
+    letter-spacing: 0.01em;
     transition: color 0.15s, background 0.15s;
   }
 
   .nav-link:hover {
-    color: var(--color-text);
-    background: var(--color-surface);
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
     text-decoration: none;
   }
 
   .nav-link.active {
-    color: var(--color-text);
-    background: var(--color-surface);
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
   }
 
-  @media (max-width: 600px) {
-    .nav-inner {
-      flex-direction: column;
-      height: auto;
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
-      gap: 0.5rem;
-      align-items: flex-start;
+  @media (max-width: 580px) {
+    .nav-link {
+      padding: 0.4rem 0.5rem;
+      font-size: 0.82rem;
     }
+  }
 
-    .nav-links {
-      gap: 0.15rem;
-    }
+  @media (max-width: 420px) {
+    .nav-inner { gap: 0.75rem; }
+    .logo-text { font-size: 0.95rem; }
   }
 </style>

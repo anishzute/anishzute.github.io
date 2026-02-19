@@ -10,200 +10,522 @@ const recentPosts = (await getCollection('blog'))
   .slice(0, 3);
 
 const featuredProjects = projectsData.slice(0, 3);
+
+// Preview photos shown in the strip — replace src values with your own images
+// or local paths like /images/photography/my-photo.jpg
+const previewPhotos = [
+  { src: 'https://picsum.photos/seed/az-s1/700/500', alt: 'Track day' },
+  { src: 'https://picsum.photos/seed/az-s2/500/700', alt: 'Desert road' },
+  { src: 'https://picsum.photos/seed/az-s3/800/500', alt: 'Racecar detail' },
+  { src: 'https://picsum.photos/seed/az-s4/600/800', alt: 'Mountain pass' },
+  { src: 'https://picsum.photos/seed/az-s5/750/500', alt: 'Paddock' },
+  { src: 'https://picsum.photos/seed/az-s6/500/650', alt: 'Workshop' },
+  { src: 'https://picsum.photos/seed/az-s7/800/500', alt: 'Sunrise' },
+];
 ---
 
 <BaseLayout
   title="Anish Zute"
-  description="Engineer, builder, and creative. Designing racecars, writing software, and making films."
+  description="Engineer, builder, and filmmaker. Designing racecars, writing software, and making films."
 >
+  <!-- ── Hero ──────────────────────────────────────────────────── -->
   <section class="hero">
-    <h1>Anish Zute</h1>
-    <p class="hero-sub">
-      Engineer &amp; builder. I design racecars, write software, and make films.
-    </p>
-    <div class="hero-links">
-      <a href="/projects" class="btn">View Projects</a>
-      <a href="/about">About me &rarr;</a>
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-content container">
+      <p class="hero-eyebrow">Engineer · Builder · Filmmaker</p>
+      <h1 class="hero-name">Anish Zute</h1>
+      <p class="hero-desc">
+        I design and build racecars, write software to make sense of the data,
+        and point a camera at whatever's worth capturing.
+      </p>
+      <div class="hero-ctas">
+        <a href="/projects" class="btn btn-primary">See My Work</a>
+        <a href="/about" class="btn btn-ghost">About Me</a>
+      </div>
+    </div>
+    <a href="#work" class="hero-scroll" aria-label="Scroll down">
+      <span class="scroll-line"></span>
+    </a>
+  </section>
+
+  <!-- ── Three pillars ─────────────────────────────────────────── -->
+  <section id="work" class="pillars-section">
+    <div class="container">
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon">⚙️</div>
+          <h3>Engineering</h3>
+          <p>Chassis design, suspension kinematics, aero, FEA — building things that survive corner loads at the limit.</p>
+          <a href="/projects" class="pillar-link">Projects →</a>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">💻</div>
+          <h3>Software</h3>
+          <p>Embedded firmware, CAN bus, data acquisition, Python dashboards — the tools that tell you what the car is doing.</p>
+          <a href="/projects" class="pillar-link">Projects →</a>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🎬</div>
+          <h3>Creative</h3>
+          <p>Cinematography, editing, photography — documenting the builds, the drives, and the places in between.</p>
+          <a href="/filmmaking" class="pillar-link">Films →</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <h2>Recent Projects</h2>
-    <div class="card-grid">
-      {featuredProjects.map(project => (
-        <a href={`/projects/${project.slug}`} class="card">
-          <h3>{project.title}</h3>
-          <p>{project.description}</p>
-          <div class="tags">
-            {project.tags.slice(0, 3).map(tag => (
-              <span class="tag">{tag}</span>
-            ))}
-          </div>
+  <!-- ── Featured projects ─────────────────────────────────────── -->
+  <section class="projects-section section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <p>A selection of things I've built.</p>
+      </div>
+      <div class="projects-grid">
+        {featuredProjects.map(project => (
+          <a href={`/projects/${project.slug}`} class="project-card">
+            <div class="project-card-img" aria-hidden="true">
+              {project.images.length > 0
+                ? <img src={project.images[0]} alt={project.title} loading="lazy" decoding="async" width="540" height="300" />
+                : <div class="project-card-placeholder"></div>
+              }
+            </div>
+            <div class="project-card-body">
+              <div class="tags">
+                {project.tags.slice(0, 3).map(tag => <span class="tag">{tag}</span>)}
+              </div>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="section-footer">
+        <a href="/projects" class="see-all">All projects →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Photo strip ───────────────────────────────────────────── -->
+  <section class="strip-section">
+    <div class="strip-header container">
+      <h2>From the Lens</h2>
+      <a href="/photography" class="see-all">View gallery →</a>
+    </div>
+    <div class="photo-strip" role="list" aria-label="Photo preview">
+      {previewPhotos.map(photo => (
+        <a href="/photography" class="strip-item" role="listitem">
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            loading="lazy"
+            decoding="async"
+            width="600"
+            height="400"
+          />
         </a>
       ))}
     </div>
-    <a href="/projects" class="see-all">All projects &rarr;</a>
   </section>
 
+  <!-- ── Recent posts ──────────────────────────────────────────── -->
   {recentPosts.length > 0 && (
-    <section class="section">
-      <h2>From the Blog</h2>
-      <ul class="post-list">
-        {recentPosts.map(post => (
-          <li>
-            <a href={`/blog/${post.slug}`} class="post-item">
-              <span class="post-title">{post.data.title}</span>
-              <time class="post-date" datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-              </time>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <a href="/blog" class="see-all">All posts &rarr;</a>
+    <section class="blog-section section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Latest Writing</h2>
+          <p>Engineering notes, build logs, and field reports.</p>
+        </div>
+        <ul class="post-list">
+          {recentPosts.map(post => (
+            <li>
+              <a href={`/blog/${post.slug}`} class="post-row">
+                <div class="post-info">
+                  <h3 class="post-title">{post.data.title}</h3>
+                  <p class="post-desc">{post.data.description}</p>
+                </div>
+                <time class="post-date" datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </time>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class="section-footer">
+          <a href="/blog" class="see-all">All posts →</a>
+        </div>
+      </div>
     </section>
   )}
 </BaseLayout>
 
 <style>
+  /* ── Hero ──────────────────────────────────────────────────── */
   .hero {
-    padding: 3rem 0 4rem;
-    border-bottom: 1px solid var(--color-border);
-    margin-bottom: 3rem;
-  }
-
-  .hero h1 {
-    margin-bottom: 0.75rem;
-  }
-
-  .hero-sub {
-    font-size: 1.15rem;
-    color: var(--color-muted);
-    margin-bottom: 2rem;
-    max-width: 55ch;
-  }
-
-  .hero-links {
+    position: relative;
+    height: 100dvh;
+    min-height: 640px;
     display: flex;
-    gap: 1.5rem;
     align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.6rem 1.4rem;
-    background: var(--color-accent);
-    color: #0e0e0e;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: background 0.15s;
-  }
-
-  .btn:hover {
-    background: var(--color-accent-hover);
-    text-decoration: none;
-    color: #0e0e0e;
-  }
-
-  .section {
-    margin-bottom: 3.5rem;
-  }
-
-  .section h2 {
-    margin-bottom: 1.25rem;
-  }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .card {
-    display: block;
-    padding: 1.25rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.15s;
-  }
-
-  .card:hover {
-    border-color: var(--color-accent);
-    text-decoration: none;
-  }
-
-  .card h3 {
-    margin-bottom: 0.5rem;
-    color: var(--color-text);
-  }
-
-  .card p {
-    font-size: 0.9rem;
-    color: var(--color-muted);
-    margin-bottom: 0.75rem;
-    line-height: 1.5;
-    max-width: 100%;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-  }
-
-  .see-all {
-    font-size: 0.9rem;
-    color: var(--color-muted);
-  }
-
-  .post-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
     overflow: hidden;
   }
 
-  .post-list li {
-    border-bottom: 1px solid var(--color-border);
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    /*
+      Replace /images/hero.jpg with your own hero photo.
+      The gradient ensures text is always legible even without the image.
+      Tip: a wide landscape/racetrack shot works great here.
+    */
+    background:
+      linear-gradient(105deg,
+        rgba(10,10,10,0.96) 0%,
+        rgba(10,10,10,0.80) 45%,
+        rgba(10,10,10,0.45) 75%,
+        rgba(10,10,10,0.30) 100%
+      ),
+      url('/images/hero.jpg') center / cover no-repeat;
+    background-color: var(--bg-raised);
+    z-index: 0;
   }
 
-  .post-list li:last-child {
-    border-bottom: none;
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-top: var(--nav-h);
   }
 
-  .post-item {
+  .hero-eyebrow {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    max-width: none;
+  }
+
+  .hero-name {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+  }
+
+  .hero-desc {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-2);
+    max-width: 52ch;
+    line-height: 1.7;
+    margin-bottom: 2.25rem;
+  }
+
+  .hero-ctas {
     display: flex;
-    justify-content: space-between;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 0.875rem 1.25rem;
+    text-decoration: none;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--text-3));
+    animation: scroll-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
+    50%       { opacity: 1;   transform: scaleY(1); }
+  }
+
+  /* ── Pillars ───────────────────────────────────────────────── */
+  .pillars-section {
+    padding: var(--section-gap) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .pillar {
+    background: var(--bg-raised);
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: background 0.2s;
+  }
+
+  .pillar:hover {
+    background: var(--bg-elevated);
+  }
+
+  .pillar-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .pillar h3 {
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+
+  .pillar p {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    line-height: 1.6;
+    flex: 1;
+    max-width: 100%;
+  }
+
+  .pillar-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    align-self: flex-start;
+    margin-top: 0.25rem;
+    transition: color 0.15s;
+  }
+
+  .pillar-link:hover {
+    color: var(--accent-hover);
+  }
+
+  /* ── Projects ──────────────────────────────────────────────── */
+  .projects-section {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
     text-decoration: none;
     color: inherit;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .project-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    text-decoration: none;
+  }
+
+  .project-card-img {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--bg-elevated);
+  }
+
+  .project-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover .project-card-img img {
+    transform: scale(1.04);
+  }
+
+  .project-card-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--border) 100%);
+  }
+
+  .project-card-body {
+    padding: 1.25rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .project-card-body .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .project-card-body h3 {
+    font-size: 1.05rem;
+    color: var(--text);
+  }
+
+  .project-card-body p {
+    font-size: 0.875rem;
+    color: var(--text-2);
+    line-height: 1.55;
+    max-width: 100%;
+  }
+
+  /* ── Photo strip ───────────────────────────────────────────── */
+  .strip-section {
+    padding: var(--section-gap) 0;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .strip-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
     gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .photo-strip {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 0 var(--gutter);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+  }
+
+  .photo-strip:active { cursor: grabbing; }
+  .photo-strip::-webkit-scrollbar { display: none; }
+
+  .strip-item {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    border-radius: 6px;
+    overflow: hidden;
+    display: block;
+    transition: opacity 0.2s;
+  }
+
+  .strip-item:hover { opacity: 0.88; }
+
+  .strip-item img {
+    height: 320px;
+    width: auto;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  @media (max-width: 600px) {
+    .strip-item img { height: 220px; }
+  }
+
+  /* ── Blog posts ─────────────────────────────────────────────── */
+  .post-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .post-list li + li {
+    border-top: 1px solid var(--border);
+  }
+
+  .post-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
     transition: background 0.15s;
   }
 
-  .post-item:hover {
-    background: var(--color-surface);
+  .post-row:hover {
+    background: var(--bg-raised);
     text-decoration: none;
   }
 
+  .post-info { flex: 1; min-width: 0; }
+
   .post-title {
     font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .post-desc {
+    font-size: 0.82rem;
+    color: var(--text-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .post-date {
-    font-size: 0.8rem;
-    color: var(--color-muted);
+    font-size: 0.78rem;
+    color: var(--text-3);
     white-space: nowrap;
     flex-shrink: 0;
+  }
+
+  /* ── Shared ─────────────────────────────────────────────────── */
+  .section-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .see-all {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-2);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .see-all:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 520px) {
+    .post-row { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+    .post-date { align-self: flex-start; }
   }
 </style>
