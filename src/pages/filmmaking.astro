@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import filmsData from '../data/films.json';
+---
+
+<BaseLayout
+  title="Filmmaking"
+  description="Short films, race recaps, and cinematic road trips. Videos by Anish Zute."
+>
+  <div class="page-header">
+    <h1>Filmmaking</h1>
+    <p>Short films, race recaps, and road trips.</p>
+  </div>
+
+  {filmsData.length === 0 ? (
+    <p class="empty">Videos coming soon.</p>
+  ) : (
+    <div class="films-list">
+      {filmsData.map(film => (
+        <article class="film-item">
+          <div class="film-embed">
+            <iframe
+              src={`https://www.youtube.com/embed/${film.youtubeId}`}
+              title={film.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="film-info">
+            <h2>{film.title}</h2>
+            <p class="film-year">{film.year}</p>
+            <p class="film-desc">{film.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  )}
+</BaseLayout>
+
+<style>
+  .films-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .film-item {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .film-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .film-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .film-info {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .film-info h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .film-year {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .film-desc {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    line-height: 1.55;
+  }
+
+  .empty {
+    color: var(--color-muted);
+    font-style: italic;
+  }
+</style>

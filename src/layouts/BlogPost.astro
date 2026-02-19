@@ -1,0 +1,152 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  heroImage?: string;
+}
+
+const { title, description, pubDate, updatedDate, tags, heroImage } = Astro.props;
+
+const formattedPubDate = pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const formattedUpdatedDate = updatedDate?.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={title} description={description} ogImage={heroImage}>
+  <article class="blog-post">
+    <header class="post-header">
+      {heroImage && (
+        <img
+          src={heroImage}
+          alt={title}
+          class="hero-image"
+          loading="lazy"
+          decoding="async"
+          width="960"
+          height="480"
+        />
+      )}
+      <div class="post-meta">
+        <time datetime={pubDate.toISOString()}>{formattedPubDate}</time>
+        {updatedDate && (
+          <span class="updated">
+            Updated <time datetime={updatedDate.toISOString()}>{formattedUpdatedDate}</time>
+          </span>
+        )}
+      </div>
+      <h1>{title}</h1>
+      <p class="post-description">{description}</p>
+      {tags && tags.length > 0 && (
+        <div class="tags">
+          {tags.map(tag => <span class="tag">{tag}</span>)}
+        </div>
+      )}
+    </header>
+
+    <div class="post-content">
+      <slot />
+    </div>
+
+    <footer class="post-footer">
+      <a href="/blog">&larr; Back to all posts</a>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    max-width: 720px;
+  }
+
+  .post-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+    max-height: 400px;
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .updated {
+    border-left: 1px solid var(--color-border);
+    padding-left: 1rem;
+  }
+
+  .post-header h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .post-description {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .post-content {
+    line-height: 1.8;
+  }
+
+  .post-content :global(h2) {
+    margin: 2rem 0 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .post-content :global(h3) {
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .post-content :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    margin-bottom: 1.25rem;
+  }
+
+  .post-content :global(li) {
+    margin-bottom: 0.25rem;
+  }
+
+  .post-content :global(pre) {
+    margin: 1.5rem 0;
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+</style>

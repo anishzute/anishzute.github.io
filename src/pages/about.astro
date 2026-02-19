@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import skillsData from '../data/skills.json';
+
+const categories = Object.entries(skillsData) as [string, string[]][];
+---
+
+<BaseLayout
+  title="About"
+  description="Engineer, builder, and creative. Learn about Anish Zute's background, skills, and interests."
+>
+  <div class="page-header">
+    <h1>About</h1>
+    <p>Engineer, builder, and creative.</p>
+  </div>
+
+  <section class="bio">
+    <p>
+      I'm Anish — an engineer who builds things that move fast and software that helps
+      make sense of the data they generate. My work sits at the intersection of mechanical
+      engineering, embedded systems, and creative media.
+    </p>
+    <p>
+      My day-to-day involves designing and fabricating racecars, writing firmware and
+      data tools, and whenever the light is right, pointing a camera at something worth
+      capturing. I believe the best engineering decisions come from deeply understanding
+      the problem — which usually means getting your hands dirty.
+    </p>
+    <p>
+      When I'm not in the shop or at a keyboard, you'll find me at the track, in the
+      mountains, or somewhere without cell service.
+    </p>
+  </section>
+
+  <section class="skills-section">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      {categories.map(([category, skills]) => (
+        <div class="skill-group">
+          <h3>{category}</h3>
+          <ul>
+            {skills.map(skill => <li>{skill}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <h2>Get in Touch</h2>
+    <p>
+      If you want to talk engineering, collaborate on a project, or just say hello —
+      <a href="https://github.com/anishzute" target="_blank" rel="noopener noreferrer">GitHub</a>
+      is the best place to find me for now.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .bio {
+    margin-bottom: 3rem;
+  }
+
+  .bio p {
+    margin-bottom: 1.1rem;
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: var(--color-text);
+  }
+
+  .skills-section {
+    margin-bottom: 3rem;
+  }
+
+  .skills-section h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-group {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1.25rem;
+  }
+
+  .skill-group h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skill-group li {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    padding: 0.25rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .skill-group li:last-child {
+    border-bottom: none;
+  }
+
+  .contact-section h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-section p {
+    font-size: 1rem;
+    color: var(--color-muted);
+  }
+</style>

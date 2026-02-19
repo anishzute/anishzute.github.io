@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import projectsData from '../../data/projects.json';
+
+export function getStaticPaths() {
+  return projectsData.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Project {
+  slug: string;
+  title: string;
+  description: string;
+  tags: string[];
+  images: string[];
+  githubUrl: string | null;
+  liveUrl: string | null;
+  body: string;
+}
+
+const { project } = Astro.props as { project: Project };
+---
+
+<BaseLayout
+  title={project.title}
+  description={project.description}
+  ogImage={project.images[0]}
+>
+  <article class="project">
+    <header class="project-header">
+      <a href="/projects" class="back-link">&larr; All projects</a>
+      <h1>{project.title}</h1>
+      <p class="project-description">{project.description}</p>
+
+      <div class="tags">
+        {project.tags.map(tag => <span class="tag">{tag}</span>)}
+      </div>
+
+      <div class="project-links">
+        {project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-link"
+          >
+            GitHub &rarr;
+          </a>
+        )}
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-link"
+          >
+            Live site &rarr;
+          </a>
+        )}
+      </div>
+    </header>
+
+    {project.images.length > 0 && (
+      <div class="image-gallery">
+        {project.images.map((src, i) => (
+          <img
+            src={src}
+            alt={`${project.title} — image ${i + 1}`}
+            loading="lazy"
+            decoding="async"
+            width="960"
+            height="540"
+            class={i === 0 ? 'hero-image' : ''}
+          />
+        ))}
+      </div>
+    )}
+
+    <div class="project-body">
+      <p>{project.body}</p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .project {
+    max-width: 760px;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    margin-bottom: 1.25rem;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .project-header {
+    margin-bottom: 2rem;
+  }
+
+  .project-header h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .project-description {
+    font-size: 1.05rem;
+    color: var(--color-muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .project-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .project-link:hover {
+    color: var(--color-accent-hover);
+    text-decoration: none;
+  }
+
+  .image-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .image-gallery img {
+    width: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+
+  .image-gallery .hero-image {
+    max-height: 480px;
+  }
+
+  .project-body {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text);
+  }
+
+  .project-body p {
+    margin-bottom: 1.25rem;
+  }
+</style>

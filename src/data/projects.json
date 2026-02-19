@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "racecar-build",
+    "title": "Racecar Build",
+    "description": "Designing and fabricating a competitive racecar from the ground up — chassis, suspension, aero, and data systems.",
+    "tags": ["engineering", "motorsport", "fabrication", "CAD"],
+    "images": [],
+    "githubUrl": null,
+    "liveUrl": null,
+    "body": "This project documents the full build process of a competitive racecar. From initial concept and CAD modeling through chassis fabrication, suspension tuning, aerodynamic development, and onboard data acquisition setup. Each phase required solving novel engineering problems under strict weight and cost constraints."
+  },
+  {
+    "slug": "data-logger",
+    "title": "Onboard Data Logger",
+    "description": "Custom embedded data acquisition system for motorsport telemetry — CAN bus, GPS, IMU, and live dashboards.",
+    "tags": ["embedded", "python", "motorsport", "hardware"],
+    "images": [],
+    "githubUrl": null,
+    "liveUrl": null,
+    "body": "A custom data logging platform built around a microcontroller reading CAN bus, GPS, and IMU sensors at high frequency. Data is stored to an SD card and visualized post-session via a Python dashboard. Designed to be lightweight, reliable, and easy to reconfigure between events."
+  },
+  {
+    "slug": "portfolio-site",
+    "title": "This Portfolio Site",
+    "description": "Minimal Astro 5 static site with content collections, RSS feed, and GitHub Pages deployment.",
+    "tags": ["astro", "typescript", "web"],
+    "images": [],
+    "githubUrl": "https://github.com/anishzute/anishzute-site",
+    "liveUrl": "https://anishzute.com",
+    "body": "Built with Astro 5 for maximum performance — fully static, zero client JS by default. Content lives in JSON and Markdown files. Deployed automatically to GitHub Pages via GitHub Actions on every push to main."
+  }
+]

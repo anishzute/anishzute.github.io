@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const isDev = !import.meta.env.PROD;
+const posts = (await getCollection('blog'))
+  .filter(p => isDev || !p.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="Blog"
+  description="Writing on engineering, motorsport, software, and the creative process."
+>
+  <div class="page-header">
+    <h1>Blog</h1>
+    <p>Engineering, motorsport, software, and the creative process.</p>
+  </div>
+
+  {posts.length === 0 ? (
+    <p class="empty">No posts yet. Check back soon.</p>
+  ) : (
+    <ul class="post-list">
+      {posts.map(post => (
+        <li>
+          <a href={`/blog/${post.slug}`} class="post-item">
+            <div class="post-main">
+              <h2 class="post-title">{post.data.title}</h2>
+              <p class="post-desc">{post.data.description}</p>
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="tags">
+                  {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+                </div>
+              )}
+            </div>
+            <div class="post-side">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </time>
+              {post.data.draft && <span class="draft-badge">Draft</span>}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</BaseLayout>
+
+<style>
+  .post-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .post-list li {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-list li:last-child {
+    border-bottom: none;
+  }
+
+  .post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+  }
+
+  .post-item:hover {
+    background: var(--color-surface);
+    text-decoration: none;
+  }
+
+  .post-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .post-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--color-text);
+  }
+
+  .post-desc {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    max-width: 100%;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .post-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  .post-side time {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    white-space: nowrap;
+  }
+
+  .draft-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    background: rgba(232, 197, 71, 0.1);
+    border: 1px solid rgba(232, 197, 71, 0.3);
+    padding: 0.15em 0.5em;
+    border-radius: 3px;
+  }
+
+  .empty {
+    color: var(--color-muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 520px) {
+    .post-item {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .post-side {
+      align-items: flex-start;
+      flex-direction: row;
+    }
+  }
+</style>

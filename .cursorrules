@@ -1,0 +1,6 @@
+- Prefer simple Astro components and minimal CSS (no heavy frameworks).
+- Keep portfolio content in JSON under src/content/*.json.
+- Keep blog posts as Markdown under src/content/blog/*.md using Astro Content Collections.
+- Ensure builds pass: `npm run build`.
+- Optimize for GitHub Pages + custom domain deployment.
+- When adding new features, update README with usage instructions.
