@@ -50,6 +50,8 @@ src/
 
 public/
 └── images/
+    ├── hero.jpg               # Full-bleed hero background on the homepage (wide/landscape crop)
+    ├── profile.jpg            # Portrait photo used on the about page bio section
     └── photography/           # Drop local photo files here
 ```
 

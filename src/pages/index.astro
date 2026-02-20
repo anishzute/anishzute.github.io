@@ -220,16 +220,16 @@ try {
     position: absolute;
     inset: 0;
     /*
-      Replace /images/hero.jpg with your own hero photo.
-      The gradient ensures text is always legible even without the image.
-      Tip: a wide landscape/racetrack shot works great here.
+      Drop your photo at public/images/profile.jpg.
+      The gradient darkens the left side so text stays legible
+      while letting the image show through on the right.
     */
     background:
       linear-gradient(105deg,
-        rgba(10,10,10,0.96) 0%,
-        rgba(10,10,10,0.80) 45%,
-        rgba(10,10,10,0.45) 75%,
-        rgba(10,10,10,0.30) 100%
+        rgba(10,10,10,0.88) 0%,
+        rgba(10,10,10,0.60) 40%,
+        rgba(10,10,10,0.20) 70%,
+        rgba(10,10,10,0.05) 100%
       ),
       url('/images/hero.jpg') center / cover no-repeat;
     background-color: var(--bg-raised);
