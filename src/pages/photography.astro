@@ -101,7 +101,7 @@ const allPhotos = [...photos, ...localPhotos];
     </div>
   </div>
 
-  {/* Lightroom link card — shown when API didn't return photos but a URL is set */}
+  <!-- {/* Lightroom link card — shown when API didn't return photos but a URL is set */}
   {useFallbackIframe && LIGHTROOM_SHARE_URL && (
     <div class="lr-cta-wrapper container">
       <a
@@ -117,7 +117,7 @@ const allPhotos = [...photos, ...localPhotos];
         </div>
       </a>
     </div>
-  )}
+  )} -->
 
   {/* Masonry grid — Lightroom API photos + manual photos */}
   {allPhotos.length > 0 && (
