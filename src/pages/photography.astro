@@ -4,13 +4,6 @@ import { readdirSync } from 'fs';
 import { join } from 'path';
 import exifr from 'exifr';
 
-/**
- * LIGHTROOM SETUP
- * Set LIGHTROOM_SHARE_URL as a GitHub Actions secret (Option A)
- * or hard-code it below (Option B).
- */
-const LIGHTROOM_SHARE_URL: string = import.meta.env.LIGHTROOM_SHARE_URL || '';
-
 type ExifMeta = {
   Make?: string; Model?: string; LensModel?: string;
   FocalLength?: number; FNumber?: number; ExposureTime?: number;
@@ -18,80 +11,6 @@ type ExifMeta = {
 };
 
 type Photo = { src: string; meta: ExifMeta };
-
-// ── Lightroom API fetch (build-time, no CORS) ─────────────────────
-let lrPhotos: Photo[] = [];
-let lrShareId = '';
-
-if (LIGHTROOM_SHARE_URL) {
-  console.log('[LR] LIGHTROOM_SHARE_URL is set:', LIGHTROOM_SHARE_URL);
-  try {
-    // Extract shareId — handles both full and short URL forms
-    lrShareId = LIGHTROOM_SHARE_URL.split('/shares/').pop()?.split('?')[0] ?? '';
-    console.log('[LR] Extracted shareId:', lrShareId || '(empty — URL may not contain /shares/)');
-
-    if (!lrShareId) {
-      console.warn('[LR] Could not extract shareId. Expected a URL containing /shares/. Got:', LIGHTROOM_SHARE_URL);
-    } else {
-      const apiUrl = `https://lightroom.adobe.com/v2/shares/${lrShareId}/assets?subtype=image&order_by=captureDate&order_direction=desc&limit=200`;
-      console.log('[LR] Fetching:', apiUrl);
-      const assetsRes = await fetch(apiUrl, {
-        headers: { Accept: 'application/json', 'X-API-Key': 'lightroom.adobe.com' },
-      });
-      console.log('[LR] Response status:', assetsRes.status, assetsRes.statusText);
-
-      if (!assetsRes.ok) {
-        const body = await assetsRes.text();
-        console.warn('[LR] API error response (first 500 chars):', body.slice(0, 500));
-      } else {
-        const assetsData = await assetsRes.json();
-        const resources = assetsData?.resources ?? [];
-        console.log('[LR] Resources returned:', resources.length);
-
-        if (resources.length > 0) {
-          // Log the first asset's structure to verify field paths
-          console.log('[LR] First asset keys:', JSON.stringify(Object.keys(resources[0])));
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const firstAsset = resources[0] as any;
-          console.log('[LR] First asset.asset keys:', JSON.stringify(Object.keys(firstAsset?.asset ?? {})));
-        }
-
-        // Rational XMP values arrive as [numerator, denominator]
-        const rational = (v: unknown): number | undefined =>
-          Array.isArray(v) ? v[0] / v[1] : (typeof v === 'number' ? v : undefined);
-
-        lrPhotos = resources.map((asset: Record<string, unknown>) => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const payload = (asset as any)?.asset?.payload ?? {};
-          const xmp  = payload?.xmp  ?? {};
-          const exif = xmp?.exif     ?? {};
-          const tiff = xmp?.tiff     ?? {};
-          const meta: ExifMeta = {
-            Make:             tiff?.Make,
-            Model:            tiff?.Model,
-            LensModel:        xmp?.aux?.Lens,
-            FocalLength:      rational(exif?.FocalLength),
-            FNumber:          rational(exif?.FNumber),
-            ExposureTime:     rational(exif?.ExposureTime),
-            ISO:              Array.isArray(exif?.ISOSpeedRatings)
-                                ? exif.ISOSpeedRatings[0]
-                                : exif?.ISOSpeedRatings,
-            DateTimeOriginal: payload?.captureDate,
-          };
-          return {
-            src: `https://lightroom.adobe.com/v2/shares/${lrShareId}/assets/${asset['id']}/renditions/2048`,
-            meta,
-          };
-        });
-        console.log('[LR] lrPhotos built:', lrPhotos.length);
-      }
-    }
-  } catch (err) {
-    console.error('[LR] Fetch threw an exception:', err);
-  }
-} else {
-  console.log('[LR] LIGHTROOM_SHARE_URL is not set — skipping Lightroom fetch.');
-}
 
 // ── Auto-discover local images + read EXIF ────────────────────────
 const IMAGE_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
@@ -119,7 +38,7 @@ try {
   );
 } catch { /* directory missing */ }
 
-const allPhotos: Photo[] = [...lrPhotos, ...localPhotos];
+const allPhotos: Photo[] = localPhotos;
 ---
 
 <BaseLayout
@@ -131,18 +50,13 @@ const allPhotos: Photo[] = [...lrPhotos, ...localPhotos];
     <div class="container">
       <h1>Photography</h1>
       <p>Track days, road trips, and whatever catches the eye.</p>
-      {LIGHTROOM_SHARE_URL && (
-        <a href={LIGHTROOM_SHARE_URL} target="_blank" rel="noopener noreferrer" class="lr-link">
-          View full album on Lightroom ↗
-        </a>
-      )}
     </div>
   </div>
 
   <!-- Masonry gallery -->
   {allPhotos.length > 0 && (
     <div class="gallery-wrap container">
-      <div class="masonry" id="masonry" data-lr-share={lrShareId || undefined}>
+      <div class="masonry" id="masonry">
         {allPhotos.map((photo, i) => (
           <button
             class="masonry-item"
@@ -158,7 +72,7 @@ const allPhotos: Photo[] = [...lrPhotos, ...localPhotos];
   )}
 
   <!-- Empty state -->
-  {!LIGHTROOM_SHARE_URL && allPhotos.length === 0 && (
+  {allPhotos.length === 0 && (
     <div class="empty-state container">
       <span class="empty-icon">📷</span>
       <h2>Gallery coming soon</h2>
@@ -309,16 +223,6 @@ const allPhotos: Photo[] = [...lrPhotos, ...localPhotos];
 
   .page-top h1 { margin-bottom: 0.35rem; }
   .page-top p  { font-size: 1.05rem; }
-
-  .lr-link {
-    display: inline-block;
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .lr-link:hover { color: var(--accent-hover); }
 
   /* ── Masonry ─────────────────────────────────────────────────── */
   .gallery-wrap { padding-top: 1.5rem; padding-bottom: var(--section-gap); }
