@@ -2,302 +2,482 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { readdirSync } from 'fs';
 import { join } from 'path';
+import exifr from 'exifr';
 
 /**
  * LIGHTROOM SETUP
- * ───────────────
- * Set your Lightroom shared album URL one of two ways:
- *
- * Option A — environment variable (recommended for GitHub Actions):
- *   Add LIGHTROOM_SHARE_URL to your repo secrets / .env file.
- *   GitHub Actions: Settings → Secrets → Actions → New secret
- *
- * Option B — hard-code it directly here:
- *   const LIGHTROOM_SHARE_URL = 'https://lightroom.adobe.com/shares/YOUR_SHARE_ID';
+ * Set LIGHTROOM_SHARE_URL as a GitHub Actions secret (Option A)
+ * or hard-code it below (Option B).
  */
-const LIGHTROOM_SHARE_URL: string =
-  import.meta.env.LIGHTROOM_SHARE_URL || '';
+const LIGHTROOM_SHARE_URL: string = import.meta.env.LIGHTROOM_SHARE_URL || '';
 
-type Photo = { src: string; alt: string; width?: number; height?: number };
+type ExifMeta = {
+  Make?: string; Model?: string; LensModel?: string;
+  FocalLength?: number; FNumber?: number; ExposureTime?: number;
+  ISO?: number; DateTimeOriginal?: string | Date;
+};
 
-let photos: Photo[] = [];
-let useFallbackIframe = false;
-let fetchAttempted = false;
+type Photo = { src: string; meta: ExifMeta };
+
+// ── Lightroom API fetch (build-time, no CORS) ─────────────────────
+let lrPhotos: Photo[] = [];
+let useFallbackCard = false;
 
 if (LIGHTROOM_SHARE_URL) {
-  fetchAttempted = true;
   try {
-    // Astro frontmatter runs at build time (server-side) — no CORS restrictions.
     const shareId = LIGHTROOM_SHARE_URL.split('/shares/').pop()?.split('?')[0] ?? '';
-
-    // Step 1: resolve share → get spaceId
-    const shareRes = await fetch(
-      `https://lightroom.adobe.com/v2/shares/${shareId}`,
-      { headers: { Accept: 'application/json' } }
-    );
-
+    const shareRes = await fetch(`https://lightroom.adobe.com/v2/shares/${shareId}`, {
+      headers: { Accept: 'application/json' },
+    });
     if (shareRes.ok) {
       const shareData = await shareRes.json();
       const spaceId: string = shareData?.space?.id ?? '';
-
       if (spaceId) {
-        // Step 2: list assets
         const assetsRes = await fetch(
-          `https://lightroom.adobe.com/v2/spaces/${spaceId}/assets` +
-            `?subtype=image&order_by=captureDate&order_direction=desc&limit=100`,
+          `https://lightroom.adobe.com/v2/spaces/${spaceId}/assets?subtype=image&order_by=captureDate&order_direction=desc&limit=100`,
           { headers: { Accept: 'application/json' } }
         );
-
         if (assetsRes.ok) {
           const assetsData = await assetsRes.json();
-          photos = (assetsData?.resources ?? []).map((asset: Record<string, unknown>) => ({
+          lrPhotos = (assetsData?.resources ?? []).map((asset: Record<string, unknown>) => ({
             src: `https://lightroom.adobe.com/v2/spaces/${spaceId}/assets/${asset['id']}/renditions/2048`,
-            alt: (asset['payload'] as Record<string, unknown>)?.['xmp'] as string ?? 'Photo',
+            meta: {},
           }));
         }
       }
     }
-
-    // If we couldn't get photos via the API, fall back to the iframe
-    if (photos.length === 0) useFallbackIframe = true;
+    if (lrPhotos.length === 0) useFallbackCard = true;
   } catch {
-    useFallbackIframe = true;
+    useFallbackCard = true;
   }
 }
 
-// Auto-discover all images in public/images/photography/
+// ── Auto-discover local images + read EXIF ────────────────────────
 const IMAGE_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+const EXIF_TAGS = ['Make', 'Model', 'LensModel', 'FocalLength', 'FNumber', 'ExposureTime', 'ISO', 'DateTimeOriginal'] as const;
+
 let localPhotos: Photo[] = [];
 try {
   const dir = join(process.cwd(), 'public/images/photography');
-  localPhotos = readdirSync(dir)
-    .filter(f => IMAGE_EXTS.has(f.slice(f.lastIndexOf('.')).toLowerCase()))
-    .map(f => ({ src: `/images/photography/${encodeURIComponent(f)}`, alt: '' }));
-} catch { /* directory empty or missing */ }
+  const files = readdirSync(dir).filter(f =>
+    IMAGE_EXTS.has(f.slice(f.lastIndexOf('.')).toLowerCase())
+  );
+  localPhotos = await Promise.all(
+    files.map(async f => {
+      const filePath = join(process.cwd(), 'public/images/photography', f);
+      let meta: ExifMeta = {};
+      try {
+        meta = (await exifr.parse(filePath, { pick: [...EXIF_TAGS] })) ?? {};
+        // exifr returns Date objects — convert to ISO string for JSON serialisation
+        if (meta.DateTimeOriginal instanceof Date) {
+          meta.DateTimeOriginal = (meta.DateTimeOriginal as Date).toISOString();
+        }
+      } catch { /* no EXIF or unsupported format */ }
+      return { src: `/images/photography/${encodeURIComponent(f)}`, meta };
+    })
+  );
+} catch { /* directory missing */ }
 
-const allPhotos = [...photos, ...localPhotos];
+const allPhotos: Photo[] = [...lrPhotos, ...localPhotos];
 ---
 
 <BaseLayout
   title="Photography"
   description="A gallery of photos from track days, road trips, and the fabrication shop — by Anish Zute."
 >
+  <!-- Page header -->
   <div class="page-top">
     <div class="container">
-      <div class="page-header">
-        <h1>Photography</h1>
-        <p>Track days, road trips, and whatever catches the eye.</p>
-        {LIGHTROOM_SHARE_URL && (
-          <a
-            href={LIGHTROOM_SHARE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="lightroom-link"
-          >
-            View full album on Lightroom ↗
-          </a>
-        )}
-      </div>
+      <h1>Photography</h1>
+      <p>Track days, road trips, and whatever catches the eye.</p>
+      {LIGHTROOM_SHARE_URL && (
+        <a href={LIGHTROOM_SHARE_URL} target="_blank" rel="noopener noreferrer" class="lr-link">
+          View full album on Lightroom ↗
+        </a>
+      )}
     </div>
   </div>
 
-  <!-- {/* Lightroom link card — shown when API didn't return photos but a URL is set */}
-  {useFallbackIframe && LIGHTROOM_SHARE_URL && (
-    <div class="lr-cta-wrapper container">
-      <a
-        href={LIGHTROOM_SHARE_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="lr-cta-card"
-      >
-        <span class="lr-cta-icon">📷</span>
+  <!-- Lightroom CTA card (when API didn't return photos) -->
+  {useFallbackCard && LIGHTROOM_SHARE_URL && (
+    <div class="container lr-cta-wrap">
+      <a href={LIGHTROOM_SHARE_URL} target="_blank" rel="noopener noreferrer" class="lr-cta-card">
+        <span class="lr-icon">📷</span>
         <div>
           <p class="lr-cta-label">View the full gallery</p>
           <p class="lr-cta-sub">Opens on Lightroom ↗</p>
         </div>
       </a>
     </div>
-  )} -->
+  )}
 
-  {/* Masonry grid — Lightroom API photos + manual photos */}
+  <!-- Masonry gallery -->
   {allPhotos.length > 0 && (
-    <div class="gallery-wrapper container">
-      <div class="masonry">
-        {allPhotos.map(photo => (
-          <div class="masonry-item">
+    <div class="gallery-wrap container">
+      <div class="masonry" id="masonry">
+        {allPhotos.map((photo, i) => (
+          <button
+            class="masonry-item"
+            data-index={i}
+            aria-label={`Open photo ${i + 1}`}
+            type="button"
+          >
             <img
               src={photo.src}
-              alt={photo.alt}
+              alt=""
               loading="lazy"
               decoding="async"
-              width={photo.width}
-              height={photo.height}
             />
-          </div>
+          </button>
         ))}
       </div>
     </div>
   )}
 
-  {/* Empty state — no URL configured yet */}
+  <!-- Empty state -->
   {!LIGHTROOM_SHARE_URL && allPhotos.length === 0 && (
     <div class="empty-state container">
-      <p class="empty-icon">📷</p>
+      <span class="empty-icon">📷</span>
       <h2>Gallery coming soon</h2>
       <p>
-        To show your Lightroom album here, set the
-        <code>LIGHTROOM_SHARE_URL</code> environment variable to your
-        Lightroom shared album URL (e.g.{' '}
-        <code>https://lightroom.adobe.com/shares/abc123</code>).
-      </p>
-      <p>
-        You can also add individual photos by placing them in{' '}
-        <code>public/images/photography/</code> and listing them in the{' '}
-        <code>manualPhotos</code> array at the top of this file.
+        Drop photos into <code>public/images/photography/</code> and they'll
+        appear here automatically on the next build.
       </p>
     </div>
   )}
+
+  <!-- Lightbox -->
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer" aria-modal="true">
+    <div class="lb-inner">
+      <button class="lb-btn lb-close" id="lb-close" aria-label="Close">✕</button>
+      <button class="lb-btn lb-prev"  id="lb-prev"  aria-label="Previous photo">&#8249;</button>
+      <button class="lb-btn lb-next"  id="lb-next"  aria-label="Next photo">&#8250;</button>
+
+      <div class="lb-img-wrap">
+        <img id="lb-img" src="" alt="" />
+      </div>
+
+      <div class="lb-bar" id="lb-bar">
+        <span class="lb-counter" id="lb-counter"></span>
+        <div class="lb-exif" id="lb-exif"></div>
+      </div>
+    </div>
+  </dialog>
 </BaseLayout>
 
+<script define:vars={{ allPhotos }}>
+  const photos = allPhotos;
+  let current = 0;
+
+  const dialog  = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lb-img');
+  const counter = document.getElementById('lb-counter');
+  const exifEl  = document.getElementById('lb-exif');
+
+  function fmtExposure(t) {
+    if (t == null) return null;
+    if (t >= 1) return `${t}\u2033`; // ″
+    return `1\u2044${Math.round(1 / t)}`; // ⁄
+  }
+
+  function fmtAperture(f) {
+    if (f == null) return null;
+    return `\u0192\u2215${Number.isInteger(f) ? f : f.toFixed(1)}`; // ƒ/
+  }
+
+  function buildExif(meta) {
+    if (!meta) return [];
+    const parts = [];
+    const make  = (meta.Make  || '').trim();
+    const model = (meta.Model || '').trim();
+    if (model) parts.push(model.startsWith(make) ? model : `${make} ${model}`.trim());
+    if (meta.LensModel)    parts.push(meta.LensModel);
+    if (meta.FocalLength)  parts.push(`${Math.round(meta.FocalLength)}mm`);
+    const ap = fmtAperture(meta.FNumber);
+    if (ap) parts.push(ap);
+    const sh = fmtExposure(meta.ExposureTime);
+    if (sh) parts.push(sh);
+    if (meta.ISO)              parts.push(`ISO\u00A0${meta.ISO}`);
+    if (meta.DateTimeOriginal) {
+      const d = new Date(meta.DateTimeOriginal);
+      if (!isNaN(d.getTime()))
+        parts.push(d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }));
+    }
+    return parts;
+  }
+
+  function show(index) {
+    current = (index + photos.length) % photos.length;
+    const p = photos[current];
+    lbImg.src = p.src;
+    counter.textContent = `${current + 1} / ${photos.length}`;
+    const tags = buildExif(p.meta);
+    exifEl.innerHTML = tags.length
+      ? tags.map(t => `<span class="exif-tag">${t}</span>`).join('')
+      : '';
+  }
+
+  function openAt(index) {
+    show(index);
+    dialog.showModal();
+    dialog.focus();
+  }
+
+  // Open on thumbnail click
+  document.querySelectorAll('.masonry-item').forEach(btn => {
+    btn.addEventListener('click', () => openAt(Number(btn.dataset.index)));
+  });
+
+  // Controls
+  document.getElementById('lb-close').addEventListener('click', () => dialog.close());
+  document.getElementById('lb-prev').addEventListener('click', () => show(current - 1));
+  document.getElementById('lb-next').addEventListener('click', () => show(current + 1));
+
+  // Click backdrop to close
+  dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (!dialog.open) return;
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); show(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+  });
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  dialog.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  dialog.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) dx < 0 ? show(current + 1) : show(current - 1);
+  });
+</script>
+
 <style>
+  /* ── Page header ────────────────────────────────────────────── */
   .page-top {
     padding-top: calc(var(--nav-h) + 3rem);
     padding-bottom: 2rem;
   }
 
-  .page-header {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  .page-top h1 { margin-bottom: 0.35rem; }
+  .page-top p  { font-size: 1.05rem; }
 
-  .page-header h1 {
-    margin-bottom: 0.25rem;
-  }
-
-  .page-header p {
-    font-size: 1.05rem;
-    color: var(--text-2);
-  }
-
-  .lightroom-link {
-    margin-top: 0.25rem;
+  .lr-link {
+    display: inline-block;
+    margin-top: 0.5rem;
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--accent);
     text-decoration: none;
-    align-self: flex-start;
-    transition: color 0.15s;
   }
+  .lr-link:hover { color: var(--accent-hover); }
 
-  .lightroom-link:hover {
-    color: var(--accent-hover);
-  }
-
-  /* Lightroom link card fallback */
-  .lr-cta-wrapper {
-    padding-top: 1rem;
-    padding-bottom: 3rem;
-  }
+  /* ── Lightroom CTA card ──────────────────────────────────────── */
+  .lr-cta-wrap { padding-bottom: 2rem; }
 
   .lr-cta-card {
     display: inline-flex;
     align-items: center;
     gap: 1.25rem;
-    padding: 1.5rem 2rem;
+    padding: 1.4rem 1.8rem;
     background: var(--bg-raised);
     border: 1px solid var(--border-strong);
     border-radius: 10px;
     text-decoration: none;
     color: inherit;
-    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    transition: border-color 0.2s, transform 0.2s;
   }
+  .lr-cta-card:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+  .lr-icon       { font-size: 2rem; }
+  .lr-cta-label  { font-size: 1rem; font-weight: 600; color: var(--text); max-width: none; }
+  .lr-cta-sub    { font-size: 0.82rem; color: var(--accent); max-width: none; }
 
-  .lr-cta-card:hover {
-    border-color: var(--accent);
-    background: var(--bg-elevated);
-    transform: translateY(-2px);
-    text-decoration: none;
-  }
-
-  .lr-cta-icon {
-    font-size: 2rem;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .lr-cta-label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.2rem;
-    max-width: none;
-  }
-
-  .lr-cta-sub {
-    font-size: 0.82rem;
-    color: var(--accent);
-    max-width: none;
-  }
-
-  /* Masonry grid */
-  .gallery-wrapper {
-    padding-top: 2rem;
-    padding-bottom: var(--section-gap);
-  }
+  /* ── Masonry ─────────────────────────────────────────────────── */
+  .gallery-wrap { padding-top: 1.5rem; padding-bottom: var(--section-gap); }
 
   .masonry {
     columns: 2;
-    column-gap: 8px;
+    column-gap: 6px;
   }
-
-  @media (min-width: 640px) {
-    .masonry { columns: 3; }
-  }
-
-  @media (min-width: 960px) {
-    .masonry { columns: 4; }
-  }
+  @media (min-width: 560px)  { .masonry { columns: 3; } }
+  @media (min-width: 900px)  { .masonry { columns: 4; } }
 
   .masonry-item {
+    display: block;
+    width: 100%;
     break-inside: avoid;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
   }
 
   .masonry-item img {
     width: 100%;
     height: auto;
-    border-radius: 4px;
     display: block;
+    border-radius: 4px;
     background: var(--bg-elevated);
-    transition: opacity 0.2s;
+    transition: transform 0.35s ease, opacity 0.2s;
   }
 
-  .masonry-item img:hover {
+  .masonry-item:hover img {
+    transform: scale(1.03);
     opacity: 0.9;
   }
 
-  /* Empty state */
+  /* ── Empty state ─────────────────────────────────────────────── */
   .empty-state {
-    padding: var(--section-gap) var(--gutter);
+    padding: var(--section-gap) 0;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    max-width: 560px;
+    max-width: 480px;
+  }
+  .empty-icon { font-size: 2.5rem; max-width: none; }
+  .empty-state h2 { font-size: 1.5rem; }
+  .empty-state p  { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; }
+
+  /* ── Lightbox ────────────────────────────────────────────────── */
+  dialog.lightbox {
+    position: fixed;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border: none;
+    background: rgba(6, 6, 6, 0.97);
+    display: none;
+    outline: none;
   }
 
-  .empty-icon {
-    font-size: 2.5rem;
-    max-width: none;
+  dialog.lightbox[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .empty-state h2 {
-    font-size: 1.5rem;
+  dialog.lightbox::backdrop { display: none; }
+
+  .lb-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 5rem;
+    gap: 0;
   }
 
-  .empty-state p {
-    font-size: 0.925rem;
+  @media (max-width: 600px) {
+    .lb-inner { padding: 3rem 1rem; }
+  }
+
+  /* Image */
+  .lb-img-wrap {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  #lb-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 3px;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  /* Bottom bar — counter + EXIF */
+  .lb-bar {
+    flex-shrink: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding-top: 1.25rem;
+  }
+
+  .lb-counter {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
+  .lb-exif {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    min-height: 1.5rem;
+  }
+
+  .exif-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.2em 0.65em;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
     color: var(--text-2);
-    line-height: 1.7;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Buttons */
+  .lb-btn {
+    position: absolute;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-2);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1;
+  }
+
+  .lb-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: var(--text);
+  }
+
+  .lb-close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .lb-prev, .lb-next {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    padding: 0.6rem 0.85rem;
+  }
+
+  .lb-prev { left: 0.75rem; }
+  .lb-next { right: 0.75rem; }
+
+  @media (max-width: 480px) {
+    .lb-prev { left: 0.25rem; }
+    .lb-next { right: 0.25rem; }
+    .lb-prev, .lb-next { font-size: 1.5rem; padding: 0.5rem 0.65rem; }
   }
 </style>
