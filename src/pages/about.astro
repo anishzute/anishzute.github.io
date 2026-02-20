@@ -3,61 +3,125 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import skillsData from '../data/skills.json';
 
 const categories = Object.entries(skillsData) as [string, string[]][];
-
-/**
- * Replace with your own photo path or URL.
- * Put the file in public/images/profile.jpg
- * Or use a direct URL: 'https://...'
- */
-const profilePhoto = '/images/profile.jpg';
 ---
 
 <BaseLayout
   title="About"
   description="Engineer, builder, and filmmaker. Learn about Anish Zute's background, work, and skills."
 >
-  <div class="page-top">
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="container">
+      <p class="eyebrow">About me</p>
+      <h1>Builder.<br />Explorer.<br />Investor.</h1>
+    </div>
+  </div>
+
+  <!-- Editorial bio: alternating text + photo entries -->
+  <section class="bio-entries-section">
     <div class="container">
 
-      <!-- Bio section -->
-      <div class="bio-section">
-        <div class="bio-text">
-          <p class="eyebrow">About me</p>
-          <h1>Maker.<br />Explorer.<br />Learner.</h1>
-          <div class="bio-body">
-            <p>
-              Hi, I’m Anish. I began my career in filmmaking and gradually transitioned into the technical foundations behind image-making — moving from production into visual effects, engineering simulation and visualization, and ultimately computer vision and machine learning. That evolution has taken me through experimental physics labs, neuroscience research, 0–1 startups, and one of the largest venture capital firms in the country. I’ve contributed to projects spanning Mars rover operations at NASA JPL, an award-winning Hyperloop pod, and the development of an autonomous microscope platform integrating optics, hardware control, and real-time analysis. I’ve worked both as a founder and as an early-stage investor, building companies firsthand and later partnering with technical teams as they scaled. I’m particularly drawn to technically ambitious efforts in aerospace, robotics, dual-use, and applied AI.
-            </p>
-            <p>
-              Outside of work, I’m usually building something, learning a new skill, or pushing myself into a new environment. I’ve spent time in both machine shops and woodshops, and I still design parts in CAD and 3D print them at home whenever an idea needs to become tangible. I work on and race cars, and volunteer as a Race Marshal for Formula 1, which keeps me close to the edge of the sport from another angle. I climb regularly and hold both USAC judging credentials and an NCRC Cave Rescue certification. I’ve sailed competitively for most of my life and captained the UT Sailing Team in college, and I’m currently training as a student pilot. Continuing the theme of learning and exploration, I enjoy traveling, backpacking, and hiking — and documenting my adventures on camera.
-            </p>
-            <p>
-              I currently live in Austin, TX with my wonderful girlfriend and our German Shepherd mix.
-            </p>
-          </div>
-          <div class="bio-ctas">
-            <a href="/projects" class="btn btn-primary">See Projects</a>
-            <a href="https://github.com/anishzute" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub →</a>
-          </div>
+      <!-- Career / engineering background -->
+      <div class="bio-entry">
+        <div class="bio-entry-body">
+          <p>
+            Hi, I'm Anish. I began my career in filmmaking and gradually transitioned into the
+            technical foundations behind image-making — moving from production into visual effects,
+            engineering simulation and visualization, and ultimately computer vision and machine
+            learning. That evolution has taken me through experimental physics labs, neuroscience
+            research, 0–1 startups, and one of the largest venture capital firms in the country.
+            I've contributed to projects spanning Mars rover operations at NASA JPL, an
+            award-winning Hyperloop pod, and the development of an autonomous microscope platform
+            integrating optics, hardware control, and real-time analysis. I've worked both as a
+            founder and as an early-stage investor, building companies firsthand and later
+            partnering with technical teams as they scaled. I'm particularly drawn to technically
+            ambitious efforts in aerospace, robotics, dual-use, and applied AI.
+          </p>
         </div>
-
-        <div class="bio-photo">
-          <div class="photo-frame">
+        <figure class="bio-entry-figure">
+          <div
+            class="entry-photo-frame"
+            data-label="Hyperloop pod / NASA JPL"
+          >
             <img
-              src={profilePhoto}
-              alt="Anish Zute"
-              loading="eager"
+              src="/images/about/hyperloop.jpg"
+              alt="Anish with the award-winning Hyperloop pod"
+              loading="lazy"
               decoding="async"
-              width="480"
-              height="600"
-              onerror="this.parentElement.classList.add('no-photo')"
+              onerror="this.parentElement.dataset.missing='true'"
             />
           </div>
+          <figcaption>Award-winning Hyperloop pod</figcaption>
+        </figure>
+      </div>
+
+      <!-- Building / cars / F1 marshalling (photo on left) -->
+      <div class="bio-entry bio-entry--reversed">
+        <div class="bio-entry-body">
+          <p>
+            Outside of work, I'm usually building something, learning a new skill, or pushing
+            myself into a new environment. I've spent time in both machine shops and woodshops,
+            and I still design parts in CAD and 3D print them at home whenever an idea needs to
+            become tangible. I work on and race cars, and volunteer as a Race Marshal for Formula 1,
+            which keeps me close to the edge of the sport from another angle.
+          </p>
+        </div>
+        <figure class="bio-entry-figure">
+          <div
+            class="entry-photo-frame"
+            data-label="F1 Race Marshal"
+          >
+            <img
+              src="/images/about/f1.jpg"
+              alt="Anish marshalling at Formula 1"
+              loading="lazy"
+              decoding="async"
+              onerror="this.parentElement.dataset.missing='true'"
+            />
+          </div>
+          <figcaption>Race Marshal, Formula 1</figcaption>
+        </figure>
+      </div>
+
+      <!-- Climbing / sailing / outdoors -->
+      <div class="bio-entry">
+        <div class="bio-entry-body">
+          <p>
+            I climb regularly and hold both USAC judging credentials and an NCRC Cave Rescue
+            certification. I've sailed competitively for most of my life and captained the UT
+            Sailing Team in college, and I'm currently training as a student pilot. Continuing the
+            theme of learning and exploration, I enjoy traveling, backpacking, and hiking —
+            and documenting my adventures on camera.
+          </p>
+        </div>
+        <figure class="bio-entry-figure">
+          <div
+            class="entry-photo-frame"
+            data-label="Rock climbing"
+          >
+            <img
+              src="/images/about/climbing.jpg"
+              alt="Anish rock climbing"
+              loading="lazy"
+              decoding="async"
+              onerror="this.parentElement.dataset.missing='true'"
+            />
+          </div>
+          <figcaption>Rock climbing</figcaption>
+        </figure>
+      </div>
+
+      <!-- Closing -->
+      <div class="bio-closing">
+        <p>I currently live in Austin, TX with my wonderful girlfriend and our German Shepherd mix.</p>
+        <div class="bio-ctas">
+          <a href="/projects" class="btn btn-primary">See Projects</a>
+          <a href="https://github.com/anishzute" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub →</a>
         </div>
       </div>
 
     </div>
-  </div>
+  </section>
 
   <!-- Skills -->
   <section class="skills-section">
@@ -78,25 +142,10 @@ const profilePhoto = '/images/profile.jpg';
 </BaseLayout>
 
 <style>
-  .page-top {
+  /* ── Page header ─────────────────────────────────────────── */
+  .page-header {
     padding-top: calc(var(--nav-h) + 4rem);
-    padding-bottom: var(--section-gap);
-    border-bottom: 1px solid var(--border);
-  }
-
-  /* ── Bio ────────────────────────────────────────────────────── */
-  .bio-section {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3.5rem;
-    align-items: start;
-  }
-
-  @media (min-width: 760px) {
-    .bio-section {
-      grid-template-columns: 1fr 380px;
-      gap: 5rem;
-    }
+    padding-bottom: 3.5rem;
   }
 
   .eyebrow {
@@ -106,72 +155,123 @@ const profilePhoto = '/images/profile.jpg';
     letter-spacing: 0.16em;
     color: var(--accent);
     margin-bottom: 1rem;
-    max-width: none;
   }
 
-  .bio-text h1 {
-    margin-bottom: 1.75rem;
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
+  .page-header h1 {
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    line-height: 1.08;
+    margin: 0;
   }
 
-  .bio-body {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
+  /* ── Bio entries ─────────────────────────────────────────── */
+  .bio-entries-section {
+    padding-bottom: var(--section-gap);
+    border-bottom: 1px solid var(--border);
   }
 
-  .bio-body p {
+  .bio-entry {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3.5rem 0;
+    border-top: 1px solid var(--border);
+    align-items: center;
+  }
+
+  @media (min-width: 760px) {
+    .bio-entry {
+      grid-template-columns: 1fr 1fr;
+      gap: 4.5rem;
+    }
+
+    /* Reversed: photo goes to the left column */
+    .bio-entry--reversed .bio-entry-figure {
+      order: -1;
+    }
+  }
+
+  /* Text */
+  .bio-entry-body p {
     font-size: 1.02rem;
-    line-height: 1.78;
+    line-height: 1.8;
     color: var(--text-2);
-    max-width: 60ch;
+    max-width: 52ch;
+  }
+
+  /* Photo */
+  .bio-entry-figure {
+    margin: 0;
+  }
+
+  .entry-photo-frame {
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg-elevated);
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .entry-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s;
+  }
+
+  /* Placeholder shown when image is missing */
+  .entry-photo-frame[data-missing="true"] img {
+    display: none;
+  }
+
+  .entry-photo-frame[data-missing="true"]::after {
+    content: attr(data-label);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    background: linear-gradient(145deg, var(--bg-elevated) 0%, var(--border) 100%);
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .bio-entry-figure figcaption {
+    margin-top: 0.65rem;
+    font-size: 0.78rem;
+    color: var(--text-3);
+    text-align: center;
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Closing ─────────────────────────────────────────────── */
+  .bio-closing {
+    padding: 3.5rem 0 1rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .bio-closing p {
+    font-size: 1.02rem;
+    color: var(--text-2);
+    margin-bottom: 1.75rem;
   }
 
   .bio-ctas {
     display: flex;
     gap: 0.85rem;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
-  /* ── Profile photo ──────────────────────────────────────────── */
-  .bio-photo {
-    order: -1;
-  }
-
-  @media (min-width: 760px) {
-    .bio-photo {
-      order: 0;
-      position: sticky;
-      top: calc(var(--nav-h) + 2rem);
-    }
-  }
-
-  .photo-frame {
-    border-radius: 8px;
-    overflow: hidden;
-    background: var(--bg-elevated);
-    aspect-ratio: 4/5;
-    border: 1px solid var(--border);
-  }
-
-  .photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* When no image loads, show a gradient placeholder */
-  .photo-frame.no-photo {
-    background: linear-gradient(145deg, var(--bg-elevated) 0%, var(--border) 100%);
-  }
-
-  .photo-frame.no-photo img {
-    display: none;
-  }
-
-  /* ── Skills ─────────────────────────────────────────────────── */
+  /* ── Skills ──────────────────────────────────────────────── */
   .skills-section {
     padding: var(--section-gap) 0;
   }
@@ -223,7 +323,6 @@ const profilePhoto = '/images/profile.jpg';
     color: var(--text-2);
     padding: 0.4rem 0;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 0;
     line-height: 1.4;
   }
 

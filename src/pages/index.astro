@@ -34,6 +34,7 @@ try {
     <div class="hero-content container">
       <p class="hero-eyebrow">Engineering · Exploration · Creative Media</p>
       <h1 class="hero-name">Anish Zuté</h1>
+      <div class="hero-lower">
       <p class="hero-desc">
         Engineer, VC, Climber, Sailor, Pilot, Filmmaker, Photographer & Space Nerd. I race cars sometimes. And adventure often.
       </p>
@@ -67,6 +68,7 @@ try {
             </svg>
           </a>
         </div>
+      </div>
       </div>
     </div>
     <a href="#work" class="hero-scroll" aria-label="Scroll down">
@@ -225,10 +227,11 @@ try {
       while letting the image show through on the right.
     */
     background:
+      linear-gradient(to bottom, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0) 18%),
       linear-gradient(105deg,
-        rgba(10,10,10,0.88) 0%,
-        rgba(10,10,10,0.60) 40%,
-        rgba(10,10,10,0.20) 70%,
+        rgba(10,10,10,0.92) 0%,
+        rgba(10,10,10,0.72) 40%,
+        rgba(10,10,10,0.28) 70%,
         rgba(10,10,10,0.05) 100%
       ),
       url('/images/hero.jpg') center / cover no-repeat;
@@ -240,6 +243,15 @@ try {
     position: relative;
     z-index: 1;
     padding-top: var(--nav-h);
+  }
+
+  .hero-lower {
+    display: inline-block;
+    background: rgba(10, 10, 10, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 1rem 1.25rem 1.25rem;
+    border-radius: 10px;
   }
 
   .hero-eyebrow {
