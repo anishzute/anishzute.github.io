@@ -21,29 +21,45 @@ type Photo = { src: string; meta: ExifMeta };
 
 // ── Lightroom API fetch (build-time, no CORS) ─────────────────────
 let lrPhotos: Photo[] = [];
+let lrShareId = '';
 
 if (LIGHTROOM_SHARE_URL) {
   try {
-    const shareId = LIGHTROOM_SHARE_URL.split('/shares/').pop()?.split('?')[0] ?? '';
-    const shareRes = await fetch(`https://lightroom.adobe.com/v2/shares/${shareId}`, {
-      headers: { Accept: 'application/json' },
-    });
-    if (shareRes.ok) {
-      const shareData = await shareRes.json();
-      const spaceId: string = shareData?.space?.id ?? '';
-      if (spaceId) {
-        const assetsRes = await fetch(
-          `https://lightroom.adobe.com/v2/spaces/${spaceId}/assets?subtype=image&order_by=captureDate&order_direction=desc&limit=100`,
-          { headers: { Accept: 'application/json' } }
-        );
-        if (assetsRes.ok) {
-          const assetsData = await assetsRes.json();
-          lrPhotos = (assetsData?.resources ?? []).map((asset: Record<string, unknown>) => ({
-            src: `https://lightroom.adobe.com/v2/spaces/${spaceId}/assets/${asset['id']}/renditions/2048`,
-            meta: {},
-          }));
-        }
-      }
+    // Extract shareId — handles both full and short URL forms
+    lrShareId = LIGHTROOM_SHARE_URL.split('/shares/').pop()?.split('?')[0] ?? '';
+    // Use the share-scoped endpoint (not the auth-protected /spaces/ endpoint)
+    const assetsRes = await fetch(
+      `https://lightroom.adobe.com/v2/shares/${lrShareId}/assets?subtype=image&order_by=captureDate&order_direction=desc&limit=200`,
+      { headers: { Accept: 'application/json', 'X-API-Key': 'lightroom.adobe.com' } }
+    );
+    if (assetsRes.ok) {
+      const assetsData = await assetsRes.json();
+      // Rational XMP values arrive as [numerator, denominator]
+      const rational = (v: unknown): number | undefined =>
+        Array.isArray(v) ? v[0] / v[1] : (typeof v === 'number' ? v : undefined);
+      lrPhotos = (assetsData?.resources ?? []).map((asset: Record<string, unknown>) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const payload = (asset as any)?.asset?.payload ?? {};
+        const xmp  = payload?.xmp  ?? {};
+        const exif = xmp?.exif     ?? {};
+        const tiff = xmp?.tiff     ?? {};
+        const meta: ExifMeta = {
+          Make:             tiff?.Make,
+          Model:            tiff?.Model,
+          LensModel:        xmp?.aux?.Lens,
+          FocalLength:      rational(exif?.FocalLength),
+          FNumber:          rational(exif?.FNumber),
+          ExposureTime:     rational(exif?.ExposureTime),
+          ISO:              Array.isArray(exif?.ISOSpeedRatings)
+                              ? exif.ISOSpeedRatings[0]
+                              : exif?.ISOSpeedRatings,
+          DateTimeOriginal: payload?.captureDate,
+        };
+        return {
+          src: `https://lightroom.adobe.com/v2/shares/${lrShareId}/assets/${asset['id']}/renditions/2048`,
+          meta,
+        };
+      });
     }
   } catch { /* Lightroom API unavailable — local photos still shown */ }
 }
@@ -97,7 +113,7 @@ const allPhotos: Photo[] = [...lrPhotos, ...localPhotos];
   <!-- Masonry gallery -->
   {allPhotos.length > 0 && (
     <div class="gallery-wrap container">
-      <div class="masonry" id="masonry">
+      <div class="masonry" id="masonry" data-lr-share={lrShareId || undefined}>
         {allPhotos.map((photo, i) => (
           <button
             class="masonry-item"
