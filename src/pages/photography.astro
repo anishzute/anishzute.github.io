@@ -24,44 +24,73 @@ let lrPhotos: Photo[] = [];
 let lrShareId = '';
 
 if (LIGHTROOM_SHARE_URL) {
+  console.log('[LR] LIGHTROOM_SHARE_URL is set:', LIGHTROOM_SHARE_URL);
   try {
     // Extract shareId — handles both full and short URL forms
     lrShareId = LIGHTROOM_SHARE_URL.split('/shares/').pop()?.split('?')[0] ?? '';
-    // Use the share-scoped endpoint (not the auth-protected /spaces/ endpoint)
-    const assetsRes = await fetch(
-      `https://lightroom.adobe.com/v2/shares/${lrShareId}/assets?subtype=image&order_by=captureDate&order_direction=desc&limit=200`,
-      { headers: { Accept: 'application/json', 'X-API-Key': 'lightroom.adobe.com' } }
-    );
-    if (assetsRes.ok) {
-      const assetsData = await assetsRes.json();
-      // Rational XMP values arrive as [numerator, denominator]
-      const rational = (v: unknown): number | undefined =>
-        Array.isArray(v) ? v[0] / v[1] : (typeof v === 'number' ? v : undefined);
-      lrPhotos = (assetsData?.resources ?? []).map((asset: Record<string, unknown>) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const payload = (asset as any)?.asset?.payload ?? {};
-        const xmp  = payload?.xmp  ?? {};
-        const exif = xmp?.exif     ?? {};
-        const tiff = xmp?.tiff     ?? {};
-        const meta: ExifMeta = {
-          Make:             tiff?.Make,
-          Model:            tiff?.Model,
-          LensModel:        xmp?.aux?.Lens,
-          FocalLength:      rational(exif?.FocalLength),
-          FNumber:          rational(exif?.FNumber),
-          ExposureTime:     rational(exif?.ExposureTime),
-          ISO:              Array.isArray(exif?.ISOSpeedRatings)
-                              ? exif.ISOSpeedRatings[0]
-                              : exif?.ISOSpeedRatings,
-          DateTimeOriginal: payload?.captureDate,
-        };
-        return {
-          src: `https://lightroom.adobe.com/v2/shares/${lrShareId}/assets/${asset['id']}/renditions/2048`,
-          meta,
-        };
+    console.log('[LR] Extracted shareId:', lrShareId || '(empty — URL may not contain /shares/)');
+
+    if (!lrShareId) {
+      console.warn('[LR] Could not extract shareId. Expected a URL containing /shares/. Got:', LIGHTROOM_SHARE_URL);
+    } else {
+      const apiUrl = `https://lightroom.adobe.com/v2/shares/${lrShareId}/assets?subtype=image&order_by=captureDate&order_direction=desc&limit=200`;
+      console.log('[LR] Fetching:', apiUrl);
+      const assetsRes = await fetch(apiUrl, {
+        headers: { Accept: 'application/json', 'X-API-Key': 'lightroom.adobe.com' },
       });
+      console.log('[LR] Response status:', assetsRes.status, assetsRes.statusText);
+
+      if (!assetsRes.ok) {
+        const body = await assetsRes.text();
+        console.warn('[LR] API error response (first 500 chars):', body.slice(0, 500));
+      } else {
+        const assetsData = await assetsRes.json();
+        const resources = assetsData?.resources ?? [];
+        console.log('[LR] Resources returned:', resources.length);
+
+        if (resources.length > 0) {
+          // Log the first asset's structure to verify field paths
+          console.log('[LR] First asset keys:', JSON.stringify(Object.keys(resources[0])));
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const firstAsset = resources[0] as any;
+          console.log('[LR] First asset.asset keys:', JSON.stringify(Object.keys(firstAsset?.asset ?? {})));
+        }
+
+        // Rational XMP values arrive as [numerator, denominator]
+        const rational = (v: unknown): number | undefined =>
+          Array.isArray(v) ? v[0] / v[1] : (typeof v === 'number' ? v : undefined);
+
+        lrPhotos = resources.map((asset: Record<string, unknown>) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const payload = (asset as any)?.asset?.payload ?? {};
+          const xmp  = payload?.xmp  ?? {};
+          const exif = xmp?.exif     ?? {};
+          const tiff = xmp?.tiff     ?? {};
+          const meta: ExifMeta = {
+            Make:             tiff?.Make,
+            Model:            tiff?.Model,
+            LensModel:        xmp?.aux?.Lens,
+            FocalLength:      rational(exif?.FocalLength),
+            FNumber:          rational(exif?.FNumber),
+            ExposureTime:     rational(exif?.ExposureTime),
+            ISO:              Array.isArray(exif?.ISOSpeedRatings)
+                                ? exif.ISOSpeedRatings[0]
+                                : exif?.ISOSpeedRatings,
+            DateTimeOriginal: payload?.captureDate,
+          };
+          return {
+            src: `https://lightroom.adobe.com/v2/shares/${lrShareId}/assets/${asset['id']}/renditions/2048`,
+            meta,
+          };
+        });
+        console.log('[LR] lrPhotos built:', lrPhotos.length);
+      }
     }
-  } catch { /* Lightroom API unavailable — local photos still shown */ }
+  } catch (err) {
+    console.error('[LR] Fetch threw an exception:', err);
+  }
+} else {
+  console.log('[LR] LIGHTROOM_SHARE_URL is not set — skipping Lightroom fetch.');
 }
 
 // ── Auto-discover local images + read EXIF ────────────────────────
