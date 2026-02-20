@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import projectsData from '../data/projects.json';
+import { readdirSync } from 'fs';
+import { join } from 'path';
 
 const isDev = !import.meta.env.PROD;
 const recentPosts = (await getCollection('blog'))
@@ -11,17 +13,15 @@ const recentPosts = (await getCollection('blog'))
 
 const featuredProjects = projectsData.slice(0, 3);
 
-// Preview photos shown in the strip — replace src values with your own images
-// or local paths like /images/photography/my-photo.jpg
-const previewPhotos = [
-  { src: 'https://picsum.photos/seed/az-s1/700/500', alt: 'Track day' },
-  { src: 'https://picsum.photos/seed/az-s2/500/700', alt: 'Desert road' },
-  { src: 'https://picsum.photos/seed/az-s3/800/500', alt: 'Racecar detail' },
-  { src: 'https://picsum.photos/seed/az-s4/600/800', alt: 'Mountain pass' },
-  { src: 'https://picsum.photos/seed/az-s5/750/500', alt: 'Paddock' },
-  { src: 'https://picsum.photos/seed/az-s6/500/650', alt: 'Workshop' },
-  { src: 'https://picsum.photos/seed/az-s7/800/500', alt: 'Sunrise' },
-];
+// All photography images — client-side JS picks a random 7 on each page load
+const IMAGE_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+let allStripPhotos: string[] = [];
+try {
+  const dir = join(process.cwd(), 'public/images/photography');
+  allStripPhotos = readdirSync(dir)
+    .filter(f => IMAGE_EXTS.has(f.slice(f.lastIndexOf('.')).toLowerCase()))
+    .map(f => `/images/photography/${encodeURIComponent(f)}`);
+} catch { /* directory missing — strip won't render */ }
 ---
 
 <BaseLayout
@@ -106,26 +106,46 @@ const previewPhotos = [
   </section>
 
   <!-- ── Photo strip ───────────────────────────────────────────── -->
-  <section class="strip-section">
-    <div class="strip-header container">
-      <h2>From the Lens</h2>
-      <a href="/photography" class="see-all">View gallery →</a>
-    </div>
-    <div class="photo-strip" role="list" aria-label="Photo preview">
-      {previewPhotos.map(photo => (
-        <a href="/photography" class="strip-item" role="listitem">
-          <img
-            src={photo.src}
-            alt={photo.alt}
-            loading="lazy"
-            decoding="async"
-            width="600"
-            height="400"
-          />
-        </a>
-      ))}
-    </div>
-  </section>
+  {allStripPhotos.length > 0 && (
+    <section class="strip-section">
+      <div class="strip-header container">
+        <h2>From the Lens</h2>
+        <a href="/photography" class="see-all">View gallery →</a>
+      </div>
+      <div class="photo-strip" id="photo-strip" role="list" aria-label="Photo preview"></div>
+    </section>
+  )}
+  <script is:inline define:vars={{ allStripPhotos }}>
+    (function () {
+      var strip = document.getElementById('photo-strip');
+      if (!strip || !allStripPhotos.length) return;
+      // Fisher-Yates shuffle in-place on a copy, take 7
+      var pool = allStripPhotos.slice();
+      for (var i = pool.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+      }
+      pool.slice(0, 7).forEach(function (src) {
+        var a = document.createElement('a');
+        a.href = '/photography#open=' + encodeURIComponent(src);
+        a.className = 'strip-item';
+        a.setAttribute('role', 'listitem');
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        // Once loaded, detect portrait and tag the wrapper
+        img.addEventListener('load', function () {
+          if (img.naturalHeight > img.naturalWidth) {
+            a.classList.add('portrait');
+          }
+        });
+        a.appendChild(img);
+        strip.appendChild(a);
+      });
+    })();
+  </script>
 
   <!-- ── Recent posts ──────────────────────────────────────────── -->
   {recentPosts.length > 0 && (
@@ -410,6 +430,7 @@ const previewPhotos = [
 
   .photo-strip {
     display: flex;
+    align-items: center; /* shared centerline for all photos */
     gap: 6px;
     overflow-x: auto;
     padding: 0 var(--gutter);
@@ -433,12 +454,19 @@ const previewPhotos = [
 
   .strip-item:hover { opacity: 0.88; }
 
+  /* Landscape: shorter, wide */
   .strip-item img {
-    height: 320px;
+    height: 280px;
     width: auto;
     object-fit: cover;
     display: block;
     pointer-events: none;
+  }
+
+  /* Portrait: taller, fixed width — centered on the same axis as landscape */
+  .strip-item.portrait img {
+    height: 360px;
+    width: 240px;
   }
 
   @media (max-width: 600px) {

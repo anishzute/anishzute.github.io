@@ -21,7 +21,6 @@ type Photo = { src: string; meta: ExifMeta };
 
 // ── Lightroom API fetch (build-time, no CORS) ─────────────────────
 let lrPhotos: Photo[] = [];
-let useFallbackCard = false;
 
 if (LIGHTROOM_SHARE_URL) {
   try {
@@ -46,10 +45,7 @@ if (LIGHTROOM_SHARE_URL) {
         }
       }
     }
-    if (lrPhotos.length === 0) useFallbackCard = true;
-  } catch {
-    useFallbackCard = true;
-  }
+  } catch { /* Lightroom API unavailable — local photos still shown */ }
 }
 
 // ── Auto-discover local images + read EXIF ────────────────────────
@@ -97,20 +93,6 @@ const allPhotos: Photo[] = [...lrPhotos, ...localPhotos];
       )}
     </div>
   </div>
-
-  <!-- Lightroom CTA card (when API didn't return photos) -->
-  {useFallbackCard && LIGHTROOM_SHARE_URL && (
-    <div class="container lr-cta-wrap">
-      <a href={LIGHTROOM_SHARE_URL} target="_blank" rel="noopener noreferrer" class="lr-cta-card">
-        <span class="lr-icon">📷</span>
-        <div>
-          <p class="lr-cta-label">View the full gallery</p>
-          <p class="lr-cta-sub">Opens on Lightroom ↗</p>
-        </div>
-      </a>
-    </div>
-  )}
-
 
   <!-- Masonry gallery -->
   {allPhotos.length > 0 && (
@@ -256,6 +238,21 @@ const allPhotos: Photo[] = [...lrPhotos, ...localPhotos];
     const dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 50) show(dx < 0 ? current + 1 : current - 1);
   });
+
+  // Open directly to a photo when arriving via #open=<encoded-src> (e.g. from homepage strip)
+  (function () {
+    var hash = window.location.hash;
+    if (hash.indexOf('#open=') !== 0) return;
+    var targetSrc = decodeURIComponent(hash.slice(6));
+    for (var i = 0; i < photos.length; i++) {
+      if (photos[i].src === targetSrc) {
+        openAt(i);
+        // Clean the hash so Back doesn't re-open the lightbox
+        history.replaceState(null, '', window.location.pathname);
+        break;
+      }
+    }
+  })();
 </script>
 
 <style>
@@ -277,26 +274,6 @@ const allPhotos: Photo[] = [...lrPhotos, ...localPhotos];
     text-decoration: none;
   }
   .lr-link:hover { color: var(--accent-hover); }
-
-  /* ── Lightroom CTA card ──────────────────────────────────────── */
-  .lr-cta-wrap { padding-bottom: 2rem; }
-
-  .lr-cta-card {
-    display: inline-flex;
-    align-items: center;
-    gap: 1.25rem;
-    padding: 1.4rem 1.8rem;
-    background: var(--bg-raised);
-    border: 1px solid var(--border-strong);
-    border-radius: 10px;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .lr-cta-card:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
-  .lr-icon       { font-size: 2rem; }
-  .lr-cta-label  { font-size: 1rem; font-weight: 600; color: var(--text); max-width: none; }
-  .lr-cta-sub    { font-size: 0.82rem; color: var(--accent); max-width: none; }
 
   /* ── Masonry ─────────────────────────────────────────────────── */
   .gallery-wrap { padding-top: 1.5rem; padding-bottom: var(--section-gap); }
