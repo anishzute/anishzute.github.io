@@ -3,33 +3,71 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import skillsData from '../data/skills.json';
 
 const categories = Object.entries(skillsData) as [string, string[]][];
+
+// Photos available in the lightbox, in display order
+const aboutPhotos = [
+  { src: '/images/about/JPL_Summit.jpg',     caption: 'Summit of Mt. Whitney with JPL colleagues' },
+  { src: '/images/about/JPL_Mars_Rover.jpg', caption: 'Mars Rover VSTB, NASA JPL'                 },
+  { src: '/images/about/F1.jpg',             caption: 'Pit lane, 2025 F1 USGP'                    },
+  { src: '/images/about/Free_Solo.jpg',      caption: 'Free solo, Joshua Tree'                     },
+  { src: '/images/about/Family.jpg',         caption: 'Austin, TX'                                 },
+];
 ---
 
 <BaseLayout
   title="About"
   description="Engineer, builder, and filmmaker. Learn about Anish Zute's background, work, and skills."
 >
-  <!-- Page header -->
+  <!-- Page header + hero photo -->
   <div class="page-header">
-    <div class="container">
+    <div class="container header-text">
       <p class="eyebrow">About me</p>
-      <h1>Builder.<br />Explorer.<br />Investor.</h1>
+      <h1>Maker.<br />Explorer.<br />Learner.</h1>
+    </div>
+    <div class="hero-photo-wrap">
+      <img
+        src="/images/about/Profile_Landscape.jpg"
+        alt="Anish Zute"
+        loading="eager"
+        decoding="async"
+      />
     </div>
   </div>
 
-  <!-- Editorial bio: alternating text + photo entries -->
+  <!-- Bio entries -->
   <section class="bio-entries-section">
     <div class="container">
 
-      <!-- Career / engineering background -->
+      <!-- ENTRY 1: Career background -->
       <div class="bio-entry">
         <div class="bio-entry-body">
           <p>
             Hi, I'm Anish. I began my career in filmmaking and gradually transitioned into the
             technical foundations behind image-making — moving from production into visual effects,
             engineering simulation and visualization, and ultimately computer vision and machine
-            learning. That evolution has taken me through experimental physics labs, neuroscience
+            learning. That evolution has taken me through film sets, experimental physics labs, neuroscience
             research, 0–1 startups, and one of the largest venture capital firms in the country.
+          </p>
+        </div>
+        <figure class="bio-entry-figure">
+          <button class="photo-btn" data-index="0" aria-label="Expand photo" type="button">
+            <div class="photo-frame">
+              <img
+                src="/images/about/JPL_Summit.jpg"
+                alt="Anish and JPL colleagues on the summit of Mt. Whitney"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </button>
+          <figcaption>Summit of Mt. Whitney with JPL colleagues</figcaption>
+        </figure>
+      </div>
+
+      <!-- ENTRY 2: Projects / founder (reversed) -->
+      <div class="bio-entry bio-entry--reversed">
+        <div class="bio-entry-body">
+          <p>
             I've contributed to projects spanning Mars rover operations at NASA JPL, an
             award-winning Hyperloop pod, and the development of an autonomous microscope platform
             integrating optics, hardware control, and real-time analysis. I've worked both as a
@@ -39,24 +77,22 @@ const categories = Object.entries(skillsData) as [string, string[]][];
           </p>
         </div>
         <figure class="bio-entry-figure">
-          <div
-            class="entry-photo-frame"
-            data-label="Hyperloop pod / NASA JPL"
-          >
-            <img
-              src="/images/about/hyperloop.jpg"
-              alt="Anish with the award-winning Hyperloop pod"
-              loading="lazy"
-              decoding="async"
-              onerror="this.parentElement.dataset.missing='true'"
-            />
-          </div>
-          <figcaption>Award-winning Hyperloop pod</figcaption>
+          <button class="photo-btn" data-index="1" aria-label="Expand photo" type="button">
+            <div class="photo-frame">
+              <img
+                src="/images/about/JPL_Mars_Rover.jpg"
+                alt="Anish at the Mars Rover Vehicle Systems Testbed at NASA JPL"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </button>
+          <figcaption>Mars Rover VSTB, NASA JPL</figcaption>
         </figure>
       </div>
 
-      <!-- Building / cars / F1 marshalling (photo on left) -->
-      <div class="bio-entry bio-entry--reversed">
+      <!-- ENTRY 3: Building / cars / F1 -->
+      <div class="bio-entry">
         <div class="bio-entry-body">
           <p>
             Outside of work, I'm usually building something, learning a new skill, or pushing
@@ -67,53 +103,61 @@ const categories = Object.entries(skillsData) as [string, string[]][];
           </p>
         </div>
         <figure class="bio-entry-figure">
-          <div
-            class="entry-photo-frame"
-            data-label="F1 Race Marshal"
-          >
-            <img
-              src="/images/about/f1.jpg"
-              alt="Anish marshalling at Formula 1"
-              loading="lazy"
-              decoding="async"
-              onerror="this.parentElement.dataset.missing='true'"
-            />
-          </div>
-          <figcaption>Race Marshal, Formula 1</figcaption>
+          <button class="photo-btn" data-index="2" aria-label="Expand photo" type="button">
+            <div class="photo-frame">
+              <img
+                src="/images/about/F1.jpg"
+                alt="Anish and a fellow marshal in pit lane at the 2025 F1 USGP"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </button>
+          <figcaption>Pit lane, 2025 F1 USGP</figcaption>
         </figure>
       </div>
 
-      <!-- Climbing / sailing / outdoors -->
-      <div class="bio-entry">
+      <!-- ENTRY 4: Climbing / outdoors (reversed) -->
+      <div class="bio-entry bio-entry--reversed">
         <div class="bio-entry-body">
           <p>
             I climb regularly and hold both USAC judging credentials and an NCRC Cave Rescue
-            certification. I've sailed competitively for most of my life and captained the UT
-            Sailing Team in college, and I'm currently training as a student pilot. Continuing the
-            theme of learning and exploration, I enjoy traveling, backpacking, and hiking —
+            certification. I've sailed competitively for most of my life and captained the University of Texas
+            Sailing Team in college, and I'm currently training as a student pilot. Continuing
+            the theme of learning and exploration, I enjoy traveling, backpacking, and hiking —
             and documenting my adventures on camera.
           </p>
         </div>
         <figure class="bio-entry-figure">
-          <div
-            class="entry-photo-frame"
-            data-label="Rock climbing"
-          >
-            <img
-              src="/images/about/climbing.jpg"
-              alt="Anish rock climbing"
-              loading="lazy"
-              decoding="async"
-              onerror="this.parentElement.dataset.missing='true'"
-            />
-          </div>
-          <figcaption>Rock climbing</figcaption>
+          <button class="photo-btn" data-index="3" aria-label="Expand photo" type="button">
+            <div class="photo-frame">
+              <img
+                src="/images/about/Free_Solo.jpg"
+                alt="Anish free soloing in Joshua Tree"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </button>
+          <figcaption>Free solo, Joshua Tree</figcaption>
         </figure>
       </div>
 
       <!-- Closing -->
       <div class="bio-closing">
-        <p>I currently live in Austin, TX with my wonderful girlfriend and our German Shepherd mix.</p>
+        <figure class="closing-figure">
+          <button class="photo-btn" data-index="4" aria-label="Expand photo" type="button">
+            <div class="photo-frame photo-frame--closing">
+              <img
+                src="/images/about/Family.jpg"
+                alt="Anish with his girlfriend and their German Shepherd"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </button>
+        </figure>
+        <p>I currently live in Austin, TX with my wonderful girlfriend and our energetic german shepherd mix.</p>
         <div class="bio-ctas">
           <a href="/projects" class="btn btn-primary">See Projects</a>
           <a href="https://github.com/anishzute" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub →</a>
@@ -139,13 +183,82 @@ const categories = Object.entries(skillsData) as [string, string[]][];
       </div>
     </div>
   </section>
+
+  <!-- Lightbox -->
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer" aria-modal="true">
+    <div class="lb-backdrop" id="lb-backdrop"></div>
+    <div class="lb-inner">
+      <button class="lb-btn lb-close" id="lb-close" aria-label="Close">✕</button>
+      <button class="lb-btn lb-prev"  id="lb-prev"  aria-label="Previous">&#8249;</button>
+      <button class="lb-btn lb-next"  id="lb-next"  aria-label="Next">&#8250;</button>
+      <div class="lb-img-wrap">
+        <img id="lb-img" src="" alt="" />
+      </div>
+      <div class="lb-bar">
+        <span class="lb-caption" id="lb-caption"></span>
+        <span class="lb-counter" id="lb-counter"></span>
+      </div>
+    </div>
+  </dialog>
 </BaseLayout>
+
+<script is:inline define:vars={{ photoData: aboutPhotos }}>
+  var photos  = photoData;
+  var current = 0;
+
+  var dialog  = document.getElementById('lightbox');
+  var lbImg   = document.getElementById('lb-img');
+  var caption = document.getElementById('lb-caption');
+  var counter = document.getElementById('lb-counter');
+
+  function show(index) {
+    current = ((index % photos.length) + photos.length) % photos.length;
+    var p = photos[current];
+    lbImg.src = p.src;
+    lbImg.alt = p.caption;
+    caption.textContent = p.caption;
+    counter.textContent = (current + 1) + ' / ' + photos.length;
+  }
+
+  function openAt(index) {
+    show(index);
+    dialog.showModal();
+  }
+
+  document.querySelectorAll('.photo-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      openAt(Number(btn.dataset.index));
+    });
+  });
+
+  document.getElementById('lb-close').addEventListener('click',    function() { dialog.close(); });
+  document.getElementById('lb-prev').addEventListener('click',     function() { show(current - 1); });
+  document.getElementById('lb-next').addEventListener('click',     function() { show(current + 1); });
+  document.getElementById('lb-backdrop').addEventListener('click', function() { dialog.close(); });
+
+  document.addEventListener('keydown', function(e) {
+    if (!dialog.open) return;
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); show(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+    if (e.key === 'Escape')     { dialog.close(); }
+  });
+
+  var touchStartX = 0;
+  dialog.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+  dialog.addEventListener('touchend',   function(e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) show(dx < 0 ? current + 1 : current - 1);
+  });
+</script>
 
 <style>
   /* ── Page header ─────────────────────────────────────────── */
   .page-header {
     padding-top: calc(var(--nav-h) + 4rem);
-    padding-bottom: 3.5rem;
+  }
+
+  .header-text {
+    padding-bottom: 2.5rem;
   }
 
   .eyebrow {
@@ -161,6 +274,22 @@ const categories = Object.entries(skillsData) as [string, string[]][];
     font-size: clamp(2.4rem, 5.5vw, 4rem);
     line-height: 1.08;
     margin: 0;
+  }
+
+  /* Full-width cinematic banner */
+  .hero-photo-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    background: var(--bg-elevated);
+  }
+
+  .hero-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
   }
 
   /* ── Bio entries ─────────────────────────────────────────── */
@@ -181,16 +310,14 @@ const categories = Object.entries(skillsData) as [string, string[]][];
   @media (min-width: 760px) {
     .bio-entry {
       grid-template-columns: 1fr 1fr;
-      gap: 4.5rem;
+      gap: 5rem;
     }
 
-    /* Reversed: photo goes to the left column */
     .bio-entry--reversed .bio-entry-figure {
       order: -1;
     }
   }
 
-  /* Text */
   .bio-entry-body p {
     font-size: 1.02rem;
     line-height: 1.8;
@@ -198,53 +325,51 @@ const categories = Object.entries(skillsData) as [string, string[]][];
     max-width: 52ch;
   }
 
-  /* Photo */
   .bio-entry-figure {
     margin: 0;
   }
 
-  .entry-photo-frame {
-    border-radius: 8px;
+  /* ── Photo frame ─────────────────────────────────────────── */
+  .photo-frame {
+    border-radius: 7px;
     overflow: hidden;
     background: var(--bg-elevated);
-    aspect-ratio: 4 / 3;
     border: 1px solid var(--border);
-    position: relative;
+    aspect-ratio: 4 / 3;
   }
 
-  .entry-photo-frame img {
+  .photo-frame--closing {
+    aspect-ratio: 4 / 3;
+  }
+
+  .photo-frame img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: opacity 0.3s;
+    transition: transform 0.35s ease, opacity 0.2s;
   }
 
-  /* Placeholder shown when image is missing */
-  .entry-photo-frame[data-missing="true"] img {
-    display: none;
+  /* Clickable photo button */
+  .photo-btn {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+    border-radius: 7px;
+    overflow: hidden;
   }
 
-  .entry-photo-frame[data-missing="true"]::after {
-    content: attr(data-label);
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.78rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-3);
-    background: linear-gradient(145deg, var(--bg-elevated) 0%, var(--border) 100%);
-    padding: 1rem;
-    text-align: center;
+  .photo-btn:hover .photo-frame img {
+    transform: scale(1.03);
+    opacity: 0.88;
   }
 
-  .bio-entry-figure figcaption {
-    margin-top: 0.65rem;
-    font-size: 0.78rem;
+  figcaption {
+    margin-top: 0.55rem;
+    font-size: 0.75rem;
     color: var(--text-3);
     text-align: center;
     font-style: italic;
@@ -254,14 +379,24 @@ const categories = Object.entries(skillsData) as [string, string[]][];
   /* ── Closing ─────────────────────────────────────────────── */
   .bio-closing {
     padding: 3.5rem 0 1rem;
-    text-align: center;
     border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .bio-closing p {
+  .closing-figure {
+    margin: 0 0 2.25rem;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .bio-closing > p {
     font-size: 1.02rem;
     color: var(--text-2);
     margin-bottom: 1.75rem;
+    max-width: 44ch;
   }
 
   .bio-ctas {
@@ -328,5 +463,138 @@ const categories = Object.entries(skillsData) as [string, string[]][];
 
   .skill-card li:last-child {
     border-bottom: none;
+  }
+
+  /* ── Lightbox ────────────────────────────────────────────── */
+  dialog.lightbox {
+    position: fixed;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border: none;
+    background: rgba(6, 6, 6, 0.97);
+    display: none;
+    outline: none;
+  }
+
+  dialog.lightbox[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  dialog.lightbox::backdrop { display: none; }
+
+  .lb-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    cursor: zoom-out;
+  }
+
+  .lb-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3.5rem 5rem 2rem;
+    gap: 0.75rem;
+    pointer-events: none;
+  }
+
+  @media (max-width: 600px) {
+    .lb-inner { padding: 3rem 1rem 1.5rem; gap: 0.5rem; }
+  }
+
+  .lb-btn {
+    position: absolute;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(240,237,232,0.7);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1;
+    pointer-events: auto;
+  }
+
+  .lb-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #f0ede8;
+  }
+
+  .lb-close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .lb-prev, .lb-next {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    padding: 0.6rem 0.85rem;
+  }
+
+  .lb-prev { left: 0.75rem; }
+  .lb-next { right: 0.75rem; }
+
+  @media (max-width: 480px) {
+    .lb-prev { left: 0.25rem; }
+    .lb-next { right: 0.25rem; }
+    .lb-prev, .lb-next { font-size: 1.5rem; padding: 0.5rem 0.65rem; }
+  }
+
+  .lb-img-wrap {
+    flex: 0 1 auto;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  #lb-img {
+    max-width: 100%;
+    max-height: calc(100dvh - 11rem);
+    object-fit: contain;
+    border-radius: 3px;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: auto;
+  }
+
+  .lb-bar {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    pointer-events: auto;
+  }
+
+  .lb-caption {
+    font-size: 0.82rem;
+    color: rgba(240,237,232,0.65);
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+
+  .lb-counter {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(240,237,232,0.3);
   }
 </style>
