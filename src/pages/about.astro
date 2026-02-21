@@ -8,7 +8,7 @@ const categories = Object.entries(skillsData) as [string, string[]][];
 const aboutPhotos = [
   { src: '/images/about/JPL_Summit.jpg',     caption: 'Summit of Mt. Whitney with JPL colleagues' },
   { src: '/images/about/JPL_Mars_Rover.jpg', caption: 'Mars Rover VSTB, NASA JPL'                 },
-  { src: '/images/about/F1.jpg',             caption: 'Pit lane, 2025 F1 USGP'                    },
+  { src: '/images/about/Racecar.jpg',             caption: 'Pit lane, 2025 F1 USGP'                    },
   { src: '/images/about/Free_Solo.jpg',      caption: 'Free solo, Joshua Tree'                     },
   { src: '/images/about/Family.jpg',         caption: 'Austin, TX'                                 },
 ];
@@ -20,10 +20,6 @@ const aboutPhotos = [
 >
   <!-- Page header + hero photo -->
   <div class="page-header">
-    <div class="container header-text">
-      <p class="eyebrow">About me</p>
-      <h1>Maker.<br />Explorer.<br />Learner.</h1>
-    </div>
     <div class="hero-photo-wrap">
       <img
         src="/images/about/Profile_Landscape.jpg"
@@ -31,6 +27,12 @@ const aboutPhotos = [
         loading="eager"
         decoding="async"
       />
+      <div class="hero-text-wrap">
+        <div class="container">
+          <p class="eyebrow">About me</p>
+          <h1>Technology.<br />Science.<br />Adventure.</h1>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -57,6 +59,7 @@ const aboutPhotos = [
                 alt="Anish and JPL colleagues on the summit of Mt. Whitney"
                 loading="lazy"
                 decoding="async"
+                style="object-position: 50% 75%"
               />
             </div>
           </button>
@@ -84,10 +87,11 @@ const aboutPhotos = [
                 alt="Anish at the Mars Rover Vehicle Systems Testbed at NASA JPL"
                 loading="lazy"
                 decoding="async"
+                style="object-position: 25% 50%"
               />
             </div>
           </button>
-          <figcaption>Mars Rover VSTB, NASA JPL</figcaption>
+          <figcaption>Mars Rover Vehicle Systems Testbed, NASA JPL</figcaption>
         </figure>
       </div>
 
@@ -106,14 +110,14 @@ const aboutPhotos = [
           <button class="photo-btn" data-index="2" aria-label="Expand photo" type="button">
             <div class="photo-frame">
               <img
-                src="/images/about/F1.jpg"
-                alt="Anish and a fellow marshal in pit lane at the 2025 F1 USGP"
+                src="/images/about/Racecar.jpg"
+                alt="Getting ready for an Endurance race in a Spec Miata."
                 loading="lazy"
                 decoding="async"
               />
             </div>
           </button>
-          <figcaption>Pit lane, 2025 F1 USGP</figcaption>
+          <figcaption>Getting ready for an Endurance race in a Spec Miata</figcaption>
         </figure>
       </div>
 
@@ -136,23 +140,25 @@ const aboutPhotos = [
                 alt="Anish free soloing in Joshua Tree"
                 loading="lazy"
                 decoding="async"
+                style="object-position: 50% 85%"
               />
             </div>
           </button>
-          <figcaption>Free solo, Joshua Tree</figcaption>
+          <figcaption>Free solo of the Cyclops, Joshua Tree, CA</figcaption>
         </figure>
       </div>
 
       <!-- Closing -->
       <div class="bio-closing">
         <figure class="closing-figure">
-          <button class="photo-btn" data-index="4" aria-label="Expand photo" type="button">
+          <button class="photo-btn" data- index="4" aria-label="Expand photo" type="button">
             <div class="photo-frame photo-frame--closing">
               <img
                 src="/images/about/Family.jpg"
                 alt="Anish with his girlfriend and their German Shepherd"
                 loading="lazy"
                 decoding="async"
+                style="object-position: 50% 50%"
               />
             </div>
           </button>
@@ -254,32 +260,14 @@ const aboutPhotos = [
 <style>
   /* ── Page header ─────────────────────────────────────────── */
   .page-header {
-    padding-top: calc(var(--nav-h) + 4rem);
-  }
-
-  .header-text {
-    padding-bottom: 2.5rem;
-  }
-
-  .eyebrow {
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .page-header h1 {
-    font-size: clamp(2.4rem, 5.5vw, 4rem);
-    line-height: 1.08;
-    margin: 0;
+    padding-top: var(--nav-h);
   }
 
   /* Full-width cinematic banner */
   .hero-photo-wrap {
+    position: relative;
     width: 100%;
-    aspect-ratio: 16 / 7;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     background: var(--bg-elevated);
   }
@@ -290,6 +278,46 @@ const aboutPhotos = [
     object-fit: cover;
     object-position: center 25%;
     display: block;
+  }
+
+  /* Gradient so text stays legible over the image */
+  .hero-photo-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(6, 6, 6, 0.75) 0%,
+      rgba(6, 6, 6, 0.25) 25%,
+      transparent 85%
+    );
+    pointer-events: none;
+  }
+
+  /* Text overlay, sits above the gradient */
+  .hero-text-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding-bottom: 2.5rem;
+  }
+
+  .eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    line-height: 1.08;
+    margin: 0;
+    color: #f0ede8;
   }
 
   /* ── Bio entries ─────────────────────────────────────────── */
