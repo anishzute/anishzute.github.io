@@ -384,7 +384,8 @@ const allPhotos = [...bioPhotos, ...stripPhotos];
 
     // 4. Auto-scroll — also handles lazy oneThird init on first frame with real layout
     var paused = false;
-    var SPEED  = 0.6; // px per frame (~36 px/s at 60 fps)
+    var SPEED     = 0.15;  // px per frame (~18 px/s at 60 fps)
+    var remainder = 0;    // accumulate sub-pixel amounts so fractional speeds work
 
     function tick() {
       // Compute oneThird lazily so we wait until the browser has laid out all items
@@ -392,7 +393,14 @@ const allPhotos = [...bioPhotos, ...stripPhotos];
         oneThird = strip.scrollWidth / 3;
         strip.scrollLeft = oneThird; // jump to middle copy
       }
-      if (!paused && oneThird) strip.scrollLeft += SPEED;
+      if (!paused && oneThird) {
+        remainder += SPEED;
+        if (remainder >= 1) {
+          var px = Math.floor(remainder);
+          strip.scrollLeft += px;
+          remainder -= px;
+        }
+      }
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
