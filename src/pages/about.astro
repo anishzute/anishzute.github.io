@@ -115,7 +115,7 @@ const allPhotos = [...bioPhotos, ...stripPhotos];
   <!-- Photo strip -->
   {stripPhotos.length > 0 && (
     <div class="photo-strip-wrap">
-      <div class="photo-strip">
+      <div class="photo-strip" id="photo-strip">
         {stripPhotos.map((photo, i) => (
           <button
             class="strip-item photo-btn"
@@ -127,6 +127,9 @@ const allPhotos = [...bioPhotos, ...stripPhotos];
             <img src={photo.src} alt={photo.caption} width={photo.w} height={photo.h} loading="lazy" decoding="async" />
           </button>
         ))}
+      </div>
+      <div class="strip-scrollbar" id="strip-scrollbar" title="Drag to scroll">
+        <div class="strip-thumb" id="strip-thumb"></div>
       </div>
     </div>
   )}
@@ -326,10 +329,10 @@ const allPhotos = [...bioPhotos, ...stripPhotos];
     dialog.showModal();
   }
 
-  document.querySelectorAll('.photo-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      openAt(Number(btn.dataset.index));
-    });
+  // Event delegation — handles originals AND infinite-loop clones
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.photo-btn[data-index]');
+    if (btn) openAt(Number(btn.dataset.index));
   });
 
   document.getElementById('lb-close').addEventListener('click',    function() { dialog.close(); });
@@ -351,39 +354,110 @@ const allPhotos = [...bioPhotos, ...stripPhotos];
     if (Math.abs(dx) > 50) show(dx < 0 ? current + 1 : current - 1);
   });
 
-  // ── Photo strip: shuffle on each page load ───────────────
-  var strip = document.querySelector('.photo-strip');
-  if (strip) {
-    var items = Array.from(strip.querySelectorAll('.strip-item'));
-    for (var i = items.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
-    }
-    items.forEach(function(el) { strip.appendChild(el); });
-  }
+  // ── Photo strip ───────────────────────────────────────────
+  var strip = document.getElementById('photo-strip');
+  var scrollbar = document.getElementById('strip-scrollbar');
+  var thumb = document.getElementById('strip-thumb');
 
-  // ── Photo strip: scroll wheel + click-drag ────────────────
-  if (strip) {
-    // Scroll wheel → horizontal scroll
+  if (strip && scrollbar && thumb) {
+
+    // 1. Shuffle originals
+    var originals = Array.from(strip.querySelectorAll('.strip-item'));
+    for (var si = originals.length - 1; si > 0; si--) {
+      var sj = Math.floor(Math.random() * (si + 1));
+      var stmp = originals[si]; originals[si] = originals[sj]; originals[sj] = stmp;
+    }
+    originals.forEach(function(el) { strip.appendChild(el); });
+
+    // 2. Clone originals — prepend + append — giving [copies | originals | copies]
+    //    Clones keep data-index so lightbox works when clicked
+    function cloneItems(list, prepend) {
+      var arr = prepend ? list.slice().reverse() : list;
+      arr.forEach(function(el) {
+        var c = el.cloneNode(true);
+        if (prepend) strip.prepend(c); else strip.appendChild(c);
+      });
+    }
+    cloneItems(originals, true);   // prepend copies (enables backward loop)
+    cloneItems(originals, false);  // append  copies (enables forward  loop)
+
+    // 3. After layout: jump to the start of the original section
+    var oneThird; // width of one copy — computed after paint
+    requestAnimationFrame(function() {
+      oneThird = strip.scrollWidth / 3;
+      strip.scrollLeft = oneThird;
+      syncThumb();
+    });
+
+    // 4. Infinite-loop teleport — fires on every scroll event
+    strip.addEventListener('scroll', function() {
+      if (!oneThird) return;
+      if (strip.scrollLeft >= oneThird * 2) {
+        strip.scrollLeft -= oneThird; // jumped past originals → snap back
+      } else if (strip.scrollLeft < oneThird * 0.05) {
+        strip.scrollLeft += oneThird; // backed past beginning → snap forward
+      }
+      syncThumb();
+    }, { passive: true });
+
+    // 5. Scrollbar thumb — shows position within one copy, fully draggable
+    function syncThumb() {
+      if (!oneThird) return;
+      var visibleRatio = strip.clientWidth / oneThird;
+      var thumbPct = Math.min(visibleRatio * 100, 95);
+      thumb.style.width = thumbPct + '%';
+      var pos = ((strip.scrollLeft % oneThird) / oneThird) * (100 - thumbPct);
+      thumb.style.left = pos + '%';
+    }
+
+    // Drag the thumb
+    var thumbDrag = false, thumbStartX = 0, thumbScrollStart = 0;
+    thumb.addEventListener('mousedown', function(e) {
+      e.stopPropagation();
+      thumbDrag = true;
+      thumbStartX = e.pageX;
+      thumbScrollStart = strip.scrollLeft;
+      thumb.classList.add('dragging');
+    });
+
+    // Click on scrollbar track → jump to that position within one copy
+    scrollbar.addEventListener('mousedown', function(e) {
+      if (e.target === thumb) return;
+      var rect = scrollbar.getBoundingClientRect();
+      var frac = (e.clientX - rect.left) / rect.width;
+      var base = Math.floor(strip.scrollLeft / oneThird) * oneThird;
+      strip.scrollLeft = base + frac * oneThird;
+    });
+
+    // 6. Wheel → horizontal scroll
     strip.addEventListener('wheel', function(e) {
       if (e.deltaY === 0) return;
       e.preventDefault();
       strip.scrollLeft += e.deltaY;
     }, { passive: false });
 
-    // Click-drag to scroll
-    var isDragging = false, dragStartX = 0, scrollStartLeft = 0;
+    // 7. Click-drag on the strip itself
+    var stripDrag = false, stripStartX = 0, stripScrollStart = 0;
     strip.addEventListener('mousedown', function(e) {
-      isDragging = true;
-      dragStartX = e.pageX;
-      scrollStartLeft = strip.scrollLeft;
+      stripDrag = true;
+      stripStartX = e.pageX;
+      stripScrollStart = strip.scrollLeft;
     });
+
     window.addEventListener('mousemove', function(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-      strip.scrollLeft = scrollStartLeft - (e.pageX - dragStartX);
+      if (thumbDrag) {
+        var rect = scrollbar.getBoundingClientRect();
+        var dx = (e.pageX - thumbStartX) / rect.width * oneThird;
+        strip.scrollLeft = thumbScrollStart + dx;
+      } else if (stripDrag) {
+        strip.scrollLeft = stripScrollStart - (e.pageX - stripStartX);
+      }
     });
-    window.addEventListener('mouseup', function() { isDragging = false; });
+
+    window.addEventListener('mouseup', function() {
+      stripDrag = false;
+      if (thumbDrag) { thumbDrag = false; thumb.classList.remove('dragging'); }
+    });
   }
 </script>
 
@@ -498,6 +572,32 @@ const allPhotos = [...bioPhotos, ...stripPhotos];
   .strip-item:hover img {
     opacity: 0.82;
     transform: scale(1.03);
+  }
+
+  /* Draggable scrollbar track */
+  .strip-scrollbar {
+    position: relative;
+    height: 3px;
+    background: var(--border);
+    cursor: pointer;
+    user-select: none;
+    margin: 0 0 0.25rem;
+  }
+
+  .strip-thumb {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: var(--text-3);
+    border-radius: 2px;
+    cursor: grab;
+    transition: background 0.15s;
+  }
+
+  .strip-thumb:hover,
+  .strip-thumb.dragging {
+    background: var(--accent);
+    cursor: grabbing;
   }
 
   /* ── Bio entries ─────────────────────────────────────────── */
