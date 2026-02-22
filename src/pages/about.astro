@@ -397,7 +397,7 @@ const allPhotos = [...bioPhotos, ...stripPhotos];
 
     // 4. Auto-scroll — lazy init + smooth float-position advance
     var paused = false;
-    var SPEED  = 0.3; // px per frame (~18 px/s at 60 fps) — fractional values work perfectly
+    var SPEED  = 0.15; // px per frame (~18 px/s at 60 fps) — fractional values work perfectly
 
     function tick() {
       if (!oneThird && strip.scrollWidth > strip.clientWidth * 1.5) {
