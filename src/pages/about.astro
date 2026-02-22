@@ -374,32 +374,41 @@ const allPhotos = [...bioPhotos, ...stripPhotos];
     cloneAll(true);
     cloneAll(false);
 
-    // 3. Infinite-loop teleport on scroll
+    // 3. Track scroll position in a float so we own sub-pixel precision.
+    //    We set strip.scrollLeft = pos each frame rather than reading it back,
+    //    avoiding the integer-rounding that causes jitter at slow speeds.
     var oneThird = 0;
+    var pos = 0; // mirrors strip.scrollLeft as a float
+
+    function teleport() {
+      if (!oneThird) return;
+      if (pos >= oneThird * 2)        pos -= oneThird;
+      else if (pos < oneThird * 0.05) pos += oneThird;
+    }
+
+    // Keep pos in sync when the user scrolls manually (wheel/drag write to scrollLeft directly)
     strip.addEventListener('scroll', function() {
       if (!oneThird) return;
-      if (strip.scrollLeft >= oneThird * 2)        strip.scrollLeft -= oneThird;
-      else if (strip.scrollLeft < oneThird * 0.05) strip.scrollLeft += oneThird;
+      // Only sync if the difference is large (user interaction, not our own rAF write)
+      if (Math.abs(strip.scrollLeft - pos) > 1) pos = strip.scrollLeft;
+      teleport();
+      strip.scrollLeft = pos;
     }, { passive: true });
 
-    // 4. Auto-scroll — also handles lazy oneThird init on first frame with real layout
+    // 4. Auto-scroll — lazy init + smooth float-position advance
     var paused = false;
-    var SPEED     = 0.15;  // px per frame (~18 px/s at 60 fps)
-    var remainder = 0;    // accumulate sub-pixel amounts so fractional speeds work
+    var SPEED  = 0.3; // px per frame (~18 px/s at 60 fps) — fractional values work perfectly
 
     function tick() {
-      // Compute oneThird lazily so we wait until the browser has laid out all items
       if (!oneThird && strip.scrollWidth > strip.clientWidth * 1.5) {
         oneThird = strip.scrollWidth / 3;
-        strip.scrollLeft = oneThird; // jump to middle copy
+        pos = oneThird;
+        strip.scrollLeft = pos;
       }
       if (!paused && oneThird) {
-        remainder += SPEED;
-        if (remainder >= 1) {
-          var px = Math.floor(remainder);
-          strip.scrollLeft += px;
-          remainder -= px;
-        }
+        pos += SPEED;
+        teleport();
+        strip.scrollLeft = pos; // set float directly — no integer rounding
       }
       requestAnimationFrame(tick);
     }
@@ -418,7 +427,9 @@ const allPhotos = [...bioPhotos, ...stripPhotos];
       if (e.deltaY === 0) return;
       e.preventDefault();
       pause();
-      strip.scrollLeft += e.deltaY;
+      pos += e.deltaY;
+      teleport();
+      strip.scrollLeft = pos;
       clearTimeout(strip._wheelTimer);
       strip._wheelTimer = setTimeout(resume, 1000);
     }, { passive: false });
@@ -428,12 +439,14 @@ const allPhotos = [...bioPhotos, ...stripPhotos];
     strip.addEventListener('mousedown', function(e) {
       isDragging = true;
       dragStartX = e.pageX;
-      dragScrollStart = strip.scrollLeft;
+      dragScrollStart = pos;
       pause();
     });
     window.addEventListener('mousemove', function(e) {
       if (!isDragging) return;
-      strip.scrollLeft = dragScrollStart - (e.pageX - dragStartX);
+      pos = dragScrollStart - (e.pageX - dragStartX);
+      teleport();
+      strip.scrollLeft = pos;
     });
     window.addEventListener('mouseup', function() {
       if (isDragging) { isDragging = false; resume(); }
