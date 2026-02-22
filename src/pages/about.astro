@@ -1,17 +1,93 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import skillsData from '../data/skills.json';
+import { readdirSync } from 'fs';
+import { join } from 'path';
+import exifr from 'exifr';
+import sharp from 'sharp';
+import heicConvert from 'heic-convert';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 
 const categories = Object.entries(skillsData) as [string, string[]][];
 
-// Photos available in the lightbox, in display order
-const aboutPhotos = [
+// Bio entry photos — order must match data-index attributes in the HTML below
+const bioPhotos = [
   { src: '/images/about/JPL_Summit.jpg',     caption: 'Summit of Mt. Whitney with JPL colleagues' },
   { src: '/images/about/JPL_Mars_Rover.jpg', caption: 'Mars Rover VSTB, NASA JPL'                 },
-  { src: '/images/about/Racecar.jpg',             caption: 'Pit lane, 2025 F1 USGP'                    },
+  { src: '/images/about/Racecar.jpg',        caption: 'Endurance racing — Spec Miata'              },
   { src: '/images/about/Free_Solo.jpg',      caption: 'Free solo, Joshua Tree'                     },
   { src: '/images/about/Family.jpg',         caption: 'Austin, TX'                                 },
 ];
+
+// Strip photos — auto-discovered from public/images/about/strip/
+// Drop any photo into that folder and it will appear in the strip automatically.
+// Captions are read from the IPTC Caption-Abstract field embedded in each file
+// (write with: exiftool -overwrite_original -IPTC:Caption-Abstract="…" photo.jpg).
+// Falls back to the filename if no caption is embedded.
+const IMAGE_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+const HEIF_EXTS  = new Set(['.heic', '.heif']);
+const STRIP_H = 220; // display height in px — width is scaled to preserve aspect ratio
+let stripPhotos: { src: string; caption: string; w: number; h: number }[] = [];
+try {
+  const dir = join(process.cwd(), 'public/images/about/strip');
+  const files = readdirSync(dir)
+    .filter(f => {
+      const ext = f.slice(f.lastIndexOf('.')).toLowerCase();
+      return IMAGE_EXTS.has(ext) || HEIF_EXTS.has(ext);
+    })
+    .sort();
+  stripPhotos = await Promise.all(
+    files.map(async f => {
+      const ext = f.slice(f.lastIndexOf('.')).toLowerCase();
+      const filePath = join(dir, f);
+      const fallback = f.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+
+      // Convert HEIC/HEIF → JPEG next to the original so the browser can load it
+      let servePath = filePath;
+      let serveFile = f;
+      if (HEIF_EXTS.has(ext)) {
+        const jpegName = f.replace(/\.[^.]+$/, '.jpg');
+        const jpegPath = join(dir, jpegName);
+        if (!existsSync(jpegPath)) {
+          const jpegBuf = await heicConvert({
+            buffer: readFileSync(filePath),
+            format: 'JPEG',
+            quality: 0.92,
+          });
+          writeFileSync(jpegPath, Buffer.from(jpegBuf));
+        }
+        servePath = jpegPath;
+        serveFile = jpegName;
+      }
+
+      // Read caption from embedded IPTC metadata, fall back to filename
+      let caption = fallback;
+      try {
+        const meta = await exifr.parse(servePath, { iptc: true, pick: ['Caption-Abstract', 'ImageDescription'] });
+        caption = meta?.['Caption-Abstract'] || meta?.ImageDescription || fallback;
+      } catch { /* no IPTC data */ }
+
+      // Read pixel dimensions so the browser can lay out before images load.
+      // Orientations 5-8 involve a 90° rotation, so width and height must be swapped.
+      let w = Math.round(STRIP_H * (4 / 3));
+      let h = STRIP_H;
+      try {
+        const { width, height, orientation } = await sharp(servePath).metadata();
+        if (width && height) {
+          const rotated = orientation != null && orientation >= 5;
+          const displayW = rotated ? height : width;
+          const displayH = rotated ? width  : height;
+          w = Math.round((displayW / displayH) * STRIP_H);
+          h = STRIP_H;
+        }
+      } catch { /* sharp failed */ }
+
+      return { src: `/images/about/strip/${encodeURIComponent(serveFile)}`, caption, w, h };
+    })
+  );
+} catch { /* strip directory missing or empty */ }
+
+const allPhotos = [...bioPhotos, ...stripPhotos];
 ---
 
 <BaseLayout
@@ -35,6 +111,25 @@ const aboutPhotos = [
       </div>
     </div>
   </div>
+
+  <!-- Photo strip -->
+  {stripPhotos.length > 0 && (
+    <div class="photo-strip-wrap">
+      <div class="photo-strip">
+        {stripPhotos.map((photo, i) => (
+          <button
+            class="strip-item photo-btn"
+            data-index={bioPhotos.length + i}
+            aria-label={`Expand: ${photo.caption}`}
+            type="button"
+            style={`width:${photo.w}px`}
+          >
+            <img src={photo.src} alt={photo.caption} width={photo.w} height={photo.h} loading="lazy" decoding="async" />
+          </button>
+        ))}
+      </div>
+    </div>
+  )}
 
   <!-- Bio entries -->
   <section class="bio-entries-section">
@@ -151,7 +246,7 @@ const aboutPhotos = [
       <!-- Closing -->
       <div class="bio-closing">
         <figure class="closing-figure">
-          <button class="photo-btn" data- index="4" aria-label="Expand photo" type="button">
+          <button class="photo-btn" data-index="4" aria-label="Expand photo" type="button">
             <div class="photo-frame photo-frame--closing">
               <img
                 src="/images/about/Family.jpg"
@@ -182,7 +277,7 @@ const aboutPhotos = [
           <div class="skill-card">
             <h3 class="skill-category">{category}</h3>
             <ul>
-              {skills.map(skill => <li>{skill}</li>)}
+              {skills.map(skill => <li set:html={skill.replace(/\n/g, '<br>')} />)}
             </ul>
           </div>
         ))}
@@ -208,7 +303,7 @@ const aboutPhotos = [
   </dialog>
 </BaseLayout>
 
-<script is:inline define:vars={{ photoData: aboutPhotos }}>
+<script is:inline define:vars={{ photoData: allPhotos }}>
   var photos  = photoData;
   var current = 0;
 
@@ -255,6 +350,41 @@ const aboutPhotos = [
     var dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 50) show(dx < 0 ? current + 1 : current - 1);
   });
+
+  // ── Photo strip: shuffle on each page load ───────────────
+  var strip = document.querySelector('.photo-strip');
+  if (strip) {
+    var items = Array.from(strip.querySelectorAll('.strip-item'));
+    for (var i = items.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+    }
+    items.forEach(function(el) { strip.appendChild(el); });
+  }
+
+  // ── Photo strip: scroll wheel + click-drag ────────────────
+  if (strip) {
+    // Scroll wheel → horizontal scroll
+    strip.addEventListener('wheel', function(e) {
+      if (e.deltaY === 0) return;
+      e.preventDefault();
+      strip.scrollLeft += e.deltaY;
+    }, { passive: false });
+
+    // Click-drag to scroll
+    var isDragging = false, dragStartX = 0, scrollStartLeft = 0;
+    strip.addEventListener('mousedown', function(e) {
+      isDragging = true;
+      dragStartX = e.pageX;
+      scrollStartLeft = strip.scrollLeft;
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+      strip.scrollLeft = scrollStartLeft - (e.pageX - dragStartX);
+    });
+    window.addEventListener('mouseup', function() { isDragging = false; });
+  }
 </script>
 
 <style>
@@ -318,6 +448,56 @@ const aboutPhotos = [
     line-height: 1.08;
     margin: 0;
     color: #f0ede8;
+  }
+
+  /* ── Photo strip ────────────────────────────────────────── */
+  .photo-strip-wrap {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-raised);
+  }
+
+  .photo-strip {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 0.75rem 0;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+  }
+
+  .photo-strip:active {
+    cursor: grabbing;
+  }
+
+  .photo-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .strip-item {
+    /* width is set via inline style (sharp-computed at build time) */
+    flex-shrink: 0;
+    height: 220px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+    border-radius: 4px;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .strip-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: opacity 0.2s, transform 0.3s ease;
+  }
+
+  .strip-item:hover img {
+    opacity: 0.82;
+    transform: scale(1.03);
   }
 
   /* ── Bio entries ─────────────────────────────────────────── */

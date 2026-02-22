@@ -1,35 +1,41 @@
 {
-  "Engineering": [
-    "Chassis & Structural Design",
-    "Suspension Geometry & Kinematics",
-    "Aerodynamic Development",
-    "FEA / Structural Simulation",
-    "CAD (SolidWorks, Fusion 360)",
-    "CNC Machining & Fabrication",
-    "Composite Layup",
-    "Vehicle Dynamics"
-  ],
   "Software": [
-    "Python",
-    "TypeScript / JavaScript",
-    "Astro",
-    "C / C++",
-    "MATLAB",
-    "Git & GitHub Actions",
-    "Linux"
+    "Python | Java | C# | Rust",
+    "Unity | Unreal Engine",
+    "Matlab | Mathematica | LaTeX",
+    "TensorFlow | PyTorch | Keras",
+    "OpenCV",
+    "Git & GitHub",
+    "AWS | Azure | GCP",
+    "Linux | Ubuntu"
   ],
-  "Electronics & Embedded": [
-    "CAN Bus",
-    "Microcontrollers (STM32, Arduino)",
-    "PCB Design",
-    "Sensor Integration (GPS, IMU)",
-    "Data Acquisition Systems"
+  "Engineering & Electronics": [
+    "CAD (SolidWorks, Fusion 360)",
+    "ANSYS",
+    "CNC Machining & Fabrication",
+    "3D Printing",
+    "Composite Layup",
+    "Arduino | Raspberry Pi",
+    "PCB Design | PCB Fabrication",
+    "Robotics | Control Systems",
+    "Control Systems"
   ],
   "Creative": [
     "Cinematography",
-    "Video Editing (DaVinci Resolve)",
-    "Photography",
+    "Video Editing\n(DaVinci Resolve, Premiere)",
+    "Photography\n(Lightroom, Photoshop)",
     "Color Grading",
-    "Drone Operation"
+    "VFX Compositing\n(AfterFX, Nuke)",
+    "3D Modeling and Animation\n(3DS Max, Maya, Cinema 4D)",
+    "Audio Production\n(Pro Tools, Ableton, Cubase)"
+  ],
+  "Hobbies": [
+    "Guitar | Piano | Viola",
+    "Climbing | Caving",
+    "Sailing",
+    "Motorsports | Formula 1",
+    "Aviation | FlightSim",
+    "Backpacking | Travel"
+
   ]
 }

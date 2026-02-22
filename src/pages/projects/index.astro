@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import projectsData from '../../data/projects.json';
+import { getCollection } from 'astro:content';
+
+const isDev = !import.meta.env.PROD;
+const projects = (await getCollection('projects'))
+  .filter(p => isDev || !p.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
@@ -15,20 +20,22 @@ import projectsData from '../../data/projects.json';
   </div>
 
   <div class="projects-list container">
-    {projectsData.map((project, i) => (
+    {projects.map((project, i) => (
       <a href={`/projects/${project.slug}`} class="project-row">
         <div class="project-row-img">
-          {project.images.length > 0
-            ? <img src={project.images[0]} alt={project.title} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" width="320" height="200" />
+          {project.data.heroImage
+            ? <img src={project.data.heroImage} alt={project.data.title} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" width="320" height="200" />
             : <div class="img-placeholder"></div>
           }
         </div>
         <div class="project-row-body">
-          <div class="tags">
-            {project.tags.map(tag => <span class="tag">{tag}</span>)}
-          </div>
-          <h2>{project.title}</h2>
-          <p>{project.description}</p>
+          {project.data.tags && (
+            <div class="tags">
+              {project.data.tags.map(tag => <span class="tag">{tag}</span>)}
+            </div>
+          )}
+          <h2>{project.data.title}</h2>
+          <p>{project.data.description}</p>
           <span class="row-cta">View project →</span>
         </div>
       </a>

@@ -1,39 +1,29 @@
 ---
+import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import projectsData from '../../data/projects.json';
 
-export function getStaticPaths() {
-  return projectsData.map(project => ({
+export async function getStaticPaths() {
+  const isDev = !import.meta.env.PROD;
+  const projects = (await getCollection('projects')).filter(
+    p => isDev || !p.data.draft
+  );
+  return projects.map(project => ({
     params: { slug: project.slug },
     props: { project },
   }));
 }
 
-interface Project {
-  slug: string;
-  title: string;
-  description: string;
-  tags: string[];
-  images: string[];
-  githubUrl: string | null;
-  liveUrl: string | null;
-  body: string;
-}
-
-const { project } = Astro.props as { project: Project };
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, description, tags, heroImage, githubUrl, liveUrl } = project.data;
 ---
 
-<BaseLayout
-  title={project.title}
-  description={project.description}
-  ogImage={project.images[0]}
->
-  <!-- Hero image if available -->
-  {project.images.length > 0 && (
+<BaseLayout title={title} description={description} ogImage={heroImage}>
+  {heroImage && (
     <div class="project-hero">
       <img
-        src={project.images[0]}
-        alt={project.title}
+        src={heroImage}
+        alt={title}
         loading="eager"
         decoding="async"
         width="1080"
@@ -47,45 +37,32 @@ const { project } = Astro.props as { project: Project };
       <a href="/projects" class="back-link">← All projects</a>
 
       <div class="project-meta">
-        <div class="tags">
-          {project.tags.map(tag => <span class="tag">{tag}</span>)}
-        </div>
+        {tags && (
+          <div class="tags">
+            {tags.map(tag => <span class="tag">{tag}</span>)}
+          </div>
+        )}
         <div class="project-links">
-          {project.githubUrl && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="ext-link">
+          {githubUrl && (
+            <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="ext-link">
               GitHub →
             </a>
           )}
-          {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="ext-link">
+          {liveUrl && (
+            <a href={liveUrl} target="_blank" rel="noopener noreferrer" class="ext-link">
               Live site →
             </a>
           )}
         </div>
       </div>
 
-      <h1>{project.title}</h1>
-      <p class="project-lead">{project.description}</p>
+      <h1>{title}</h1>
+      <p class="project-lead">{description}</p>
     </header>
 
     <div class="project-body">
-      <p>{project.body}</p>
+      <Content />
     </div>
-
-    {project.images.length > 1 && (
-      <div class="image-gallery">
-        {project.images.slice(1).map((src, i) => (
-          <img
-            src={src}
-            alt={`${project.title} — image ${i + 2}`}
-            loading="lazy"
-            decoding="async"
-            width="1080"
-            height="680"
-          />
-        ))}
-      </div>
-    )}
   </article>
 </BaseLayout>
 
@@ -111,7 +88,6 @@ const { project } = Astro.props as { project: Project };
     max-width: 760px;
   }
 
-  /* When no hero, push down past nav */
   .project-article:first-child {
     padding-top: calc(var(--nav-h) + 3rem);
   }
@@ -168,20 +144,63 @@ const { project } = Astro.props as { project: Project };
     font-size: 1rem;
     line-height: 1.8;
     color: var(--text-2);
-    margin-bottom: 2.5rem;
   }
 
-  .project-body p { max-width: 65ch; margin-bottom: 1.25rem; }
-
-  .image-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  .project-body :global(p) {
+    max-width: 65ch;
+    margin-bottom: 1.25rem;
   }
 
-  .image-gallery img {
+  .project-body :global(h2),
+  .project-body :global(h3) {
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-body :global(img) {
     width: 100%;
     border-radius: 8px;
     border: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+
+  .project-body :global(ul),
+  .project-body :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .project-body :global(li) {
+    margin-bottom: 0.4rem;
+  }
+
+  .project-body :global(code) {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.88em;
+    background: var(--bg-elevated);
+    padding: 0.15em 0.35em;
+    border-radius: 3px;
+  }
+
+  .project-body :global(pre) {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-body :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+
+  .project-body :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    color: var(--text-3);
+    margin: 1.5rem 0;
   }
 </style>

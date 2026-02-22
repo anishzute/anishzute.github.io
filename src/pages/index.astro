@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import projectsData from '../data/projects.json';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 
@@ -11,7 +10,10 @@ const recentPosts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const featuredProjects = projectsData.slice(0, 3);
+const featuredProjects = (await getCollection('projects'))
+  .filter(p => isDev || !p.data.draft)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
 
 // All photography images — client-side JS picks a random 7 on each page load
 const IMAGE_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
@@ -113,17 +115,19 @@ try {
         {featuredProjects.map(project => (
           <a href={`/projects/${project.slug}`} class="project-card">
             <div class="project-card-img" aria-hidden="true">
-              {project.images.length > 0
-                ? <img src={project.images[0]} alt={project.title} loading="lazy" decoding="async" width="540" height="300" />
+              {project.data.heroImage
+                ? <img src={project.data.heroImage} alt={project.data.title} loading="lazy" decoding="async" width="540" height="300" />
                 : <div class="project-card-placeholder"></div>
               }
             </div>
             <div class="project-card-body">
-              <div class="tags">
-                {project.tags.slice(0, 3).map(tag => <span class="tag">{tag}</span>)}
-              </div>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
+              {project.data.tags && (
+                <div class="tags">
+                  {project.data.tags.slice(0, 3).map(tag => <span class="tag">{tag}</span>)}
+                </div>
+              )}
+              <h3>{project.data.title}</h3>
+              <p>{project.data.description}</p>
             </div>
           </a>
         ))}
