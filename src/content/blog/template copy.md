@@ -11,12 +11,19 @@ pubDate: 2026-01-01
 
 # ── Optional ──────────────────────────────────────────────────────────────────
 
-tags: ["tag-one", "tag-two"] # Shown as pill badges on the listing and post page.
-heroImage: "/images/blog/my-post/hero.jpg" # Full-width banner image at the top of the post. Also used for og:image.
-# Put post images in public/images/blog/<slug>/
-# updatedDate: 2026-02-01 # If you revise a post after publishing, set this to show "Updated on X".
-draft: true # While true, the post is visible in dev but hidden in production.
+# Shown as pill badges on the listing and post page.
+tags: ["tag-one", "tag-two"]
 
+# Full-width banner image at the top of the post. Also used for og:image.
+# Put post images in public/images/blog/<slug>/
+heroImage: "/images/blog/my-post/hero.jpg"
+
+# If you revise a post after publishing, set this to show "Updated on X".
+# updatedDate: 2026-02-01
+
+# Set to false (or delete this line) when the post is ready to publish.
+# While true, the post is visible in dev but hidden in production.
+draft: true
 ---
 
 Opening paragraph — hook the reader. No heading needed here, just drop straight into prose.
