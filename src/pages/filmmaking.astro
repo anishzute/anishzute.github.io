@@ -5,12 +5,12 @@ import filmsData from '../data/films.json';
 
 <BaseLayout
   title="Filmmaking"
-  description="Short films, race recaps, and cinematic road trips by Anish Zute."
+  description="Creative video work by Anish Zute."
 >
   <div class="page-top">
     <div class="container">
       <h1>Filmmaking</h1>
-      <p class="page-lead">Short films, race recaps, and road trips.</p>
+      <p class="page-lead">Creative video work by Anish Zuté.</p>
     </div>
   </div>
 
@@ -19,14 +19,17 @@ import filmsData from '../data/films.json';
       <p class="empty">Videos coming soon.</p>
     ) : (
       <div class="films-list">
-        {filmsData.map(film => (
+        {[...filmsData].sort((a, b) => b.year - a.year).map(film => (
           <article class="film-item">
             <div class="film-embed">
               <iframe
-                src={`https://www.youtube.com/embed/${film.youtubeId}`}
+                src={film.vimeoId
+                  ? `https://player.vimeo.com/video/${film.vimeoId}`
+                  : `https://www.youtube.com/embed/${film.youtubeId}`}
                 title={film.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                 allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin"
                 loading="lazy"
               ></iframe>
             </div>
